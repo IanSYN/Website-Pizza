@@ -73,7 +73,7 @@ CREATE TABLE `Adresse`(
 
 CREATE TABLE `MoyenPaiement`(
    `idMoyenPaiement` INT(11) NOT NULL AUTO_INCREMENT,
-   `nomMoyenPaiement` VARCHAR(50) NOT NULL CHECK (nomMoyenPaiement in ('Carte', 'Espèce', 'Chèque', 'Apple pay', 'Google pay', 'Paypal')),
+   `nomMoyenPaiement` VARCHAR(50) NOT NULL CHECK (nomMoyenPaiement in ('Carte', 'Espèce', 'Chèque', 'Apple pay', 'Google pay', 'Paypal', 'Ticket restaurant')),
    PRIMARY KEY(`idMoyenPaiement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
