@@ -26,7 +26,7 @@ CREATE TABLE `Allergene`(
 
 CREATE TABLE `Taille`(
    `idTaille` INT(11) NOT NULL AUTO_INCREMENT,
-   `nomTaille` VARCHAR(50)  NOT NULL CHECK (nomTaille in ('medium', 'large')),
+   `nomTaille` VARCHAR(50)  NOT NULL CHECK (nomTaille in ('Medium', 'Large')),
    PRIMARY KEY(`idTaille`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
