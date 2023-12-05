@@ -47,7 +47,7 @@ INSERT INTO `Allergene`(`idAllergene`, `nomAllergene`) VALUES
 INSERT INTO `Taille` VALUES
 (1, 'Medium'),
 (2, 'Large'),
-(3, 'Small');
+(3, 'XL');
 
 INSERT INTO `Coupon`(`codeCoupon`, `datePeremptionCoupon`, `idClient`) VALUES
 ('ABCD1234', '2023-12-31', 1),
