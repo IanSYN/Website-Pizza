@@ -143,7 +143,14 @@ INSERT INTO `Base` VALUES
 
 --supplement--
 
---alerte--
+INSERT INTO `Alerte` VALUES
+(1, 1, 450),
+(2, 1, 300),
+(3, 1, 55)
+(4, 1, 200),
+(5, 1, 100),
+(6, 1, 500);
+
 
 
 
