@@ -15,7 +15,7 @@ public class VCuisine extends JFrame implements Colors {
 		//jPanel instanciation
 	    JPanel mainGridPan = new JPanel(); //the main panel that contains two sub-panels
 	    JPanel subGridUserPan = new JPanel(); //the sub-panel that contains the left and right panels
-	    JPanel hautPan = new JPanel; //the sub-panel that contains the navigation bar
+	    JPanel hautPan = new JPanel(); //the sub-panel that contains the navigation bar
 	    JPanel gauchePan = new JPanel(); //the left panel that contains the user's image and basic information
 	    JPanel droitePan = new JPanel(); //the right panel that contains the user's full bio
 	    
