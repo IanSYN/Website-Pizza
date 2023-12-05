@@ -40,13 +40,13 @@ CREATE TABLE `Coupon`(
 
 CREATE TABLE `Categorie`(
    `idCategorie` INT(11) NOT NULL AUTO_INCREMENT,
-   `nomCategorie` VARCHAR(50)  NOT NULL CHECK (`nomCategorie` in ('dessert','boisson','pizza','petite faim')),
+   `nomCategorie` VARCHAR(50)  NOT NULL CHECK (`nomCategorie` in ('Dessert','Boisson','Pizza','Petite faim')),
    PRIMARY KEY(`idCategorie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `EtatCommande`(
    `idEtatCommande` INT(11) NOT NULL AUTO_INCREMENT,
-   `nomEtatCommande` VARCHAR(50)  NOT NULL CHECK (nomEtatCommande in ('attente de paiement', 'en cuisine', 'en attente de prise en charge', 'en cours de livraison', 'livré')),
+   `nomEtatCommande` VARCHAR(50)  NOT NULL CHECK (nomEtatCommande in ('Attente de paiement', 'En cuisine', 'En attente de prise en charge', 'En cours de livraison', 'Livré')),
    PRIMARY KEY(`idEtatCommande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -73,7 +73,7 @@ CREATE TABLE `Adresse`(
 
 CREATE TABLE `MoyenPaiement`(
    `idMoyenPaiement` INT(11) NOT NULL AUTO_INCREMENT,
-   `nomMoyenPaiement` VARCHAR(50) NOT NULL CHECK (nomMoyenPaiement in ('carte', 'espèce', 'chèque', 'apple pay', 'google pay', 'paypal')),
+   `nomMoyenPaiement` VARCHAR(50) NOT NULL CHECK (nomMoyenPaiement in ('Carte', 'Espèce', 'Chèque', 'Apple pay', 'Google pay', 'Paypal')),
    PRIMARY KEY(`idMoyenPaiement`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -119,7 +119,6 @@ CREATE TABLE `Ingredient`(
 CREATE TABLE `Livraison`(
    `idLivraison` INT(11) NOT NULL AUTO_INCREMENT,
    `heureLivraison` DATETIME NOT NULL,
-   `etatLivraison` VARCHAR(50) NOT NULL CHECK (etatLivraison in ('à l`heure', 'en retard')),
    `idCommande` INT(11) NOT NULL,
    `idLivreur` INT(11) NOT NULL,
    PRIMARY KEY(`idLivraison`),
