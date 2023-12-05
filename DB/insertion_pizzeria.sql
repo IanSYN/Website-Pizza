@@ -100,7 +100,7 @@ INSERT INTO `MoyenPaiement` VALUES
 (5, 'Google pay'),
 (6, 'Paypal');
 
-//commande
+--commande--
 
 INSERT INTO `Produit` VALUES
 (1, 'Margarita', 7, ‘margarita.png’, 3),
@@ -118,14 +118,14 @@ INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `pr
 (5, 'Orian', 120, 0.80, ‘origan.png’, NULL),
 (6, 'Saumon', 1205, 13, ‘saumon.png’, 8);
 
-//livraison
+--livraison--
 
 INSERT INTO `Pizzeria` VALUES
 (1, 1);
 
-//pizzaPersonnalisee
+--pizzaPersonnalisee--
 
-//panier
+--panier--
 
 INSERT INTO `Base` VALUES
 (1, 1, 150),
@@ -141,9 +141,9 @@ INSERT INTO `Base` VALUES
 (3, 3, 0.4),
 (3, 4, 10),
 
-//supplement
+--supplement--
 
-//alerte
+--alerte--
 
 
 
