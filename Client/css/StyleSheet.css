@@ -1,0 +1,53 @@
+*{
+    font: 1.2rem "Fira Sans", sans-serif;
+}
+
+html{
+    background-color: #FF8369;
+    border: red solid 5px;
+}
+.title{
+    color: #07AE5B;
+    text-align: center;
+    font-size: xx-large;
+    width: 25%;
+    font-weight: bolder;
+}
+
+h1{
+    color: #F31C1B;
+}
+
+.bTache{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.bTache ul{
+    width:auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.bTache ul li{
+    text-align: center;
+    list-style-type: none;
+    padding: 5px;
+}
+
+.bTache a{
+    color: black;
+    font-size: x-large;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.EnAvant {
+    height: 60%;
+    border: red solid 5px;
+    border-radius: 10px;
+    margin-right: 1px;
+    background-image: url("../img/pizzaRegina.jpeg");
+    background-size: cover;
+    background-position: center;
+}
