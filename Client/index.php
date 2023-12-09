@@ -1,34 +1,20 @@
-<DOCTYPE!>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Pizzavers</title>
-    <link rel="stylesheet" href="css/StyleSheet.css">
-</head>
-<header>
-    <div class="bTache">
-        <h1 class="title">
-            Pizzavers
-        </h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="index.php">HOME</a>
-                </li>
-                <li>
-                    <a href="menu.php">PRODUIT</a>
-                </li>
-                <li>
-                    <a href="contact.php">QUI SOMMES NOUS ?</a>
-                </li>
-                <li>
-                    <a href="panier.php">PANIER</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
-<body>
-    <div class="EnAvant">
-    </div>
-</body>
+<?php
+$objet = "pizza";
+//$objets = ["adherent", "serie" , "auteur" , "nationalite" , "bd" , "categorie" , "etat"];
+//$actions = ["displayAll", "displayOne" , "delete"];
+
+if(isset($_GET["objet"]) && in_array($_GET["objet"], $objets)){
+    $objet = $_GET["objet"];
+}
+
+$action = "displayAll";
+if(isset($_GET["action"]) && in_array($_GET["action"], $actions)){
+    $action = $_GET["action"];
+}
+
+$controller = "controller".ucfirst($objet);
+require_once ("../controller/$controller.php");
+require_once ("../config/connexion.php");
+connexion::connect();
+$controller::$action();
+?>
