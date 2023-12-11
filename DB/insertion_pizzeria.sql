@@ -118,6 +118,11 @@ INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `pr
 INSERT INTO `Pizzeria` VALUES
 (1, 1);
 
+INSERT INTO `Pizza` VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3);
+
 INSERT INTO `Base` VALUES
 (1, 1, 150),
 (1, 2, 7),
