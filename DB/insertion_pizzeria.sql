@@ -93,39 +93,30 @@ INSERT INTO `Adresse`(`idAdresse`, `numRue`, `nomRue`, `ville`, `codePostal`, `l
 
 INSERT INTO `MoyenPaiement` VALUES
 (1, 'Carte'),
-(2, 'Ticket restaurant')
+(2, 'Ticket restaurant'),
 (2, 'Espèce'),
 (3, 'Chèque'),
 (4, 'Apple pay'),
 (5, 'Google pay'),
 (6, 'Paypal');
 
---commande--
-
 INSERT INTO `Produit` VALUES
-(1, 'Margarita', 7, ‘margarita.png’, 3),
-(2, 'Tiramisu', 1.50, ‘tiramisu.png’, 1),
-(3, 'Coca cola', 1.50, ‘cocacola.png’, 2),
-(4, '4 Nuggets', 5, ‘nuggets.png’, 4),
-(5, ‘Kinder bueno’, 1.35, ‘kinderbueno.png’, 1);
-
+(1, 'Margarita', 7, 'margarita.png', 3),
+(2, 'Tiramisu', 1.50, 'tiramisu.png', 1),
+(3, 'Coca cola', 1.50, 'cocacola.png', 2),
+(4, '4 Nuggets', 5, 'nuggets.png', 4),
+(5, 'Kinder bueno', 1.35, 'kinderbueno.png', 1);
 
 INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `prixIngredient`, `coverIngredient`, `idAllergene`) VALUES
-(1, 'Mozzarella', 1553, 0.99, ‘mozzarella.png’, 2),
-(2, 'Parmesan reggiano', 758, 12, ‘parmesanReggiano.png’, 2),
-(3, 'Huile d`olive', 57, 7, ‘huileOlive.png’, NULL),
-(4, 'Basilic', 323, 0.70, ‘basilic.png’, NULL),
-(5, 'Orian', 120, 0.80, ‘origan.png’, NULL),
-(6, 'Saumon', 1205, 13, ‘saumon.png’, 8);
-
---livraison--
+(1, 'Mozzarella', 1553, 0.99, 'mozzarella.png', 2),
+(2, 'Parmesan reggiano', 758, 12, 'parmesanReggiano.png', 2),
+(3, 'Huile d`olive', 57, 7, 'huileOlive.png', NULL),
+(4, 'Basilic', 323, 0.70, 'basilic.png', NULL),
+(5, 'Orian', 120, 0.80, 'origan.png', NULL),
+(6, 'Saumon', 1205, 13, 'saumon.png', 8);
 
 INSERT INTO `Pizzeria` VALUES
 (1, 1);
-
---pizzaPersonnalisee--
-
---panier--
 
 INSERT INTO `Base` VALUES
 (1, 1, 150),
@@ -139,17 +130,16 @@ INSERT INTO `Base` VALUES
 (3, 1, 300),
 (3, 2, 14),
 (3, 3, 0.4),
-(3, 4, 10),
-
---supplement--
+(3, 4, 10);
 
 INSERT INTO `Alerte` VALUES
 (1, 1, 450),
 (2, 1, 300),
-(3, 1, 55)
+(3, 1, 55),
 (4, 1, 200),
 (5, 1, 100),
 (6, 1, 500);
+
 
 
 

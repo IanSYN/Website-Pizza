@@ -3,15 +3,16 @@
 }
 
 html{
-    background-color: #FF8369;
     border: red solid 5px;
 }
+
 .title{
     color: #07AE5B;
     text-align: center;
     font-size: xx-large;
     width: 25%;
     font-weight: bolder;
+    padding-left: 10%;
 }
 
 h1{
@@ -19,6 +20,7 @@ h1{
 }
 
 .bTache{
+    background-color: #FF8369;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -32,12 +34,11 @@ h1{
 .bTache ul li{
     text-align: center;
     list-style-type: none;
-    padding: 5px;
 }
 
 .bTache a{
     color: black;
-    font-size: x-large;
+    font-size: large;
     text-decoration: none;
     font-weight: bolder;
 }
