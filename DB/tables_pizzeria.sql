@@ -139,7 +139,6 @@ CREATE TABLE `Pizza`(
    `idProduit` INT(11) NOT NULL,
    `idTaille` INT(11) NOT NULL,
    PRIMARY KEY(`idPizza`),
-   UNIQUE(`idProduit`),
    FOREIGN KEY(`idProduit`) REFERENCES `Produit`(`idProduit`),
    FOREIGN KEY(`idTaille`) REFERENCES `Taille`(`idTaille`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
