@@ -1,26 +1,6 @@
--- Version ORACLE
-CREATE OR REPLACE PROCEDURE prendreIngr(quantiteRetiree IN Ingredient.stockIngredient%TYPE, nomIngrRecherche IN Ingredient.nomIngrRecherche%TYPE)
-RETURN DECIMAL(10,2) IS
-	quantiteActuelle Ingredient.stockIngredient%TYPE;
-BEGIN
-
-	-- On sélectionne la quantité actuelle de l'ingrédient
-	SELECT stockIngredient INTO quantiteActuelle
-    FROM Ingredient
-    WHERE nomIngredient = nomIngrRecherche;
-
-	-- cas où la quantité retirée est supérieure à la quantité actuelle
-    IF (quantiteRetiree > quantiteActuelle) THEN
-    	UPDATE Ingredient SET stockIngredient = 0 WHERE nomIngredient = nomIngrRecherche;
-    ELSE
-    	UPDATE Ingredient SET stockIngredient = (quantiteActuelle-quantiteRetiree) WHERE nomIngredient = nomIngrRecherche;
-    END IF;
-END;
-/
-
--- Version MariaDB (merci ChatGPT)
 DELIMITER //
 
+-- Procédure qui retire une quantité d'un certain ingrédient
 CREATE PROCEDURE prendreIngr(IN quantiteRetiree DECIMAL(10,2), IN nomIngrRecherche VARCHAR(255))
 BEGIN
     DECLARE quantiteActuelle DECIMAL(10,2);
@@ -65,13 +45,15 @@ BEGIN
     END IF;
 END //
 
-DELIMITER ;
-
+	
 -- Déclencheur pour appeler la procédure après la mise à jour d'Ingredient
 CREATE TRIGGER alerteManqueStock
 AFTER UPDATE ON Ingredient
 FOR EACH ROW
-WHEN (OLD.stockIngredient <> NEW.stockIngredient)
 BEGIN
-    CALL checkStockIngr();
-END;
+	IF (OLD.stockIngredient <> NEW.stockIngredient) THEN
+   		CALL checkStockIngr();
+	END IF;
+END //
+	
+DELIMITER ;
