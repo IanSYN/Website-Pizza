@@ -1,8 +1,7 @@
 <?php
-require_once('../model/pizza');
-
+require_once('controllerDefaut.php');
+require_once('model/pizza.php');
 class controllerPizza extends controlleurDefaut{
-
-    public static $classe = 'pizza';
-    public static $identifiant = 'i'
+    protected static $classe = 'pizza';
+    protected static $identifiant = 'idPizza';
 }
