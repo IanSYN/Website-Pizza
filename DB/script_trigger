@@ -80,7 +80,7 @@ create or replace trigger alerteManqueStock
 	EXECUTE FUNCTION checkStockIngr();
 
 
-CREATE OR REPLACE VPizza 
+CREATE OR REPLACE VIEW VPizza 
 AS 
 	(SELECT Pizza.idPizza, nomPizza, nomTaille FROM Pizza
 	inner join Produit on Produit.idProduit = Pizza.idProduit
