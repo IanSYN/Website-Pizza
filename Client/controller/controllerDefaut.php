@@ -16,7 +16,7 @@ class controlleurDefaut{
         $class = static::$classe;
         require_once('view/deb.html');
         require_once('view/menu.html');
-        $tableau = $class.getAll();
+        $tableau = $class::getAll();
         require_once('view/produit.php');
     }
 }
