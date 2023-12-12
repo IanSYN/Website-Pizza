@@ -52,3 +52,18 @@ h1{
     background-size: cover;
     background-position: center;
 }
+
+.Produit{
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+}
+
+.Gauche{
+    position: fixed;
+    text-align: center;
+    border: #F31C1B solid 5px;
+}
+
+.Droite{
+    border: blue solid 5px;
+}
