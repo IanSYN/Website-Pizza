@@ -78,3 +78,11 @@ create or replace trigger alerteManqueStock
     WHEN (OLD.stockIngredient IS DISTINCT FROM NEW.stockIngredient)
     EXECUTE FUNCTION prendreIngr();
 	EXECUTE FUNCTION checkStockIngr();
+
+
+CREATE OR REPLACE VPizza 
+AS 
+	(SELECT Pizza.idPizza, nomPizza, nomTaille FROM Pizza
+	inner join Produit on Produit.idProduit = Pizza.idProduit
+	inner join Taille on Taille.idTaille = Pizza.idTaille
+	GROUP BY Pizza.idPizza, nomPizza, nomTaille);
