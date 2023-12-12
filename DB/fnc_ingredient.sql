@@ -1,7 +1,7 @@
 DELIMITER //
 
 -- Procédure qui retire une quantité d'un certain ingrédient
-CREATE PROCEDURE prendreIngr(IN quantiteRetiree DECIMAL(10,2), IN idIngrRecherche INT(11))
+CREATE PROCEDURE prendreIngr(IN quantiteRetiree DECIMAL(10,2), IN idIngrRecherche INT(11), OUT msg VARCHAR(50))
 BEGIN
     DECLARE quantiteActuelle DECIMAL(10,2);
 
@@ -16,27 +16,28 @@ BEGIN
     ELSE
         UPDATE Ingredient SET stockIngredient = (quantiteActuelle - quantiteRetiree) WHERE idIngredient = idIngrRecherche;
     END IF;
+    SET msg = "UPDATE DONE";
 END //
 
 DELIMITER;
 
-
 -- Procédure pour vérifier le stock d'ingrédients
 DELIMITER //
 
-CREATE PROCEDURE checkStockIngr()
+CREATE PROCEDURE checkStockIngr(IN idIngrRecherche INT(11))
 BEGIN
     DECLARE nomIngr VARCHAR(30);
     DECLARE mailGestio VARCHAR(30);
     DECLARE seuilIngr INT;
     DECLARE stockIngr INT;
 
-    -- Sélection du seuil d'ingrédient depuis la table Alerte
+    -- Sélection du seuil d'alerte, du nouveau stock de l'ingrédient, de son nom et de l'adresse mail du gestionnaire 
     SELECT A.seuilIngredient, I.stockIngredient, I.nomIngredient, G.mailGestionnaire
     INTO seuilIngr, stockIngr, nomIngr, mailGestio
     FROM Alerte A
     INNER JOIN Ingredient I ON A.idIngredient = I.idIngredient
-    INNER JOIN Gestionnaire G ON A.idGestionnaire = G.idGestionnaire;
+    INNER JOIN Gestionnaire G ON A.idGestionnaire = G.idGestionnaire
+    WHERE I.idIngredient = idIngrRecherche;
 
     -- Vérification du stock par rapport au seuil et envoi d'email si nécessaire
     IF stockIngr < seuilIngr THEN
@@ -45,15 +46,14 @@ BEGIN
     END IF;
 END //
 
-	
+DELIMITER ;
+
 -- Déclencheur pour appeler la procédure après la mise à jour d'Ingredient
 CREATE TRIGGER alerteManqueStock
 AFTER UPDATE ON Ingredient
 FOR EACH ROW
 BEGIN
-	IF (OLD.stockIngredient <> NEW.stockIngredient) THEN
-   		CALL checkStockIngr();
-	END IF;
-END //
-	
-DELIMITER ;
+    IF (OLD.stockIngredient <> NEW.stockIngredient) THEN
+    	CALL checkStockIngr(OLD.idIngredient);
+    END IF;
+END;
