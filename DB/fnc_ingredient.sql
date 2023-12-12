@@ -14,7 +14,7 @@ BEGIN
     IF (quantiteRetiree > quantiteActuelle) THEN
         UPDATE Ingredient SET stockIngredient = 0 WHERE idIngredient = idIngrRecherche;
     ELSE
-        UPDATE Ingredient SET stockIngredient = (quantiteActuelle - quantiteRetiree) WHERE nomIngredient = nomIngrRecherche;
+        UPDATE Ingredient SET stockIngredient = (quantiteActuelle - quantiteRetiree) WHERE idIngredient = idIngrRecherche;
     END IF;
 END //
 
