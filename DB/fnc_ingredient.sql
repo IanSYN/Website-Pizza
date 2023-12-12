@@ -42,7 +42,7 @@ BEGIN
     -- Vérification du stock par rapport au seuil et envoi d'email si nécessaire
     IF stockIngr < seuilIngr THEN
         -- On envoie un mail pour alerter le gestionnaire
-        CALL ENVOI_EMAIL('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, CONCAT('Warning: ', nomIngr, ' SUPPLIES'), CONCAT('Stock of the ingredient: ', nomIngr, ' needs supplying'));
+        CALL envoiEmail('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, CONCAT('Warning: ', nomIngr, ' SUPPLIES'), CONCAT('Stock of the ingredient: ', nomIngr, ' needs supplying'));
     END IF;
 END //
 
