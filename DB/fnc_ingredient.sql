@@ -1,18 +1,18 @@
 DELIMITER //
 
 -- Procédure qui retire une quantité d'un certain ingrédient
-CREATE PROCEDURE prendreIngr(IN quantiteRetiree DECIMAL(10,2), IN nomIngrRecherche VARCHAR(255))
+CREATE PROCEDURE prendreIngr(IN quantiteRetiree DECIMAL(10,2), IN idIngrRecherche INT(11))
 BEGIN
     DECLARE quantiteActuelle DECIMAL(10,2);
 
     -- On sélectionne la quantité actuelle de l'ingrédient
     SELECT stockIngredient INTO quantiteActuelle
     FROM Ingredient
-    WHERE nomIngredient = nomIngrRecherche;
+    WHERE idIngredient = idIngrRecherche;
 
     -- cas où la quantité retirée est supérieure à la quantité actuelle
     IF (quantiteRetiree > quantiteActuelle) THEN
-        UPDATE Ingredient SET stockIngredient = 0 WHERE nomIngredient = nomIngrRecherche;
+        UPDATE Ingredient SET stockIngredient = 0 WHERE idIngredient = idIngrRecherche;
     ELSE
         UPDATE Ingredient SET stockIngredient = (quantiteActuelle - quantiteRetiree) WHERE nomIngredient = nomIngrRecherche;
     END IF;
