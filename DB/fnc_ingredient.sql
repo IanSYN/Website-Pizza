@@ -19,10 +19,7 @@ BEGIN
     SET msg = "UPDATE DONE";
 END //
 
-DELIMITER;
-
 -- Procédure pour vérifier le stock d'ingrédients
-DELIMITER //
 
 CREATE PROCEDURE checkStockIngr(IN idIngrRecherche INT(11))
 BEGIN
@@ -30,6 +27,7 @@ BEGIN
     DECLARE mailGestio VARCHAR(30);
     DECLARE seuilIngr INT;
     DECLARE stockIngr INT;
+    DECLARE succes BOOL;
 
     -- Sélection du seuil d'alerte, du nouveau stock de l'ingrédient, de son nom et de l'adresse mail du gestionnaire 
     SELECT A.seuilIngredient, I.stockIngredient, I.nomIngredient, G.mailGestionnaire
@@ -42,11 +40,9 @@ BEGIN
     -- Vérification du stock par rapport au seuil et envoi d'email si nécessaire
     IF stockIngr < seuilIngr THEN
         -- On envoie un mail pour alerter le gestionnaire
-        CALL envoiEmail('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, CONCAT('Warning: ', nomIngr, ' SUPPLIES'), CONCAT('Stock of the ingredient: ', nomIngr, ' needs supplying'));
+        SET succes = envoiEmail('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, CONCAT('Warning: ', nomIngr, ' SUPPLIES'), CONCAT('Stock of the ingredient: ', nomIngr, ' needs supplying'));
     END IF;
 END //
-
-DELIMITER ;
 
 -- Déclencheur pour appeler la procédure après la mise à jour d'Ingredient
 CREATE TRIGGER alerteManqueStock
@@ -56,4 +52,6 @@ BEGIN
     IF (OLD.stockIngredient <> NEW.stockIngredient) THEN
     	CALL checkStockIngr(OLD.idIngredient);
     END IF;
-END;
+END//
+
+DELIMITER ;
