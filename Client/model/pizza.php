@@ -1,9 +1,9 @@
 <?php
 require_once("objet.php");
-class pizza extends objet
+class Pizza extends objet
 {
     protected static $identifiant = "idPizza";
-    protected static $classe = 'pizza';
+    protected static $classe = 'Pizza';
     protected $idPizza;
     protected $idProduit;
     protected $idTaille;

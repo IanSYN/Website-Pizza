@@ -1,5 +1,5 @@
 <?php
-require_once('model/pizza.php');
+require_once('model/Pizza.php');
 
 class controlleurDefaut{
 
