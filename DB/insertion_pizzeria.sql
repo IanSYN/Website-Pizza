@@ -186,7 +186,7 @@ INSERT INTO `Base` (`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES
 (6, 1, 500),
 (6, 3, 0.4),
 (6, 5, 10),
-(6, 7, 110).
+(6, 7, 110);
 
 
 INSERT INTO `Alerte` VALUES
