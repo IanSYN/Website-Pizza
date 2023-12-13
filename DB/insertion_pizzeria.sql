@@ -121,7 +121,7 @@ INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `pr
 (9, 'Camembert', 1369, 5, 'camembert.png', 2);
 (10, 'Chorizo', 978, 10, 'chorizo.png', 2);
 (11, 'Olive verte', 640, 12, 'oliveV.png', NULL);
-(12, 'Olive noire', 423, 30, 'oliveV.png', NULL);
+(12, 'Olive noire', 423, 30, 'oliveN.png', NULL);
 
 INSERT INTO `Pizzeria` VALUES
 (1, 1);
