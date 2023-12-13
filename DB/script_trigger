@@ -97,3 +97,8 @@ AS
 	natural join PizzaPersonnalisee
 	natural join Supplement
 	GROUP BY idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, qntProduitPizza);
+
+
+CREATE OR REPLACE VIEW VPizzaIngr
+AS
+	
