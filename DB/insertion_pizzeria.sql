@@ -43,6 +43,7 @@ INSERT INTO `Allergene`(`idAllergene`, `nomAllergene`) VALUES
 (8, 'Poisson'),
 (9, 'Moutarde'),
 (10, 'Sésame');
+(11, 'Acide citrique');
 
 INSERT INTO `Taille` VALUES
 (1, 'Medium'),
@@ -113,8 +114,14 @@ INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `pr
 (2, 'Parmesan reggiano', 758, 12, 'parmesanReggiano.png', 2),
 (3, 'Huile d`olive', 57, 7, 'huileOlive.png', NULL),
 (4, 'Basilic', 323, 0.70, 'basilic.png', NULL),
-(5, 'Orian', 120, 0.80, 'origan.png', NULL),
+(5, 'Origan', 120, 0.80, 'origan.png', NULL),
 (6, 'Saumon', 1205, 13, 'saumon.png', 8);
+(7, 'Citron', 380, 2, 'citron.png', 11);
+(8, 'Houmous', 540, 10, 'houmous.png', 10);
+(9, 'Camembert', 1369, 5, 'camembert.png', 2);
+(10, 'Chorizo', 978, 10, 'chorizo.png', 2);
+(11, 'Olive verte', 640, 12, 'oliveV.png', NULL);
+(12, 'Olive noire', 423, 30, 'oliveV.png', NULL);
 
 INSERT INTO `Pizzeria` VALUES
 (1, 1);
