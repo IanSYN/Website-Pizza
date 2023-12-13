@@ -155,7 +155,7 @@ INSERT INTO `Pizza` VALUES
 --Les 3 tailles de la Salami (idP 10)
 (16, 10, 1),
 (17, 10, 2),
-(18, 10, 3),
+(18, 10, 3);
   
 INSERT INTO `Base` VALUES
 (1, 1, 150),
