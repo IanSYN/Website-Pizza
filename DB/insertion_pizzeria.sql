@@ -157,7 +157,8 @@ INSERT INTO `Pizza` VALUES
 (17, 10, 2),
 (18, 10, 3);
   
-INSERT INTO `Base` VALUES
+INSERT INTO `Base` (`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES
+--les ingrédients de la Margarita (les 3 tailles)
 (1, 1, 150),
 (1, 2, 7),
 (1, 3, 0.2),
@@ -170,6 +171,23 @@ INSERT INTO `Base` VALUES
 (3, 2, 14),
 (3, 3, 0.4),
 (3, 4, 10);
+--les ingrédients de la Saumon (les 3 tailles)
+(4, 6, 200),
+(4, 1, 250),
+(4, 3, 0.2),
+(4, 5, 5),
+(4, 7, 55),
+(5, 6, 300),
+(5, 1, 375),
+(5, 3, 0.3),
+(5, 5, 7.5),
+(5, 7, 82.5),
+(6, 6, 400),
+(6, 1, 500),
+(6, 3, 0.4),
+(6, 5, 10),
+(6, 7, 110).
+
 
 INSERT INTO `Alerte` VALUES
 (1, 4, 450),
