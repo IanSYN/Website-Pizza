@@ -4,6 +4,7 @@
 
 html{
     border: red solid 5px;
+    border-radius: 10px;
 }
 
 .title{
@@ -19,10 +20,15 @@ h1{
     color: #F31C1B;
 }
 
+/***********************************************************/
+/***********Paramètre pour la barre de navigation***********/
+/***********************************************************/
+
 .bTache{
     background-color: #FF8369;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    border-top: black solid 5px;
 }
 
 .bTache ul{
@@ -43,15 +49,62 @@ h1{
     font-weight: bolder;
 }
 
+/***********************************************************/
+/*************Paramètre pour la fin de page*****************/
+/***********************************************************/
+.contenerFin{
+    background-color: #FF8369;
+    display: grid;
+    grid-template-rows: 1fr 0.3fr;
+    border-top: black solid 5px;
+    border-bottom: black solid 5px;
+}
+.droit{
+    font-size: smaller;
+    text-align: center;
+}
+
+/***********************************************************/
+/**************Paramètre pour la page d'accueil*************/
+/***********************************************************/
+
+.contener{
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+}
+
 .EnAvant {
-    height: 60%;
-    border: red solid 5px;
-    border-radius: 10px;
-    margin-right: 1px;
+    border-top: black solid 5px;
+    border-bottom: black solid 5px;
     background-image: url("../img/pizzaRegina.jpeg");
     background-size: cover;
     background-position: center;
 }
+
+.info {
+    background-color: #FF8369;
+    border-bottom: black solid 5px;
+}
+
+.info_text {
+    margin: 10px;
+    text-align: center;
+}
+
+.Logo {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.Logo img {
+    border-radius: 10px;
+}
+
+
+/***********************************************************/
+/*************Paramètre pour la page de produit*************/
+/***********************************************************/
 
 .Produit{
     display: grid;

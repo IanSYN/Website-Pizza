@@ -5,8 +5,8 @@ class Pizza extends objet
     protected static $identifiant = "idPizza";
     protected static $classe = 'Pizza';
     protected $idPizza;
-    protected $nomProduit;
-    protected $nomTaille;
+    protected $idProduit;
+    protected $idTaille;
     //constructeur
     public function __construct($idPizza = null, $idProduit = null, $idTaille = null) {
         if(!is_null($idPizza)){
