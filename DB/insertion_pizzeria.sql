@@ -74,7 +74,7 @@ INSERT INTO `Gestionnaire`(`idGestionnaire`, `mdpGestionnaire`, `mailGestionnair
 (1, 'mdpGest1', 'gest1@example.com', '0612345678'),
 (2, 'mdpGest2', 'gest2@example.com', '0698765432'),
 (3, 'mdpGest3', 'gest3@example.com', '0655555555');
-(4, 'mdpGest4', 'sarah-myriam.messaoudi@universite-paris-saclay.fr', '0625000000');
+(4, 'mdpGest4', 'sarahmy.messaoudi@gmail.com', '0625000000');
 
 INSERT INTO `Adresse`(`idAdresse`, `numRue`, `nomRue`, `ville`, `codePostal`, `latitudeGPS`, `longitudeGPS`) VALUES
 (1,13,'Avenue des sciences','Gif sur yvette','91190','48.711734','2.1705202'),
@@ -109,7 +109,10 @@ INSERT INTO `Produit` VALUES
 (4, '4 Nuggets', 5, 'nuggets.png', 4),
 (5, 'Kinder bueno', 1.35, 'kinderbueno.png', 1),
 (6, 'Saumon', 7, 'pizzaSaumon.png', 3),
-(7, '4 Fromages', 7, '4Fromages.png', 3);
+(7, 'Quatres Fromages', 7, '4Fromages.png', 3),
+(8, 'Savoyarde', 7, 'savoyarde.png', 3),
+(9, 'Calzone', 7, 'calzone.png', 3),
+(10, 'Salami', 7, 'salami.png', 3);
 
 INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `prixIngredient`, `coverIngredient`, `idAllergene`) VALUES
 (1, 'Mozzarella', 1553, 0.99, 'mozzarella.png', 2),
@@ -129,10 +132,31 @@ INSERT INTO `Pizzeria` VALUES
 (1, 1);
 
 INSERT INTO `Pizza` VALUES
+--Les 3 tailles de la Margarita (idP 1)
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 3);
-
+(3, 1, 3),
+--Les 3 tailles de la Saumon (idP 6)
+(4, 6, 1),
+(5, 6, 2),
+(6, 6, 3),
+--Les 3 tailles de la Quatres Fromages (idP 7)
+(7, 7, 1),
+(8, 7, 2),
+(9, 7, 3),
+--Les 3 tailles de la Savoyarde (idP 8)
+(10, 8, 1),
+(11, 8, 2),
+(12, 8, 3),
+--Les 3 tailles de la Calzone (idP 9)
+(13, 9, 1),
+(14, 9, 2),
+(15, 9, 3),
+--Les 3 tailles de la Salami (idP 10)
+(16, 10, 1),
+(17, 10, 2),
+(18, 10, 3),
+  
 INSERT INTO `Base` VALUES
 (1, 1, 150),
 (1, 2, 7),
