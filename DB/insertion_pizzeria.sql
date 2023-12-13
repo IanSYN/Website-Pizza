@@ -107,7 +107,9 @@ INSERT INTO `Produit` VALUES
 (2, 'Tiramisu', 1.50, 'tiramisu.png', 1),
 (3, 'Coca cola', 1.50, 'cocacola.png', 2),
 (4, '4 Nuggets', 5, 'nuggets.png', 4),
-(5, 'Kinder bueno', 1.35, 'kinderbueno.png', 1);
+(5, 'Kinder bueno', 1.35, 'kinderbueno.png', 1),
+(6, 'Saumon', 7, 'pizzaSaumon.png', 3),
+(7, '4 Fromages', 7, '4Fromages.png', 3);
 
 INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `prixIngredient`, `coverIngredient`, `idAllergene`) VALUES
 (1, 'Mozzarella', 1553, 0.99, 'mozzarella.png', 2),
