@@ -73,6 +73,7 @@ INSERT INTO `Gestionnaire`(`idGestionnaire`, `mdpGestionnaire`, `mailGestionnair
 (1, 'mdpGest1', 'gest1@example.com', '0612345678'),
 (2, 'mdpGest2', 'gest2@example.com', '0698765432'),
 (3, 'mdpGest3', 'gest3@example.com', '0655555555');
+(4, 'mdpGest4', 'sarah-myriam.messaoudi@universite-paris-saclay.fr', '0625000000');
 
 INSERT INTO `Adresse`(`idAdresse`, `numRue`, `nomRue`, `ville`, `codePostal`, `latitudeGPS`, `longitudeGPS`) VALUES
 (1,13,'Avenue des sciences','Gif sur yvette','91190','48.711734','2.1705202'),
