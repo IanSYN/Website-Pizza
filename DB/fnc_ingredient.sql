@@ -12,9 +12,9 @@ BEGIN
 
     -- cas où la quantité retirée est supérieure à la quantité actuelle
     IF (quantiteRetiree > quantiteActuelle) THEN
-        UPDATE Ingredient SET stockIngredient = 0 WHERE idIngredient = idIngrRecherche;
+        UPDATE Ingredient SET stockIngredient = 0.0 WHERE `Ingredient`.`idIngredient` = idIngrRecherche;
     ELSE
-        UPDATE Ingredient SET stockIngredient = (quantiteActuelle - quantiteRetiree) WHERE idIngredient = idIngrRecherche;
+        UPDATE Ingredient SET stockIngredient = (quantiteActuelle - quantiteRetiree) WHERE `Ingredient`.`idIngredient` = idIngrRecherche;
     END IF;
 END //
 
