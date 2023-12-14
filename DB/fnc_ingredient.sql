@@ -18,6 +18,20 @@ BEGIN
     END IF;
 END //
 
+CREATE PROCEDURE rechargerIngr(IN quantiteAjoutee DECIMAL(10,2), IN idIngrRecherche INT(11))
+BEGIN
+    DECLARE quantiteActuelle DECIMAL(10,2);
+
+    -- On sélectionne la quantité actuelle de l'ingrédient
+    SELECT stockIngredient INTO quantiteActuelle
+    FROM Ingredient
+    WHERE idIngredient = idIngrRecherche;
+
+    -- rajoute le stock a l'ingrédient
+    UPDATE Ingredient SET stockIngredient = (quantiteActuelle + quantiteAjoutee) WHERE `Ingredient`.`idIngredient` = idIngrRecherche;
+    END IF;
+END //
+    
 -- Procédure pour vérifier le stock d'ingrédients
 
 CREATE PROCEDURE checkStockIngr(IN idIngrRecherche INT(11))
