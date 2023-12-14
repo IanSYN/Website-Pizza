@@ -20,3 +20,10 @@ if (mail($to, $subject, $message, $headers)) {
     echo "Failed to send email.";
 }
 ?>
+/*
+ $res = $connexion->query('SELECT boolSeuil from Alerte natural join Ingredient where stockIngredient < seuilIngredient');
+ $res2 = $connexion->query('SELECT mailGestionnaire from Gestionnaire natural join Alerte where boolSeuil is TRUE');
+
+    if( $res is true ) {
+        mail(res2);
+    }*/
