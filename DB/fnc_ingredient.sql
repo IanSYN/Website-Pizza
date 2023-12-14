@@ -18,6 +18,7 @@ BEGIN
     END IF;
 END //
 
+-- Procédure qui ajoute une quantité d'un certain ingrédient à son stock
 CREATE PROCEDURE rechargerIngr(IN quantiteAjoutee DECIMAL(10,2), IN idIngrRecherche INT(11))
 BEGIN
     DECLARE quantiteActuelle DECIMAL(10,2);
