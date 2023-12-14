@@ -7,15 +7,6 @@ html{
     border-radius: 10px;
 }
 
-.title{
-    color: #07AE5B;
-    text-align: center;
-    font-size: xx-large;
-    width: 25%;
-    font-weight: bolder;
-    padding-left: 10%;
-}
-
 h1{
     color: #F31C1B;
 }
@@ -24,66 +15,34 @@ h1{
 /***********Paramètre pour la barre de navigation***********/
 /***********************************************************/
 
-.bTache{
+.barre{
+    display: grid;
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
     background-color: #FF8369;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-top: black solid 5px;
+    border-bottom: black solid 5px;
 }
 
-.bTache ul{
-    width:auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-.bTache ul li{
+.barre a{
     text-align: center;
-    list-style-type: none;
-}
-
-.bTache a{
-    color: black;
-    font-size: large;
     text-decoration: none;
-    font-weight: bolder;
 }
 
 /***********************************************************/
 /*************Paramètre pour la fin de page*****************/
 /***********************************************************/
+
 .contenerFin{
     background-color: #FF8369;
     display: grid;
     grid-template-rows: 1fr 0.3fr;
     border-top: black solid 5px;
     border-bottom: black solid 5px;
-}
-.droit{
     font-size: smaller;
     text-align: center;
 }
 
-/***********************************************************/
-/**************Paramètre pour la page d'accueil*************/
-/***********************************************************/
-
-.contener{
-    display: grid;
-    grid-template-rows: 5fr 1fr;
-}
-
-.EnAvant {
-    border-top: black solid 5px;
-    border-bottom: black solid 5px;
-    background-image: url("../img/pizzaRegina.jpeg");
-    background-size: cover;
-    background-position: center;
-}
-
 .info {
     background-color: #FF8369;
-    border-bottom: black solid 5px;
 }
 
 .info_text {
@@ -97,8 +56,21 @@ h1{
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.Logo img {
-    border-radius: 10px;
+/***********************************************************/
+/**************Paramètre pour la page d'accueil*************/
+/***********************************************************/
+
+.contener{
+    display: grid;
+    grid-template-rows: 6fr 1fr;
+}
+
+.EnAvant {
+    border-top: black solid 5px;
+    border-bottom: black solid 5px;
+    background-image: url("../img/pizzaRegina.jpeg");
+    background-size: cover;
+    background-position: center;
 }
 
 
