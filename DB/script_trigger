@@ -82,7 +82,7 @@ create or replace trigger alerteManqueStock
 
 CREATE OR REPLACE VIEW VPizza 
 AS 
-	(SELECT Pizza.idPizza, nomProduit, nomTaille FROM Pizza
+	(SELECT Pizza.idPizza, nomProduit, nomTaille, coverProduit FROM Pizza
 	inner join Produit on Produit.idProduit = Pizza.idProduit
 	inner join Taille on Taille.idTaille = Pizza.idTaille
 	GROUP BY Pizza.idPizza, nomProduit, nomTaille);
@@ -101,4 +101,11 @@ AS
 
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
+	(SELECT nomPizza, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit from Ingredient
+	natural join Allergene 
+	inner join Base on Base.idIngredient = Ingredient.idIngredient
+	inner join Pizza on Pizza.idPizza = Base.idPizza
+	inner join Taille on Taille.idTaille = Pizza.idTaille
+	inner join Produit on Produit.idProduit = Pizza.idProduit
+	GROUP BY nomPizza, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit);
 	
