@@ -186,6 +186,7 @@ CREATE TABLE `Alerte`(
    `idIngredient` INT(11),
    `idGestionnaire` INT(11),
    `seuilIngredient` INT(11) CHECK (seuilIngredient >= 0),
+   `verifSeuil` BOOL,
    PRIMARY KEY(`idIngredient`, `idGestionnaire`),
    FOREIGN KEY(`idIngredient`) REFERENCES `Ingredient`(`idIngredient`),
    FOREIGN KEY(`idGestionnaire`) REFERENCES `Gestionnaire`(`idGestionnaire`)
