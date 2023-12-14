@@ -29,7 +29,6 @@ BEGIN
 
     -- rajoute le stock a l'ingrédient
     UPDATE Ingredient SET stockIngredient = (quantiteActuelle + quantiteAjoutee) WHERE `Ingredient`.`idIngredient` = idIngrRecherche;
-    END IF;
 END //
     
 -- Procédure pour vérifier le stock d'ingrédients
