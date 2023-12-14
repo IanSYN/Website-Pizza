@@ -25,11 +25,11 @@ AS
 
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
-	(SELECT nomPizza, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit from Ingredient
+	(SELECT nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit from Ingredient
 	natural join Allergene 
 	inner join Base on Base.idIngredient = Ingredient.idIngredient
 	inner join Pizza on Pizza.idPizza = Base.idPizza
 	inner join Taille on Taille.idTaille = Pizza.idTaille
 	inner join Produit on Produit.idProduit = Pizza.idProduit
-	GROUP BY nomPizza, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit);
+	GROUP BY nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit);
 	
