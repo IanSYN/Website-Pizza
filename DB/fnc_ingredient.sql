@@ -37,6 +37,8 @@ BEGIN
     IF stockIngr < seuilIngr THEN
         -- On envoie un mail pour alerter le gestionnaire
          UPDATE Alerte SET verifSeuil = TRUE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
+    ELSE 
+         UPDATE Alerte SET verifSeuil = FALSE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
     END IF;
 END //
 
