@@ -24,23 +24,20 @@ END //
 CREATE PROCEDURE checkStockIngr(IN idIngrRecherche INT(11))
 BEGIN
     DECLARE nomIngr VARCHAR(30);
-    DECLARE mailGestio VARCHAR(30);
     DECLARE seuilIngr INT;
     DECLARE stockIngr INT;
-    DECLARE succes BOOL;
 
-    -- Sélection du seuil d'alerte, du nouveau stock de l'ingrédient, de son nom et de l'adresse mail du gestionnaire 
-    SELECT A.seuilIngredient, I.stockIngredient, I.nomIngredient, G.mailGestionnaire
-    INTO seuilIngr, stockIngr, nomIngr, mailGestio
+    -- Sélection du seuil d'alerte, du nouveau stock de l'ingrédient, de son nom 
+    SELECT A.seuilIngredient, I.stockIngredient, I.nomIngredient
+    INTO seuilIngr, stockIngr, nomIngr
     FROM Alerte A
     INNER JOIN Ingredient I ON A.idIngredient = I.idIngredient
-    INNER JOIN Gestionnaire G ON A.idGestionnaire = G.idGestionnaire
     WHERE I.idIngredient = idIngrRecherche;
 
     -- Vérification du stock par rapport au seuil et envoi d'email si nécessaire
     IF stockIngr < seuilIngr THEN
         -- On envoie un mail pour alerter le gestionnaire
-        SET succes = envoiEmail('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, CONCAT('Warning: ', nomIngr, ' SUPPLIES'), CONCAT('Stock of the ingredient: ', nomIngr, ' needs supplying'));
+         UPDATE Alerte SET verifSeuil = TRUE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
     END IF;
 END //
 
