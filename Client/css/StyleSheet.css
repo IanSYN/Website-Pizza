@@ -2,6 +2,10 @@
     font: 1.2rem "Fira Sans", sans-serif;
 }
 
+body{
+    margin: 0px;
+}
+
 html{
     border: red solid 5px;
     border-radius: 10px;
@@ -14,17 +18,25 @@ h1{
 /***********************************************************/
 /***********Paramètre pour la barre de navigation***********/
 /***********************************************************/
+.contenerBarre{
+    background-color: #FF8369;
+}
 
 .barre{
     display: grid;
     grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
-    background-color: #FF8369;
-    border-bottom: black solid 5px;
+    text-align: center;
+    margin: 20px;
 }
 
 .barre a{
     text-align: center;
+    font-weight: bolder;
     text-decoration: none;
+}
+
+.nom a{
+    color: green;
 }
 
 /***********************************************************/
@@ -62,7 +74,7 @@ h1{
 
 .contener{
     display: grid;
-    grid-template-rows: 6fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 .EnAvant {
@@ -73,6 +85,25 @@ h1{
     background-position: center;
 }
 
+.contenerListe{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+}
+
+.ContenerNav{
+    border: black solid 5px;
+}
+
+.Navigation{
+    display: grid;
+    grid-template-rows: 0.3fr 0.3fr 0.3fr 0.3fr 4fr;
+    text-align: center;
+
+}
+
+.ListeP p{
+    text-align: center;
+}
 
 /***********************************************************/
 /*************Paramètre pour la page de produit*************/

@@ -1,9 +1,9 @@
 <?php
 
 $objet = "accueil";
-$action = "Afficher";
+$action = "AfficherAccueil";
 $objets = ["accueil","produit"];
-$actions = ["afficherProduit","afficher"];
+$actions = ["afficherProduit","afficher","afficherAccueil"];
 
 if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
     $objet = $_GET['objet'];
