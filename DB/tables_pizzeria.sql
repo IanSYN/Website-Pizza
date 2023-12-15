@@ -176,7 +176,7 @@ CREATE TABLE `Supplement`(
    `idPizza` INT(11),
    `idCommande` INT(11),
    `idPizzaPersonnalisee` INT(11),
-   `quantiteSupplement` VARCHAR(50) CHECK (quantiteSupplement > 0),
+   `quantiteSupplement` VARCHAR(50) CHECK (quantiteSupplement >= 0),
    PRIMARY KEY(`idIngredient`, `idPizzaPersonnalisee`),
    FOREIGN KEY(`idIngredient`) REFERENCES `Ingredient`(`idIngredient`),
    FOREIGN KEY( `idPizzaPersonnalisee`) REFERENCES `PizzaPersonnalisee`(`idPizzaPersonnalisee`)
