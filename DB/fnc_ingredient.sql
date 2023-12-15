@@ -55,7 +55,7 @@ BEGIN
          UPDATE Alerte SET verifSeuil = FALSE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
     END IF;
 END //
-
+    
 -- Déclencheur pour appeler la procédure après la mise à jour d'Ingredient
 CREATE TRIGGER alerteManqueStock
 AFTER UPDATE ON Ingredient
@@ -66,4 +66,41 @@ BEGIN
     END IF;
 END//
 
+-- Insert dans Pizza les 2 autres tailles de la pizza medium inserée
+CREATE PROCEDURE pizzaTaille (IN idProd INT(11))
+BEGIN
+
+
+    
+
+
+    
+-- Calcule les quantitées des Tailles, Large et Medium des pizzas    
+CREATE PROCEDURE qtnIngrTaille(IN idPi INT(11))
+BEGIN
+    DECLARE qtnDefaut INT;
+    DECLARE qtnLarge INT;
+    DECLARE qtnXL INT;
+
+    SELECT quantiteIngredient into qtnDefaut FROM Ingredient I
+    INNER JOIN Base B on B.idIngredient = I.idIngredient
+    INNER JOIN Pizza P on P.idPizza = B.idPizza
+    WHERE I.quantiteIngredient = idPi;
+
+    INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,,);
+    INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,,);
+
+    
+
+END //
+
+-- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une insertion dans Pizza
+CREATE TRIGGER alerteQtnTaille
+AFTER INSERT ON Pizza AND Produit
+BEGIN
+    CALL pizzaTaille (NEW.idProduit)
+    CALL qtnIngrTaille(NEW.idPizza);
+END//
+
+    
 DELIMITER ;
