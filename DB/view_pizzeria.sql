@@ -32,4 +32,8 @@ AS
 	inner join Taille on Taille.idTaille = Pizza.idTaille
 	inner join Produit on Produit.idProduit = Pizza.idProduit
 	GROUP BY nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit);
-	
+
+
+CREATE OR REPLACE VIEW VProduit 
+AS
+	(SELECT nomCategorie, nomProduit, coverProduit, prixProduit from Produit);
