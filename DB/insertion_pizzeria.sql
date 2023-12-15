@@ -188,7 +188,6 @@ INSERT INTO `Base` (`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES
 (6, 5, 10),
 (6, 7, 110);
 
-
 INSERT INTO `Alerte` VALUES
 (1, 4, 450),
 (2, 4, 300),
@@ -196,6 +195,9 @@ INSERT INTO `Alerte` VALUES
 (4, 4, 200),
 (5, 4, 100),
 (6, 4, 500);
+
+INSERT INTO `Commande` (`idCommande`, `dateCommande`, `prixTotalCommande`, `idMoyenPaiement`, `idAdresse`, `idEtatCommande`, `codeCoupon`, `idClient`) VALUES 
+(1,'2023-12-15',prixTotalCommande?,1,3,1,NULL,1);
 
 
 
