@@ -68,9 +68,18 @@ END//
 
 -- Insert dans Pizza les 2 autres tailles de la pizza medium inserée
 CREATE PROCEDURE pizzaTaille (IN idProd INT(11))
-BEGIN
+BEGIN    
 
+    DECLARE nomCate VARCHAR(30);
 
+    SELECT nomCategorie into nomCate from Categorie
+    NATURAL JOIN Produit
+    WHERE Produit.idProduit = idProd;
+    
+    if nomCate = 'Pizza' THEN 
+        INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,idProd,2), (NULL,idProd,3);
+    END IF;
+END //
     
 
 
