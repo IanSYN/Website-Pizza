@@ -101,11 +101,17 @@ BEGIN
 
 END //
 
+-- Trigger qui met les 3 tailles des pizzas si le produit inseré est de categorie pizza
+CREATE TRIGGER alerteInsertTaille
+AFTER INSERT ON Produit
+BEGIN
+    CALL pizzaTaille (NEW.idProduit)
+END//
+    
 -- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une insertion dans Pizza
 CREATE TRIGGER alerteQtnTaille
 AFTER INSERT ON Pizza
 BEGIN
-    CALL pizzaTaille (NEW.idProduit)
     CALL qtnIngrTaille(NEW.idPizza);
 END//
 
