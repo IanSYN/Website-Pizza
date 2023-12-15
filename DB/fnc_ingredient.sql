@@ -66,7 +66,7 @@ BEGIN
     END IF;
 END//
 
--- Insert dans Pizza les 2 autres tailles de la pizza medium inserée
+-- Insert dans Pizza les 2 autres tailles de la pizza medium inserée 
 CREATE PROCEDURE pizzaTaille (IN idProd INT(11))
 BEGIN    
 
@@ -77,12 +77,10 @@ BEGIN
     WHERE Produit.idProduit = idProd;
     
     if nomCate = 'Pizza' THEN 
-        INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,idProd,2), (NULL,idProd,3);
+        INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,idProd,1), (NULL,idProd,2), (NULL,idProd,3);
     END IF;
 END //
     
-
-
     
 -- Calcule les quantitées des Tailles, Large et Medium des pizzas    
 CREATE PROCEDURE qtnIngrTaille(IN idPi INT(11))
@@ -105,7 +103,7 @@ END //
 
 -- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une insertion dans Pizza
 CREATE TRIGGER alerteQtnTaille
-AFTER INSERT ON Pizza AND Produit
+AFTER INSERT ON Pizza
 BEGIN
     CALL pizzaTaille (NEW.idProduit)
     CALL qtnIngrTaille(NEW.idPizza);
