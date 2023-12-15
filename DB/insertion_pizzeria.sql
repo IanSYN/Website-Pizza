@@ -197,7 +197,12 @@ INSERT INTO `Alerte` VALUES
 (6, 4, 500);
 
 INSERT INTO `Commande` (`idCommande`, `dateCommande`, `prixTotalCommande`, `idMoyenPaiement`, `idAdresse`, `idEtatCommande`, `codeCoupon`, `idClient`) VALUES 
-(1,'2023-12-15',prixTotalCommande?,1,3,1,NULL,1);
+(1,'2023-12-15',0.0,1,2,1,NULL,1);
+(2,'2023-12-15',0.0,1,3,1,NULL,1);
+(3,'2023-12-15',0.0,1,15,1,NULL,3);
+(4,'2023-12-15',0.0,1,8,1,NULL,6);
+(5,'2023-12-15',0.0,1,10,1,NULL,4);
+(6,'2023-12-15',0.0,1,13,1,NULL,9);
 
 
 
