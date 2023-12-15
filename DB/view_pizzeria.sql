@@ -36,4 +36,6 @@ AS
 
 CREATE OR REPLACE VIEW VProduit 
 AS
-	(SELECT nomCategorie, nomProduit, coverProduit, prixProduit from Produit);
+	(SELECT nomCategorie, nomProduit, coverProduit, prixProduit 
+	FROM `Produit` P
+	INNER JOIN `Categorie` C ON P.idCategorie = C.idCategorie);
