@@ -1,6 +1,6 @@
 DELIMITER //
 
-CREATE FUNCTION calculSupplements(pizza_idPizzaPerso INT(11))
+CREATE FUNCTION calculSupplements(idPizzaPerso INT(11))
 RETURNS DECIMAL(15,2)
 BEGIN
 		DECLARE resultat DECIMAL(15,2) DEFAULT 0.00;
@@ -18,11 +18,11 @@ BEGIN
         FROM `Supplement` S
         INNER JOIN `Ingredient` I ON S.idIngredient = I.idIngredient
         INNER JOIN `Base` B ON I.idIngredient = B.idIngredient
-        WHERE S.idPizzaPersonnalisee = PizzaPersoCible;
+        WHERE S.idPizzaPersonnalisee = idPizzaPerso; -- passé en paramètres 
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET crsSupplement_fini = TRUE;
 
-		OPEN crsSupplements(pizza_idPizzaPerso); -- On ouvre le curseur avec l'identifiant de la pizza personnalisée correspondante
+		OPEN crsSupplements; -- On ouvre le curseur avec l'identifiant de la pizza personnalisée correspondante
         supplements_loop: LOOP
             FETCH crsSupplements INTO supplement_quantiteSupplement, supplement_prixIngredient, supplement_quantiteIngredient;
 
