@@ -1,7 +1,47 @@
 DELIMITER //
 
-CREATE FUNCTION calculSuppléments(pizza_idPizzaPerso INT(11))
--- Tu en es là bg
+CREATE FUNCTION calculSupplements(pizza_idPizzaPerso INT(11))
+RETURNS DECIMAL(15,2)
+BEGIN
+		DECLARE resultat DECIMAL(15,2) DEFAULT 0.00;
+
+		-- Déclaration des variables temporaires pour curseur
+    DECLARE supplement_quantiteSupplement INT(11);
+    DECLARE supplement_prixIngredient DECIMAL(15,2);
+    DECLARE supplement_quantiteIngredient INT(11);
+
+		-- Curseur qui prend l'identifiant de l'ingrédient supplémentaire (ou à retirer) 
+    -- et son prix au kilo, en fonction de la pizza personnalisée
+    DECLARE crsSupplement_fini INT DEFAULT FALSE; 
+    DECLARE crsSupplements CURSOR FOR
+        SELECT  S.quantiteSupplement, I.prixIngredient, B.quantiteIngredient
+        FROM `Supplement` S
+        INNER JOIN `Ingredient` I ON S.idIngredient = I.idIngredient
+        INNER JOIN `Base` B ON I.idIngredient = B.idIngredient
+        WHERE S.idPizzaPersonnalisee = PizzaPersoCible;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET crsSupplement_fini = TRUE;
+
+		OPEN crsSupplements(pizza_idPizzaPerso); -- On ouvre le curseur avec l'identifiant de la pizza personnalisée correspondante
+        supplements_loop: LOOP
+            FETCH crsSupplements INTO supplement_quantiteSupplement, supplement_prixIngredient, supplement_quantiteIngredient;
+
+            -- Si on arrive à la fin 
+            IF crsSupplement_fini THEN
+                LEAVE supplements_loop;
+            END IF;
+
+            -- Si la quantité du supplément est à 0, on considère que l'ingrédient est à retirer
+            IF supplement_quantiteIngredient = 0 THEN
+                SET resultat = resultat - (supplement_prixIngredient * (supplement_quantiteSupplement / 1000));
+            ELSE
+                SET resultat = resultat + ((supplement_prixIngredient * (supplement_quantiteSupplement / 1000)) * supplement_quantiteSupplement);
+            END IF;
+        END LOOP;
+		CLOSE crsSupplements;
+		
+		RETURN resultat;
+END //
 
 
 CREATE PROCEDURE calculPrixTotal(idCommandeCible INT(11))
@@ -22,12 +62,7 @@ BEGIN
     DECLARE pizza_quantitePizza INT(11);
     DECLARE pizza_prixProduit DECIMAL(15,2);
 
-    -- crsSupplements
-    DECLARE supplement_quantiteSupplement INT(11);
-    DECLARE supplement_prixIngredient DECIMAL(15,2);
-    DECLARE supplement_quantiteIngredient INT(11);
-
-
+    
     /* Partie des curseurs */
 
     -- Curseur qui sélectionnera les produits du panier, leur prix et
@@ -54,19 +89,7 @@ BEGIN
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET crsPizzasPersos_fini = TRUE;    
 
-
-    -- Curseur qui prend l'identifiant de l'ingrédient supplémentaire (ou à retirer) 
-    -- et son prix au kilo, en fonction de la pizza personnalisée
-    DECLARE crsSupplement_fini INT DEFAULT FALSE; 
-    DECLARE crsSupplements(PizzaPersoCible INT(11)) CURSOR FOR
-        SELECT  S.quantiteSupplement, I.prixIngredient, B.quantiteIngredient
-        FROM `Supplement` S
-        INNER JOIN `Ingredient` I ON S.idIngredient = I.idIngredient
-        INNER JOIN `Base` B ON I.idIngredient = B.idIngredient
-        WHERE S.idPizzaPersonnalisee = PizzaPersoCible;
-
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET crsSupplement_fini = TRUE;     
-        
+       
 
     /* Partie de calcul */
     
@@ -90,34 +113,11 @@ BEGIN
             LEAVE pizzas_loop;
         END IF;
 
-        -- on ajoute à la somme le prix original de la pizza
-        SET sommePrixPizzas = sommePrixPizzas + (pizza_prixProduit * pizza_quantitePizza);
-
-        -- On calcule les suppléments 
-
-        SET crsSupplement_fini = FALSE; -- on met à false à chaque ouverture du cureur pour pouvoir le parcourir
-        OPEN crsSupplements(pizza_idPizzaPerso); -- On ouvre le curseur avec l'identifiant de la pizza personnalisée correspondante
-        supplements_loop: LOOP
-            FETCH crsSupplements INTO supplement_quantiteSupplement, supplement_prixIngredient, supplement_quantiteIngredient;
-
-            -- Si on arrive à la fin 
-            IF crsSupplement_fini THEN
-                LEAVE supplements_loop;
-            END IF;
-
-            -- Si la quantité du supplément est à 0, on considère que l'ingrédient est à retirer
-            IF supplement_quantiteIngredient = 0 THEN
-                SET sommePrixPizzas = sommePrixPizzas - (supplement_prixIngredient * (supplement_quantiteSupplement / 1000));
-            ELSE
-                SET sommePrixPizzas = sommePrixPizzas + ((supplement_prixIngredient * (supplement_quantiteSupplement / 1000)) * supplement_quantiteSupplement);
-            END IF;
-        END LOOP;
-        CLOSE crsSupplements;
+        -- on ajoute à la somme le prix original de la pizza + les supplements
+        SET sommePrixPizzas = sommePrixPizzas + ((pizza_prixProduit + calculerSupplement(pizza_idPizzaPerso)) * pizza_quantitePizza);
 
     END LOOP;
     CLOSE crsPizzasPersos;
-
-
 
     -- On met à jour la table et on insère le prix total
     UPDATE `Commande` SET prixTotalCommande = (sommePrixPizzas + sommePrixProduits) WHERE idCommande = idCommandeCible;
