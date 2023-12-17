@@ -146,7 +146,7 @@ CREATE TRIGGER alerteQtnTaille_Insert
 AFTER INSERT ON Base
 FOR EACH ROW
 BEGIN
-    CALL qtnIngrTaille(NEW.idPizza, NEW.idIngredient);
+    CALL qtnIngrTaille_Insert(NEW.idPizza, NEW.idIngredient);
 END//
 
 -- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une mise a jour dans Base
@@ -155,7 +155,7 @@ CREATE TRIGGER alerteQtnTaille_Update
 AFTER UPDATE ON Base
 FOR EACH ROW
 BEGIN
-    CALL qtnIngrTaille(OLD.idPizza, OLD.idIngredient);
+    CALL qtnIngrTaille_Update(OLD.idPizza, OLD.idIngredient);
 END//
 
     
