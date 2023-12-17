@@ -95,9 +95,7 @@ BEGIN
 
     if idTailleP = 1 THEN 
         SELECT B.idIngredient, B.quantiteIngredient 
-        into idIngr, qtnDefaut FROM Ingredient 
-        INNER JOIN Base B on B.idIngredient = I.idIngredient
-        INNER JOIN Pizza P on P.idPizza = B.idPizza
+        into idIngr, qtnDefaut FROM Base B
         WHERE B.idPizza = idPi and B.idIngredient = idIngr;
 
         SET qtnLarge = qtnDefaut * 1,5;
@@ -124,9 +122,7 @@ BEGIN
 
     if idTailleP = 1 THEN 
         SELECT B.idIngredient, B.quantiteIngredient 
-        into idIngr, qtnDefaut FROM Ingredient 
-        INNER JOIN Base B on B.idIngredient = I.idIngredient
-        INNER JOIN Pizza P on P.idPizza = B.idPizza
+        into idIngr, qtnDefaut FROM Base B
         WHERE B.idPizza = idPi and B.idIngredient = idIngr;
 
         SET qtnLarge = qtnDefaut * 1,5;
