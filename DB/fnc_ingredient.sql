@@ -132,8 +132,8 @@ BEGIN
         SET qtnLarge = qtnDefaut * 1,5;
         SET qtnXL = qtnDefaut * 2;
 
-        UPDATE `Base` SET `idIngredient`='idIngr',`quantiteIngredient`='qtnLarge' WHERE `idPizza`= idPi+1;
-        UPDATE `Base` SET `idIngredient`='idIngr',`quantiteIngredient`='qtnXL' WHERE `idPizza`= idPi+2;
+        UPDATE `Base` SET `idIngredient`=idIngr, `quantiteIngredient`=qtnLarge WHERE `idPizza`= idPi+1;
+        UPDATE `Base` SET `idIngredient`=idIngr, `quantiteIngredient`=qtnXL WHERE `idPizza`= idPi+2;
         
     END IF;
 
