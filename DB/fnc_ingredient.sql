@@ -82,7 +82,7 @@ END //
     
     
 -- Calcule les quantitées des Tailles, Large et Medium des pizzas (depuis la taille medium) 
-CREATE PROCEDURE qtnIngrTaille(IN idPi INT(11))
+CREATE PROCEDURE qtnIngrTaille_Insert(IN idPi INT(11))
 BEGIN
     DECLARE idTailleP INT;
     DECLARE idIngr INT;
@@ -105,6 +105,35 @@ BEGIN
 
         INSERT INTO `Base`(`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES (idPi+1, idIngr, qtnLarge);
         INSERT INTO `Base`(`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES (idPi+2, idIngr, qtnXL);
+        
+    END IF;
+
+END //
+
+-- Calcule les quantitées des Tailles, Large et Medium des pizzas (depuis la taille medium) 
+CREATE PROCEDURE qtnIngrTaille_Update(IN idPi INT(11))
+BEGIN
+    DECLARE idTailleP INT;
+    DECLARE idIngr INT;
+    DECLARE qtnDefaut INT;
+    DECLARE qtnLarge INT;
+    DECLARE qtnXL INT;
+
+    SELECT idTaille into idTailleP FROM Pizza
+    WHERE idPizza = idPi;
+
+    if idTailleP = 1 THEN 
+        SELECT idIngredient, quantiteIngredient 
+        into idIngr, qtnDefaut FROM Ingredient 
+        INNER JOIN Base B on B.idIngredient = I.idIngredient
+        INNER JOIN Pizza P on P.idPizza = B.idPizza
+        WHERE B.idPizza = idPi;
+
+        SET qtnLarge = qtnDefaut * 1,5;
+        SET qtnXL = qtnDefaut * 2;
+
+        UPDATE `Base` SET `idIngredient`='idIngr',`quantiteIngredient`='qtnLarge' WHERE `idPizza`= idPi+1;
+        UPDATE `Base` SET `idIngredient`='idIngr',`quantiteIngredient`='qtnXL' WHERE `idPizza`= idPi+2;
         
     END IF;
 
