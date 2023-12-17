@@ -97,7 +97,7 @@ BEGIN
         qtnDefaut FROM Base B
         WHERE B.idPizza = idPi and B.idIngredient = idIngr;
 
-        SET qtnLarge = qtnDefaut * 1,5;
+        SET qtnLarge = qtnDefaut * 1.5;
         SET qtnXL = qtnDefaut * 2;
 
         INSERT INTO `Base`(`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES (idPi+1, idIngr, qtnLarge);
