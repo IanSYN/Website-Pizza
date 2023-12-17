@@ -70,47 +70,58 @@ END//
 CREATE PROCEDURE pizzaTaille (IN idProd INT(11))
 BEGIN    
 
-    DECLARE nomCate VARCHAR(30);
+    DECLARE idCate INT;
 
-    SELECT nomCategorie into nomCate from Categorie
-    NATURAL JOIN Produit
-    WHERE Produit.idProduit = idProd;
+    SELECT idCategorie into idCate from Produit 
+    Where idProduit = idProd;
     
-    if nomCate = 'Pizza' THEN 
+    if idCate = 3 THEN 
         INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,idProd,1), (NULL,idProd,2), (NULL,idProd,3);
     END IF;
 END //
     
     
--- Calcule les quantitées des Tailles, Large et Medium des pizzas    
+-- Calcule les quantitées des Tailles, Large et Medium des pizzas (depuis la taille medium) 
 CREATE PROCEDURE qtnIngrTaille(IN idPi INT(11))
 BEGIN
+    DECLARE idTailleP INT;
+    DECLARE idIngr INT;
     DECLARE qtnDefaut INT;
     DECLARE qtnLarge INT;
     DECLARE qtnXL INT;
 
-    SELECT quantiteIngredient into qtnDefaut FROM Ingredient I
-    INNER JOIN Base B on B.idIngredient = I.idIngredient
-    INNER JOIN Pizza P on P.idPizza = B.idPizza
-    WHERE I.quantiteIngredient = idPi;
+    SELECT idTaille into idTailleP FROM Pizza
+    WHERE idPizza = idPi;
 
-    INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,,);
-    INSERT INTO `Pizza`(`idPizza`, `idProduit`, `idTaille`) VALUES (NULL,,);
+    if idTailleP = 1 THEN 
+        SELECT idIngredient, quantiteIngredient 
+        into idIngr, qtnDefaut FROM Ingredient 
+        INNER JOIN Base B on B.idIngredient = I.idIngredient
+        INNER JOIN Pizza P on P.idPizza = B.idPizza
+        WHERE B.idPizza = idPi;
 
-    
+        SET qtnLarge = qtnDefaut * 1,5;
+        SET qtnXL = qtnDefaut * 2;
+
+        INSERT INTO `Base`(`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES (idPi+1, idIngr, qtnLarge);
+        INSERT INTO `Base`(`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES (idPi+2, idIngr, qtnXL);
+        
+    END IF;
 
 END //
 
 -- Trigger qui met les 3 tailles des pizzas si le produit inseré est de categorie pizza
 CREATE TRIGGER alerteInsertTaille
 AFTER INSERT ON Produit
+FOR EACH ROW
 BEGIN
-    CALL pizzaTaille (NEW.idProduit)
+    CALL pizzaTaille (NEW.idProduit);
 END//
     
 -- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une insertion dans Pizza
 CREATE TRIGGER alerteQtnTaille
-AFTER INSERT ON Pizza
+AFTER INSERT ON Base
+FOR EACH ROW
 BEGIN
     CALL qtnIngrTaille(NEW.idPizza);
 END//
