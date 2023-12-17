@@ -223,6 +223,10 @@ INSERT INTO `PizzaPersonnalisee`(`idPizza`, `idCommande`, `idPizzaPersonnalisee`
 (3, 4, 1, 2);
 
 
+-- en attendant le code java pour automatisé l'heureLivraison
+INSERT INTO `Livraison`(`idLivraison`, `heureLivraison`, `idCommande`, `idLivreur`) VALUES 
+(1, NOW(), 1, 1);
+
 
 
 
