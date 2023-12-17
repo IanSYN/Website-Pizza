@@ -109,10 +109,9 @@ BEGIN
 END //
 
 -- Calcule les quantitées des Tailles, Large et Medium des pizzas (depuis la taille medium) 
-CREATE PROCEDURE qtnIngrTaille_Update(IN idPi INT(11))
+CREATE PROCEDURE qtnIngrTaille_Update(IN idPi INT(11), IN idIngr INT(11))
 BEGIN
     DECLARE idTailleP INT;
-    DECLARE idIngr INT;
     DECLARE qtnDefaut INT;
     DECLARE qtnLarge INT;
     DECLARE qtnXL INT;
@@ -120,11 +119,11 @@ BEGIN
     SELECT idTaille INTO idTailleP FROM Pizza
     WHERE idPizza = idPi;
 
+
     IF idTailleP = 1 THEN 
-        SELECT B.idIngredient, B.quantiteIngredient 
-        INTO idIngr, qtnDefaut FROM Base B
-        natural join Ingredient
-        WHERE B.idPizza = idPi AND Ingredient.idIngredient = idIngr;
+        SELECT B.quantiteIngredient 
+        INTO qtnDefaut FROM Base B
+        WHERE B.idPizza = idPi AND B.idIngredient = idIngr;
 
         SET qtnLarge = qtnDefaut * 1.5;
         SET qtnXL = qtnDefaut * 2;
@@ -157,7 +156,7 @@ CREATE TRIGGER alerteQtnTaille_Update
 AFTER UPDATE ON Base
 FOR EACH ROW
 BEGIN
-    CALL qtnIngrTaille(NEW.idPizza);
+    CALL qtnIngrTaille(OLD.idPizza, OLD.idIngredient);
 END//
 
     
