@@ -108,7 +108,7 @@ BEGIN
 END //
 
 -- Calcule les quantitées des Tailles, Large et Medium des pizzas (depuis la taille medium) 
-CREATE PROCEDURE qtnIngrTaille_Update(IN idPi INT(11), IN idIngr INT(11))
+/*CREATE PROCEDURE qtnIngrTaille_Update(IN idPi INT(11), IN idIngr INT(11))
 BEGIN
     DECLARE idTailleP INT;
     DECLARE qtnDefaut INT;
@@ -131,7 +131,8 @@ BEGIN
         UPDATE `Base` SET `quantiteIngredient` = qtnXL WHERE `idPizza` = NEW.idPizza + 2 AND `idIngredient` = idIngr;
     END IF;
 END //
-
+*/
+    
 -- Trigger qui met les 3 tailles des pizzas si le produit inseré est de categorie pizza
 CREATE TRIGGER alerteInsertTaille
 AFTER INSERT ON Produit
@@ -164,8 +165,7 @@ BEGIN
 END //
 
 
-DELIMITER ;
-
+/*
 -- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une mise a jour dans Base
 -- Créer le déclencheur pour AFTER UPDATE
 CREATE TRIGGER alerteQtnTaille_Update
@@ -175,6 +175,6 @@ BEGIN
     IF (OLD.quantiteIngredient <> NEW.quantiteIngredient) THEN
     CALL qtnIngrTaille_Update(OLD.idPizza, OLD.idIngredient);
 END//
-
+*/
     
 DELIMITER ;
