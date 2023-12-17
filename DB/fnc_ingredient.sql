@@ -94,11 +94,11 @@ BEGIN
     WHERE idPizza = idPi;
 
     if idTailleP = 1 THEN 
-        SELECT DISTINCT I.idIngredient, B.quantiteIngredient 
+        SELECT B.idIngredient, B.quantiteIngredient 
         into idIngr, qtnDefaut FROM Ingredient 
         INNER JOIN Base B on B.idIngredient = I.idIngredient
         INNER JOIN Pizza P on P.idPizza = B.idPizza
-        WHERE B.idPizza = idPi;
+        WHERE B.idPizza = idPi and B.idIngredient = idIngr;
 
         SET qtnLarge = qtnDefaut * 1,5;
         SET qtnXL = qtnDefaut * 2;
@@ -123,11 +123,11 @@ BEGIN
     WHERE idPizza = idPi;
 
     if idTailleP = 1 THEN 
-        SELECT I.idIngredient, B.quantiteIngredient 
+        SELECT B.idIngredient, B.quantiteIngredient 
         into idIngr, qtnDefaut FROM Ingredient 
         INNER JOIN Base B on B.idIngredient = I.idIngredient
         INNER JOIN Pizza P on P.idPizza = B.idPizza
-        WHERE B.idPizza = idPi;
+        WHERE B.idPizza = idPi and B.idIngredient = idIngr;
 
         SET qtnLarge = qtnDefaut * 1,5;
         SET qtnXL = qtnDefaut * 2;
