@@ -118,9 +118,19 @@ BEGIN
     CALL pizzaTaille (NEW.idProduit);
 END//
     
--- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une insertion dans Pizza
-CREATE TRIGGER alerteQtnTaille
-AFTER INSERT OR UPDATE ON Base
+-- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une insertion dans Base
+-- Créer le déclencheur pour AFTER INSERT
+CREATE TRIGGER alerteQtnTaille_Insert
+AFTER INSERT ON Base
+FOR EACH ROW
+BEGIN
+    CALL qtnIngrTaille(NEW.idPizza);
+END//
+
+-- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une mise a jour dans Base
+-- Créer le déclencheur pour AFTER UPDATE
+CREATE TRIGGER alerteQtnTaille_Update
+AFTER UPDATE ON Base
 FOR EACH ROW
 BEGIN
     CALL qtnIngrTaille(NEW.idPizza);
