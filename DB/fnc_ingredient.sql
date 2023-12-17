@@ -117,22 +117,21 @@ BEGIN
     DECLARE qtnLarge INT;
     DECLARE qtnXL INT;
 
-    SELECT idTaille into idTailleP FROM Pizza
+    SELECT idTaille INTO idTailleP FROM Pizza
     WHERE idPizza = idPi;
 
-    if idTailleP = 1 THEN 
+    IF idTailleP = 1 THEN 
         SELECT B.idIngredient, B.quantiteIngredient 
-        into idIngr, qtnDefaut FROM Base B
-        WHERE B.idPizza = idPi and B.idIngredient = idIngr;
+        INTO idIngr, qtnDefaut FROM Base B
+        natural join Ingredient
+        WHERE B.idPizza = idPi AND Ingredient.idIngredient = idIngr;
 
-        SET qtnLarge = qtnDefaut * 1,5;
+        SET qtnLarge = qtnDefaut * 1.5;
         SET qtnXL = qtnDefaut * 2;
 
-        UPDATE `Base` SET `idIngredient`=idIngr, `quantiteIngredient`=qtnLarge WHERE `idPizza`= idPi+1;
-        UPDATE `Base` SET `idIngredient`=idIngr, `quantiteIngredient`=qtnXL WHERE `idPizza`= idPi+2;
-        
+        UPDATE `Base` SET `quantiteIngredient` = qtnLarge WHERE `idPizza` = NEW.idPizza + 1 AND `idIngredient` = idIngr;
+        UPDATE `Base` SET `quantiteIngredient` = qtnXL WHERE `idPizza` = NEW.idPizza + 2 AND `idIngredient` = idIngr;
     END IF;
-
 END //
 
 -- Trigger qui met les 3 tailles des pizzas si le produit inseré est de categorie pizza
