@@ -146,16 +146,23 @@ CREATE TRIGGER alerteQtnTaille_Insert
 AFTER INSERT ON Base
 FOR EACH ROW
 BEGIN
-    -- Récupérer l'idTaille de la pizza liée à la ligne nouvellement insérée
-    DECLARE taillePizza INT;
-    SELECT idTaille INTO taillePizza FROM Pizza WHERE idPizza = NEW.idPizza;
+    -- Déclarer une variable de session pour suivre le nombre d'insertions
+    SET @insertion_counter := IFNULL(@insertion_counter, 0);
 
-    -- Vérifier si la pizza est de taille moyenne (idTaille = 2)
-    IF taillePizza = 1 THEN
-        -- Appeler la procédure stockée avec la quantité de la taille moyenne
-        CALL qtnIngrTaille_Insert(NEW.idPizza, NEW.idIngredient);
+    -- Si le compteur est égal à 1, appeler la procédure stockée
+    IF @insertion_counter = 1 THEN
+        CALL qtnIngrTaille_Insert(NEW.idPizza, NEW.idIngredient, NEW.quantiteIngredient);
     END IF;
-END//
+
+    -- Incrémenter le compteur à chaque insertion
+    SET @insertion_counter := @insertion_counter + 2;
+
+    -- Réinitialiser le compteur après chaque deuxième insertion
+    IF @insertion_counter > 3 THEN
+        SET @insertion_counter := 0;
+    END IF;
+END //
+
 
 DELIMITER ;
 
