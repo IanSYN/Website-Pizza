@@ -146,8 +146,18 @@ CREATE TRIGGER alerteQtnTaille_Insert
 AFTER INSERT ON Base
 FOR EACH ROW
 BEGIN
-    CALL qtnIngrTaille_Insert(NEW.idPizza, NEW.idIngredient);
+    -- Récupérer l'idTaille de la pizza liée à la ligne nouvellement insérée
+    DECLARE taillePizza INT;
+    SELECT idTaille INTO taillePizza FROM Pizza WHERE idPizza = NEW.idPizza;
+
+    -- Vérifier si la pizza est de taille moyenne (idTaille = 2)
+    IF taillePizza = 1 THEN
+        -- Appeler la procédure stockée avec la quantité de la taille moyenne
+        CALL qtnIngrTaille_Insert(NEW.idPizza, NEW.idIngredient);
+    END IF;
 END//
+
+DELIMITER ;
 
 -- Trigger pour appeler la procédure de calcule des quantités selon Taille apres une mise a jour dans Base
 -- Créer le déclencheur pour AFTER UPDATE
@@ -155,6 +165,7 @@ CREATE TRIGGER alerteQtnTaille_Update
 AFTER UPDATE ON Base
 FOR EACH ROW
 BEGIN
+    IF (OLD.quantiteIngredient <> NEW.quantiteIngredient) THEN
     CALL qtnIngrTaille_Update(OLD.idPizza, OLD.idIngredient);
 END//
 
