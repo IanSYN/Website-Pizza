@@ -62,8 +62,7 @@ BEGIN
     DECLARE pizza_quantitePizza INT(11);
     DECLARE pizza_prixProduit DECIMAL(15,2);
 
-    
-    /* Partie des curseurs */
+    /* Partie des produits (autres que les pizza) */
 
     -- Curseur qui sélectionnera les produits du panier, leur prix et
     -- leur quantité commandée
@@ -76,23 +75,6 @@ BEGIN
 
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET crsProduits_fini = TRUE; -- Se mettra à TRUE lorsqu'on aura parcouru le curseur
 
-
-    -- Curseur qui sélectionnera les pizza personnalisées des clients,
-    -- leurs quantités et leur prix
-    DECLARE crsPizzasPersos_fini INT DEFAULT FALSE; 
-    DECLARE crsPizzasPersos CURSOR FOR
-        SELECT PP.idPizzaPersonnalisee, PP.quantitePizza, PR.prixProduit
-        FROM `PizzaPersonnalisee` PP
-        INNER JOIN `Pizza` PI ON PP.idPizza = PI.idPizza
-        INNER JOIN `Produit` PR ON PI.idProduit = PR.idProduit
-        WHERE PP.idCommande = idCommandeCible;
-
-    DECLARE CONTINUE HANDLER FOR NOT FOUND SET crsPizzasPersos_fini = TRUE;    
-
-       
-
-    /* Partie de calcul */
-    
     -- Calcul de la somme de tous les produits (autres que les pizzas)
     OPEN crsProduits;
     produits_loop: LOOP
@@ -104,6 +86,20 @@ BEGIN
     END LOOP;
     CLOSE crsProduits;
 
+    /* Partie des pizzas */
+
+    -- Curseur qui sélectionnera les pizza personnalisées des clients,
+    -- leurs quantités et leur prix
+    DECLARE crsPizzasPersos_fini INT DEFAULT FALSE; 
+    DECLARE crsPizzasPersos CURSOR FOR
+        SELECT PP.idPizzaPersonnalisee, PP.quantitePizza, PR.prixProduit
+        FROM `PizzaPersonnalisee` PP
+        INNER JOIN `Pizza` PI ON PP.idPizza = PI.idPizza
+        INNER JOIN `Produit` PR ON PI.idProduit = PR.idProduit
+        WHERE PP.idCommande = idCommandeCible;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET crsPizzasPersos_fini = TRUE;   
+    
 
     -- Calcul de la somme de toutes les pizzas commandées
     OPEN crsPizzasPersos;
