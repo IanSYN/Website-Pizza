@@ -42,12 +42,13 @@ INSERT INTO `Allergene`(`idAllergene`, `nomAllergene`) VALUES
 (7, 'Oeufs'),
 (8, 'Poisson'),
 (9, 'Moutarde'),
-(10, 'Sésame');
+(10, 'Sésame'),
+(11, 'Acide citrique');
 
 INSERT INTO `Taille` VALUES
 (1, 'Medium'),
-(2, 'Large'), -- 1.5x le medium
-(3, 'XL'); -- 2x le medium
+(2, 'Large'), -- quantité de l'ingrédient 1.5x le medium
+(3, 'XL'); -- quantité de l'ingrédient 2x le medium
 
 INSERT INTO `Coupon`(`codeCoupon`, `datePeremptionCoupon`, `idClient`) VALUES
 ('ABCD1234', '2023-12-31', 1),
@@ -73,6 +74,7 @@ INSERT INTO `Gestionnaire`(`idGestionnaire`, `mdpGestionnaire`, `mailGestionnair
 (1, 'mdpGest1', 'gest1@example.com', '0612345678'),
 (2, 'mdpGest2', 'gest2@example.com', '0698765432'),
 (3, 'mdpGest3', 'gest3@example.com', '0655555555');
+(4, 'mdpGest4', 'sarahmy.messaoudi@gmail.com', '0625000000');
 
 INSERT INTO `Adresse`(`idAdresse`, `numRue`, `nomRue`, `ville`, `codePostal`, `latitudeGPS`, `longitudeGPS`) VALUES
 (1,13,'Avenue des sciences','Gif sur yvette','91190','48.711734','2.1705202'),
@@ -93,41 +95,70 @@ INSERT INTO `Adresse`(`idAdresse`, `numRue`, `nomRue`, `ville`, `codePostal`, `l
 
 INSERT INTO `MoyenPaiement` VALUES
 (1, 'Carte'),
-(2, 'Ticket restaurant')
+(2, 'Ticket restaurant'),
 (2, 'Espèce'),
 (3, 'Chèque'),
 (4, 'Apple pay'),
 (5, 'Google pay'),
 (6, 'Paypal');
 
---commande--
-
 INSERT INTO `Produit` VALUES
-(1, 'Margarita', 7, ‘margarita.png’, 3),
-(2, 'Tiramisu', 1.50, ‘tiramisu.png’, 1),
-(3, 'Coca cola', 1.50, ‘cocacola.png’, 2),
-(4, '4 Nuggets', 5, ‘nuggets.png’, 4),
-(5, ‘Kinder bueno’, 1.35, ‘kinderbueno.png’, 1);
-
+(1, 'Margarita', 7, 'margarita.png', 3),
+(2, 'Tiramisu', 1.50, 'tiramisu.png', 1),
+(3, 'Coca cola', 1.50, 'cocacola.png', 2),
+(4, '4 Nuggets', 5, 'nuggets.png', 4),
+(5, 'Kinder bueno', 1.35, 'kinderbueno.png', 1),
+(6, 'Saumon', 7, 'pizzaSaumon.png', 3),
+(7, 'Quatres Fromages', 7, '4Fromages.png', 3),
+(8, 'Savoyarde', 7, 'savoyarde.png', 3),
+(9, 'Calzone', 7, 'calzone.png', 3),
+(10, 'Salami', 7, 'salami.png', 3);
 
 INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `prixIngredient`, `coverIngredient`, `idAllergene`) VALUES
-(1, 'Mozzarella', 1553, 0.99, ‘mozzarella.png’, 2),
-(2, 'Parmesan reggiano', 758, 12, ‘parmesanReggiano.png’, 2),
-(3, 'Huile d`olive', 57, 7, ‘huileOlive.png’, NULL),
-(4, 'Basilic', 323, 0.70, ‘basilic.png’, NULL),
-(5, 'Orian', 120, 0.80, ‘origan.png’, NULL),
-(6, 'Saumon', 1205, 13, ‘saumon.png’, 8);
-
---livraison--
+(1, 'Mozzarella', 1553, 0.99, 'mozzarella.png', 2),
+(2, 'Parmesan reggiano', 758, 12, 'parmesanReggiano.png', 2),
+(3, 'Huile d`olive', 57, 7, 'huileOlive.png', NULL),
+(4, 'Basilic', 323, 0.70, 'basilic.png', NULL),
+(5, 'Origan', 120, 0.80, 'origan.png', NULL),
+(6, 'Saumon', 1205, 13, 'saumon.png', 8),
+(7, 'Citron', 380, 2, 'citron.png', 11),
+(8, 'Houmous', 540, 10, 'houmous.png', 10),
+(9, 'Camembert', 1369, 5, 'camembert.png', 2),
+(10, 'Chorizo', 978, 10, 'chorizo.png', 2),
+(11, 'Olive verte', 640, 12, 'oliveV.png', NULL),
+(12, 'Olive noire', 423, 30, 'oliveN.png', NULL);
 
 INSERT INTO `Pizzeria` VALUES
 (1, 1);
 
---pizzaPersonnalisee--
-
---panier--
-
-INSERT INTO `Base` VALUES
+INSERT INTO `Pizza` VALUES
+--Les 3 tailles de la Margarita (idP 1)
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+--Les 3 tailles de la Saumon (idP 6)
+(4, 6, 1),
+(5, 6, 2),
+(6, 6, 3),
+--Les 3 tailles de la Quatres Fromages (idP 7)
+(7, 7, 1),
+(8, 7, 2),
+(9, 7, 3),
+--Les 3 tailles de la Savoyarde (idP 8)
+(10, 8, 1),
+(11, 8, 2),
+(12, 8, 3),
+--Les 3 tailles de la Calzone (idP 9)
+(13, 9, 1),
+(14, 9, 2),
+(15, 9, 3),
+--Les 3 tailles de la Salami (idP 10)
+(16, 10, 1),
+(17, 10, 2),
+(18, 10, 3);
+  
+INSERT INTO `Base` (`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES
+--les ingrédients de la Margarita (les 3 tailles)
 (1, 1, 150),
 (1, 2, 7),
 (1, 3, 0.2),
@@ -139,17 +170,62 @@ INSERT INTO `Base` VALUES
 (3, 1, 300),
 (3, 2, 14),
 (3, 3, 0.4),
-(3, 4, 10),
-
---supplement--
+(3, 4, 10);
+--les ingrédients de la Saumon (les 3 tailles)
+(4, 6, 200),
+(4, 1, 250),
+(4, 3, 0.2),
+(4, 5, 5),
+(4, 7, 55),
+(5, 6, 300),
+(5, 1, 375),
+(5, 3, 0.3),
+(5, 5, 7.5),
+(5, 7, 82.5),
+(6, 6, 400),
+(6, 1, 500),
+(6, 3, 0.4),
+(6, 5, 10),
+(6, 7, 110);
 
 INSERT INTO `Alerte` VALUES
-(1, 1, 450),
-(2, 1, 300),
-(3, 1, 55)
-(4, 1, 200),
-(5, 1, 100),
-(6, 1, 500);
+(1, 4, 450),
+(2, 4, 300),
+(3, 4, 55),
+(4, 4, 200),
+(5, 4, 100),
+(6, 4, 500);
+
+INSERT INTO `Commande` (`idCommande`, `dateCommande`, `prixTotalCommande`, `idMoyenPaiement`, `idAdresse`, `idEtatCommande`, `codeCoupon`, `idClient`) VALUES 
+(1,'2023-12-15',0.0,1,2,1,NULL,1),
+(2,'2023-12-15',0.0,1,3,1,NULL,1),
+(3,'2023-12-15',0.0,1,15,1,NULL,3),
+(4,'2023-12-15',0.0,1,8,1,NULL,6),
+(5,'2023-12-15',0.0,1,10,1,NULL,4),
+(6,'2023-12-15',0.0,1,13,1,NULL,9);
+
+INSERT INTO `Panier`(`idCommande`, `idProduit`, `quantiteProduit`) VALUES 
+(1, 2, 2), 
+(1, 5, 1), 
+(2, 2, 2), 
+(2, 3, 4), 
+(4, 4, 1), 
+(4, 3, 4), 
+(5, 3, 2), 
+(6, 3, 2), 
+(6, 5, 2);
+
+INSERT INTO `PizzaPersonnalisee`(`idPizza`, `idCommande`, `idPizzaPersonnalisee`, `quantitePizza`) VALUES 
+(1, 1, 1, 2),
+(1, 2, 1, 1),
+(2, 6, 1, 2),
+(5, 3, 1, 2),
+(3, 4, 1, 2);
+
+
+-- en attendant le code java pour automatisé l'heureLivraison
+INSERT INTO `Livraison`(`idLivraison`, `heureLivraison`, `idCommande`, `idLivreur`) VALUES 
+(1, NOW(), 1, 1);
 
 
 

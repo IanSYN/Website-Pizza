@@ -26,7 +26,7 @@ CREATE TABLE `Allergene`(
 
 CREATE TABLE `Taille`(
    `idTaille` INT(11) NOT NULL AUTO_INCREMENT,
-   `nomTaille` VARCHAR(50)  NOT NULL CHECK (nomTaille in ('Medium', 'Large')),
+   `nomTaille` VARCHAR(50)  NOT NULL CHECK (nomTaille in ('Medium', 'Large', 'XL')),
    PRIMARY KEY(`idTaille`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -139,17 +139,16 @@ CREATE TABLE `Pizza`(
    `idProduit` INT(11) NOT NULL,
    `idTaille` INT(11) NOT NULL,
    PRIMARY KEY(`idPizza`),
-   UNIQUE(`idProduit`),
    FOREIGN KEY(`idProduit`) REFERENCES `Produit`(`idProduit`),
    FOREIGN KEY(`idTaille`) REFERENCES `Taille`(`idTaille`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `PizzaPersonnalisee`(
-   `idPizza` INT(11),
-   `idCommande` INT(11),
    `idPizzaPersonnalisee` INT(11) NOT NULL,
    `quantitePizza` INT(11) NOT NULL,
-   PRIMARY KEY(`idPizza`, `idCommande`, `idPizzaPersonnalisee`),
+   `idPizza` INT(11),
+   `idCommande` INT(11),
+   PRIMARY KEY(`idPizzaPersonnalisee`),
    FOREIGN KEY(`idPizza`) REFERENCES `Pizza`(`idPizza`),
    FOREIGN KEY(`idCommande`) REFERENCES `Commande`(`idCommande`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -177,16 +176,17 @@ CREATE TABLE `Supplement`(
    `idPizza` INT(11),
    `idCommande` INT(11),
    `idPizzaPersonnalisee` INT(11),
-   `quantiteSupplement` VARCHAR(50) CHECK (quantiteSupplement > 0),
-   PRIMARY KEY(`idIngredient`, `idPizza`, `idCommande`, `idPizzaPersonnalisee`),
+   `quantiteSupplement` VARCHAR(50) CHECK (quantiteSupplement >= 0),
+   PRIMARY KEY(`idIngredient`, `idPizzaPersonnalisee`),
    FOREIGN KEY(`idIngredient`) REFERENCES `Ingredient`(`idIngredient`),
-   FOREIGN KEY(`idPizza`, `idCommande`, `idPizzaPersonnalisee`) REFERENCES `PizzaPersonnalisee`(`idPizza`, `idCommande`, `idPizzaPersonnalisee`)
+   FOREIGN KEY( `idPizzaPersonnalisee`) REFERENCES `PizzaPersonnalisee`(`idPizzaPersonnalisee`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `Alerte`(
    `idIngredient` INT(11),
    `idGestionnaire` INT(11),
    `seuilIngredient` INT(11) CHECK (seuilIngredient >= 0),
+   `verifSeuil` BOOL,
    PRIMARY KEY(`idIngredient`, `idGestionnaire`),
    FOREIGN KEY(`idIngredient`) REFERENCES `Ingredient`(`idIngredient`),
    FOREIGN KEY(`idGestionnaire`) REFERENCES `Gestionnaire`(`idGestionnaire`)

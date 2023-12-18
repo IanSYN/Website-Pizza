@@ -1,0 +1,111 @@
+create or replace trigger alerteManqueStock
+after update on Ingredient
+FOR EACH ROW
+DECLARE
+	seuilIngr number = 0 ;
+    stockIngr number = 0;
+    nomIngr String;
+    mailGestio String;
+    
+BEGIN 
+	select seuilIngredient into seuilIngr from Alerte A
+    inner join Ingredient I on A.idIngredient = I.idIngredient;
+    
+    select stockIngredient, nomIngredient into stockIngr, nomIngr from Ingredient I
+    inner join Alerte A on A.idIngredient = I.idIngredient;
+    
+    select mailGestionnaire into mailGestio from Gestionnaire G 
+    inner join Alerte A on A.idGestionnaire = G.idGestionnaire;
+    
+if stockIngr < seuilIngr 
+then 
+	UTL_MAIL.SEND ('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, 'Stock of the ingredient : ', nomIngr ,' need supplying', 'Warning: ', nomIngr ,' SUPPLIES');
+END IF;
+END;
+
+create or replace procedure checkStockIngr()
+DECLARE seuilIngr INT;
+DECLARE stockIngr INT; 
+DECLARE nomIngr VARCHAR(30);
+DECLARE mailGestio VARCHAR(30);
+BEGIN
+    select seuilIngredient into seuilIngr from Alerte A
+    inner join Ingredient I on A.idIngredient = I.idIngredient;
+    
+    select stockIngredient, nomIngredient into stockIngr, nomIngr from Ingredient I
+    inner join Alerte A on A.idIngredient = I.idIngredient;
+    
+    select mailGestionnaire into mailGestio from Gestionnaire G 
+    inner join Alerte A on A.idGestionnaire = G.idGestionnaire;
+    
+if stockIngr < seuilIngr 
+then 
+    UTL_MAIL.SEND ('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, 'Stock of the ingredient : ', nomIngr ,' need supplying', 'Warning: ', nomIngr ,' SUPPLIES');
+END IF;
+END;
+
+DELIMITER //
+create or replace procedure checkStockIngr()
+BEGIN
+	DECLARE nomIngr VARCHAR(30);
+	DECLARE mailGestio VARCHAR(30);
+	DECLARE seuilIngr INT DEFAULT 0;
+	DECLARE stockIngr INT DEFAULT 0; 
+
+    select seuilIngredient into seuilIngr from Alerte A
+    inner join Ingredient I on A.idIngredient = I.idIngredient;
+    
+    select stockIngredient, nomIngredient into stockIngr, nomIngr from Ingredient I
+    inner join Alerte A on A.idIngredient = I.idIngredient;
+    
+    select mailGestionnaire into mailGestio from Gestionnaire G 
+    inner join Alerte A on A.idGestionnaire = G.idGestionnaire;
+    
+if stockIngr < seuilIngr 
+then 
+    SendEmail('sarah-myriam.messaoudi@universite-paris-saclay.fr', mailGestio, 'Stock of the ingredient : ', nomIngr ,' need supplying', 'Warning: ', nomIngr ,' SUPPLIES');
+END IF;
+
+END //
+
+DELIMITER ;
+
+
+
+create or replace trigger alerteManqueStock
+	after update on Ingredient
+	FOR EACH ROW
+    WHEN (OLD.stockIngredient IS DISTINCT FROM NEW.stockIngredient)
+    EXECUTE FUNCTION prendreIngr();
+	EXECUTE FUNCTION checkStockIngr();
+
+
+CREATE OR REPLACE VIEW VPizza 
+AS 
+	(SELECT Pizza.idPizza, nomProduit, nomTaille, coverProduit FROM Pizza
+	inner join Produit on Produit.idProduit = Pizza.idProduit
+	inner join Taille on Taille.idTaille = Pizza.idTaille
+	GROUP BY Pizza.idPizza, nomProduit, nomTaille);
+
+CREATE OR REPLACE VIEW VPizzaioloCommande
+AS
+	(SELECT idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, quantiteIngredient*quantiteSupplement as qntProduitPizza FROM Pizza
+	inner join Produit on Produit.idProduit = Pizza.idProduit
+	inner join Taille on Taille.idTaille = Pizza.idTaille
+	natural join Base
+ 	natural join Ingredient
+	natural join PizzaPersonnalisee
+	natural join Supplement
+	GROUP BY idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, qntProduitPizza);
+
+
+CREATE OR REPLACE VIEW VPizzaIngr
+AS
+	(SELECT nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit from Ingredient
+	natural join Allergene 
+	inner join Base on Base.idIngredient = Ingredient.idIngredient
+	inner join Pizza on Pizza.idPizza = Base.idPizza
+	inner join Taille on Taille.idTaille = Pizza.idTaille
+	inner join Produit on Produit.idProduit = Pizza.idProduit
+	GROUP BY nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit);
+	
