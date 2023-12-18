@@ -1,3 +1,4 @@
+package Vues;
 import javax.swing.*;
 
 import Modele.Commande;
@@ -5,21 +6,24 @@ import Modele.Pizzavers;
 
 import java.awt.*;
 
-public class ListPizza extends JFrame {
+public class VueListPizza extends JFrame {
     // ***********************************
     // ******* ATTRIBUTS *****************
     // ***********************************
 
     private Pizzavers Application;
-    private BarreMenu taskBar;
-    private JPanel panel;
+    private JPanel panelMilieu;
     private Commande modele;
+
+    //les 2 parties de l'interface
+    private VuePetitListCommande gauche;
+    private VueDetailCommande droite;
 
     // ***********************************
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public ListPizza(Pizzavers application, Commande modele) {
+    public VueListPizza(Pizzavers application, Commande modele) {
         this.Application = application;
         this.modele = modele;
 
@@ -29,23 +33,25 @@ public class ListPizza extends JFrame {
 		setTitle("Application Pizza Commande");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Création du panel barre des tâches
-        taskBar = new BarreMenu(this, application, modele);
-		taskBar.setCouleurFond(modele.getCouleur());
+        panelMilieu = new JPanel(new GridLayout(1, 2));
+        gauche = new VuePetitListCommande(application);
+        droite = new VueDetailCommande(application);
 
-        his.getContentPane().add(taskBar, BorderLayout.NORTH);
+        panelMilieu.add(gauche);
+        panelMilieu.add(droite);
 
-        panel = new JPanel(new GridLayout(1, 1));
-		this.getContentPane().add(panel);
+		this.getContentPane().add(panelMilieu);
 
-        reload();
+        this.setVisible(true);
+
+        //reload();
     }
 
     // ***********************************
     // ******* GETTERS ET SETTERS ********
     // ***********************************
 
-    public ListPizza getApplication() {
+    public Pizzavers getApplication() {
         return Application;
     }
 
@@ -54,7 +60,7 @@ public class ListPizza extends JFrame {
     // ***********************************
 
     public void reload() {
-        panel.removeAll();
+        panelMilieu.removeAll();
 
 		// for (Commande com : modele.getContenuTableau()) {
 		// 	// Création de la vue associée à la liste courante

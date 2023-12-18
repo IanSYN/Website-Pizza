@@ -1,23 +1,24 @@
 package Modele;
 
-public class Pizzavers {
-    public static void main(String[] args) {
+import Modele.Commande;
+import Vues.VueListPizza;
 
-        // Création du launcher de l'application
+public class Pizzavers {
+
+    // Création du launcher de l'application
         public void lancerApplication(){
             //lancer la page d'accueil
-            new ListPizza(this, new Commande());
+            new VueListPizza(this, new Commande());
         }
+    public static void main(String[] args) {
+        try {
 
-        public static void main(String[] args) {
-		try {
+                Pizzavers application = new Pizzavers();
 
-			Pizzavers application = new PizzaPizzavers();
+                application.lancerApplication();
 
-			application.lancerApplication();
-
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+            } catch (Exception e)   {
+                System.out.println(e);
+            }
 	}
 }
