@@ -1,10 +1,12 @@
-
 package view;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
-public class VCuisineDetail extends JPanel{
-	
-	JPanel panCuisineGauche = new VCuisine(); 
+public class VCuisineDetail extends JPanel {
 
+    JPanel panCuisineGauche = new VCuisine();
+
+    public VCuisineDetail() {
+        add(panCuisineGauche);
+    }
 }
