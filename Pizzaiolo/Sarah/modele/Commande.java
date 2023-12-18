@@ -7,20 +7,30 @@ import java.util.ArrayList;
 public class Commande {
     float tempsRestant;
     Adresse adresseArrivee;
-    ArrayList<Produit>commande;
+    ArrayList<Produit>laCommande;
     boolean ready = false;
     ArrayList<Commande> commandePrete;
     float ratio;
     LocalDateTime dateCommande;
+    int numCommande;
 
-    // Constructeur
+    //Constructeur 
+    public Commande(Adresse adresseArrivee, ArrayList<Produit> commande) {
+        this.adresseArrivee = adresseArrivee;
+        this.laCommande = commande;
+        this.dateCommande = LocalDateTime.now();
+    }
 
     //methode
     public Commande calcRatio(int tempsRestant, Adresse ad1) {
-        float distance;
+        //float distance;
         Adresse ad2 = adresseArrivee;
         this.ratio = tempsRestant / calcDistance(ad1, ad2);
         return null;
+    }
+
+    public int getIntCommande(){
+        return numCommande;
     }
 
     public Duration calcDureeRestante(LocalDateTime dateCom, LocalDateTime sysDate) {
