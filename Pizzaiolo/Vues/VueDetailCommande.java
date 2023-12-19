@@ -26,7 +26,11 @@ public class VueDetailCommande extends JPanel{
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.red));
 
-        reload();
+        ArrayList<Produit> LaCommande = Modele.get(0).getCommande();
+        for (Produit Produit : LaCommande) {
+            VueEtapeCommande Etape = new VueEtapeCommande(application, Produit);
+            this.add(Etape);
+        }
     }
 
     // ***********************************
@@ -43,10 +47,7 @@ public class VueDetailCommande extends JPanel{
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //for (Commande commande : Modele) {
-            ArrayList<Produit> LaCommande = Modele.get(0).getCommande();
-            for (Produit Produit : LaCommande) {
-                this.add(new VueEtapeCommande(application, Produit));
-            }
+            
         //}
 
         this.revalidate();

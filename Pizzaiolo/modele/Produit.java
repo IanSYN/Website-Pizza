@@ -36,4 +36,8 @@ public class Produit {
     public String getNomProduit() {
         return this.NomProduit;
     }
+
+    public float getPrixProduit() {
+        return this.PrixProduit;
+    }
 }

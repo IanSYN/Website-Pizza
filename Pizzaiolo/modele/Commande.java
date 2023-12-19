@@ -96,9 +96,13 @@ public class Commande {
         return laCommande;
     }
 
-    // public Produit getIndex(int i){
-    //     return laCommande.get(i);
-    // }
+    public float getPrixCommande(){
+        float prix = 0;
+        for (Produit prod : laCommande) {
+            prix += prod.getPrixProduit();
+        }
+        return prix;
+    }
 
     //methode
 

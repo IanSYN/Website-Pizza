@@ -36,12 +36,11 @@ public class VueListPizza extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         panelMilieu = new JPanel(new GridLayout(1, 2));
-        gauche = new VuePetitListCommande(application);
+        gauche = new VuePetitListCommande(application, listeCommande);
         droite = new VueDetailCommande(application, listeCommande);
 
         panelMilieu.add(gauche);
         panelMilieu.add(droite);
-
 		this.getContentPane().add(panelMilieu);
 
         this.setVisible(true);
