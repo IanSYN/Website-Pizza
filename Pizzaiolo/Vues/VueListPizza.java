@@ -31,21 +31,19 @@ public class VueListPizza extends JFrame {
 
         this.setBackground(Color.WHITE);
 
-        setSize(1280, 720);
-		setTitle("Application Pizza Commande");
+        this.setSize(800, 600);
+        setTitle("Application Pizza Commande");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         panelMilieu = new JPanel(new GridLayout(1, 2));
-        gauche = new VuePetitListCommande(application, listeCommande);
-        droite = new VueDetailCommande(application, listeCommande);
+        gauche = new VuePetitListCommande(application, listeCommande, this);
 
         panelMilieu.add(gauche);
-        panelMilieu.add(droite);
 		this.getContentPane().add(panelMilieu);
 
         this.setVisible(true);
 
-        //reload();
+        reload();
     }
 
     // ***********************************
@@ -56,6 +54,54 @@ public class VueListPizza extends JFrame {
         return Application;
     }
 
+    public void setApplication(Pizzavers application) {
+        Application = application;
+    }
+
+    public JPanel getPanelMilieu() {
+        return panelMilieu;
+    }
+
+    public void setPanelMilieu(JPanel panelMilieu) {
+        this.panelMilieu = panelMilieu;
+    }
+
+    public Commande getModele() {
+        return modele;
+    }
+
+    public void setModele(Commande modele) {
+        this.modele = modele;
+    }
+
+    public ArrayList<Commande> getListeCommande() {
+        return listeCommande;
+    }
+
+    public void setListeCommande(ArrayList<Commande> listeCommande) {
+        this.listeCommande = listeCommande;
+    }
+
+    public VuePetitListCommande getGauche() {
+        return gauche;
+    }
+
+    public void setGauche(VuePetitListCommande gauche) {
+        this.gauche = gauche;
+        this.add(gauche);
+        reload();
+    }
+
+    public VueDetailCommande getDroite() {
+        return droite;
+    }
+
+    public void setDroite(VueDetailCommande droite) {
+        this.droite = droite;
+        this.add(droite);
+        reload();
+    }
+
     // ***********************************
     // ******* METHODES ******************
     // ***********************************
@@ -63,17 +109,11 @@ public class VueListPizza extends JFrame {
     public void reload() {
         panelMilieu.removeAll();
 
-		// for (Commande com : modele.getContenuTableau()) {
-		// 	// Création de la vue associée à la liste courante
-		// 	// la création du controleur associé à la vue courante est gérée par le
-		// 	// constructeur de ConteneurListe.
-		// 	ConteneurListe conteneurListe = new ConteneurListe(liste, this, application);
-		// 	panelCentral.add(conteneurListe);
-		// }
+        gauche = new VuePetitListCommande(Application, listeCommande, this);
+        panelMilieu.add(gauche);
+        panelMilieu.add(droite);
 
-		// // On recrée le bouton pour ajouter une nouvelle liste.
-		// panelCentral.add(new ControleurAjouterListe(modele, new AjouterListe(application), this, application));
-
+        pack();
 		repaint();
 		revalidate();
     }

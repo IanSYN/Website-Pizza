@@ -57,11 +57,22 @@ public class Pizzavers {
     public static void main(String[] args) {
         ArrayList<Produit> listeProduits = new ArrayList<Produit>();
         Produit produit1 = new Produit("Pizza 4 fromages", 10.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
+        Produit produit2 = new Produit("Pizza de la hess ", 18.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
         listeProduits.add(produit1);
+        listeProduits.add(produit2);
+
+        ArrayList<Produit> listeProduits2 = new ArrayList<Produit>();
+        Produit produit3 = new Produit("Pizza 2 fromages", 10.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
+        Produit produit4 = new Produit("Pizza de la richesse ", 18.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
+        listeProduits2.add(produit3);
+        listeProduits2.add(produit4);
 
         Commande commande1 = new Commande(1, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.00, listeProduits);
+        Commande commande2 = new Commande(2, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.00, listeProduits2);
+
         listeCommandes = new ArrayList<Commande>();
         listeCommandes.add(commande1);
+        listeCommandes.add(commande2);
         try {
                 //remplirListeProduits();
 
