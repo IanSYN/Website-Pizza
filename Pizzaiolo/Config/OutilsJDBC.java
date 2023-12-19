@@ -58,7 +58,7 @@ public class OutilsJDBC {
     }
 
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/saes3pizzavers";
+        String url = "jdbc:mysql://projets.iut-orsay.fr:3306/saes3pizzavers";
         Connection co = OutilsJDBC.openConnection(url);
         String query = "SELECT * FROM VPizza";
         ResultSet rs = OutilsJDBC.exec1Requete(query, co, 1);

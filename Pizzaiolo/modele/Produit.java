@@ -33,4 +33,8 @@ public class Produit {
         this.idCategorie = idCategorie;
         cpt++;
     }
+
+    public String getNomProduit() {
+        return this.NomProduit;
+    }
 }

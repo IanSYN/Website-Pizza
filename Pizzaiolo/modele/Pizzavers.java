@@ -1,9 +1,17 @@
 package Modele;
 
+import java.util.ArrayList;
+
 import Modele.Commande;
 import Vues.VueListPizza;
 
 public class Pizzavers {
+
+    ArrayList<Commande> listeCommande = new ArrayList<Commande>();
+
+    public void RemplirTable(){
+        
+    }
 
     // Création du launcher de l'application
         public void lancerApplication(){

@@ -55,4 +55,9 @@ public class Commande {
     // ***********************************
     // ******* METHODES ******************
     // ***********************************
+
+    public String indexCommandeNom(int i){
+        return this.laCommande.get(i).getNomProduit();
+    }
 }
+
