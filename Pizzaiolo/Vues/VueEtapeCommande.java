@@ -1,9 +1,9 @@
 package Vues;
 import javax.swing.*;
 
-import Modele.Commande;
-import Modele.Pizzavers;
-import Modele.Produit;
+import modele.Commande;
+import modele.Pizzavers;
+import modele.Produit;
 
 import java.awt.*;
 

@@ -1,9 +1,9 @@
-package Modele;
+package modele;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import Modele.Commande;
+import modele.Commande;
 
 public class Livreur {
     private final static int MAXPLACE = 5;
