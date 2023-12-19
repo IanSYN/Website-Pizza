@@ -5,18 +5,18 @@ public class Pizza {
 	// ******* ATTRIBUTS *****************
 	// ***********************************
 
-    private int IdPizza;
-    private int IdProduit;
-    private int IdTaille;
+    private int idPizza;
+    private String nomPizza;
+    private String taille;
 
     // ***********************************
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public Pizza(int idPizza, int idProduit, int idTaille) {
-        this.IdPizza = idPizza;
-        this.IdProduit = idProduit;
-        this.IdTaille = idTaille;
+    public Pizza(int idPizza, String nomPizza, String taille) {
+        this.idPizza = idPizza;
+        this.nomPizza = nomPizza;
+        this.taille = taille;
     }
 
     // ***********************************
@@ -24,27 +24,27 @@ public class Pizza {
     // ***********************************
 
     public int getIdPizza() {
-        return IdPizza;
+        return idPizza;
+    }
+
+    public String getNomPizza() {
+        return nomPizza;
+    }
+
+    public String getTaille() {
+        return taille;
     }
 
     public void setIdPizza(int idPizza) {
-        this.IdPizza = idPizza;
+        this.idPizza = idPizza;
     }
 
-    public int getIdProduit() {
-        return IdProduit;
+    public void setNomPizza(String nomPizza) {
+        this.nomPizza = nomPizza;
     }
 
-    public void setIdProduit(int idProduit) {
-        this.IdProduit = idProduit;
-    }
-
-    public int getIdTaille() {
-        return IdTaille;
-    }
-
-    public void setIdTaille(int idTaille) {
-        this.IdTaille = idTaille;
+    public void setTaille(String taille) {
+        this.taille = taille;
     }
 
     // ***********************************

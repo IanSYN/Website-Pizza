@@ -35,8 +35,8 @@ public class VueEtapeCommande extends JPanel{
         //Titre
         this.titre = new JLabel(this.Modele.getNomProduit());
         this.titre.setAlignmentX(Component.LEFT_ALIGNMENT);
-        Valider = new JCheckBox("Valider");
-        Manque = new JCheckBox("Manque");
+        this.Valider = new JCheckBox("Valider");
+        this.Manque = new JCheckBox("Manque");
         Valider.setAlignmentX(Component.RIGHT_ALIGNMENT);
         Manque.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
@@ -64,7 +64,9 @@ public class VueEtapeCommande extends JPanel{
         fenetre.setTitle("Application Pizza Commande");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setVisible(true);
-        VueEtapeCommande a1 = new VueEtapeCommande(new Pizzavers(), new Produit());
+        Produit p1 = new Produit();
+        System.out.println(p1.getNomProduit());
+        VueEtapeCommande a1 = new VueEtapeCommande(new Pizzavers(), p1);
         fenetre.add(a1);
     }
 }

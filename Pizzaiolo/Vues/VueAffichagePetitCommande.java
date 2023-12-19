@@ -27,10 +27,10 @@ public class VueAffichagePetitCommande extends JPanel{
     public VueAffichagePetitCommande(Pizzavers Applications, Commande co){
         this.application = Applications;
 
-        numCommande.setText(Integer.toString(co.getIdCommande()));
-        prixCommandeTotal.setText(Integer.toString(co.getIdCommande()));
-        tempsRestant.setText(Integer.toString(co.getIdCommande()));
-        nbProduit.setText(Integer.toString(co.getIdCommande()));
+        numCommande.setText(Integer.toString(co.getNumCommande()));
+        prixCommandeTotal.setText(Integer.toString(co.getNumCommande()));
+        tempsRestant.setText(Integer.toString(co.getNumCommande()));
+        nbProduit.setText(Integer.toString(co.getNumCommande()));
 
         this.setBorder(BorderFactory.createLineBorder(Color.red));
 

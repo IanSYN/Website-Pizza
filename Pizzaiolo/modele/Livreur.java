@@ -1,9 +1,9 @@
-package modele;
+package Modele;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import modele.Commande;
+import Modele.Commande;
 
 public class Livreur {
     private final static int MAXPLACE = 5;
@@ -62,9 +62,15 @@ public class Livreur {
             return null; // Renvoyer null si la liste est vide
         }
     
-        Commande meilleureCommande = c.get(0); // Supposons que le premier élément a le meilleur ratio
+        Commande meilleureCommande = c.get(1); // Supposons que le premier élément a le meilleur ratio
+        //Adresse adDepart = new Adresse("Boutique IUT d'Orsay",lat,long); // Adresse de départ pour la première commande
+
     
-        for (Commande commande : c) {
+        for (int i = 1; i < c.size(); i++) {
+            Commande commande = c.get(i);
+            Adresse adDepartCommandePrecedente = c.get(i - 1).getAdresseArrivee();
+            commande.calcRatio(commande.getTempsRestant(), adDepartCommandePrecedente);
+
             if (commande.getRatio() > meilleureCommande.getRatio()) {
                 meilleureCommande = commande;
             }

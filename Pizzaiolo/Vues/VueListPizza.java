@@ -1,6 +1,6 @@
 package Vues;
 import javax.swing.*;
-
+import java.util.*;
 import Modele.Commande;
 import Modele.Pizzavers;
 
@@ -14,6 +14,7 @@ public class VueListPizza extends JFrame {
     private Pizzavers Application;
     private JPanel panelMilieu;
     private Commande modele;
+    private ArrayList<Commande> listeCommande;
 
     //les 2 parties de l'interface
     private VuePetitListCommande gauche;
@@ -23,9 +24,10 @@ public class VueListPizza extends JFrame {
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public VueListPizza(Pizzavers application, Commande modele) {
+    public VueListPizza(Pizzavers application, Commande modele, ArrayList<Commande> listeCommande) {
         this.Application = application;
         this.modele = modele;
+        this.listeCommande = listeCommande;
 
         this.setBackground(Color.WHITE);
 
@@ -35,7 +37,7 @@ public class VueListPizza extends JFrame {
 
         panelMilieu = new JPanel(new GridLayout(1, 2));
         gauche = new VuePetitListCommande(application);
-        droite = new VueDetailCommande(application);
+        droite = new VueDetailCommande(application, listeCommande);
 
         panelMilieu.add(gauche);
         panelMilieu.add(droite);

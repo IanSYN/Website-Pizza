@@ -1,4 +1,4 @@
-package modele;
+package Modele;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,9 @@ public class MainTest {
         Commande commande2 = new Commande(2, new Adresse("25 Rue de la Paix Evry",48.629080, 2.441800), 20.00 ,new ArrayList<>());
         Commande commande3 = new Commande(3, new Adresse("8 Rue du Commerce Massy",48.726620, 2.274420), -5.00, new ArrayList<>());
   
+        commande1.afficherLaCommande();
+        System.out.println("ici");
+
         // Ajout des commandes au cargo du livreur
         livreur.addCargo(commande1);
         livreur.addCargo(commande2);

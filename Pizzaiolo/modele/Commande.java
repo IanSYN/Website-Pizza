@@ -1,4 +1,4 @@
-package modele;
+package Modele;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -10,21 +10,30 @@ public class Commande {
     private ArrayList<Produit> laCommande;
     private boolean ready = false;
     //ArrayList<Commande> commandePrete;
-    private float ratio;
+    private double ratio;
     private LocalDateTime dateCommande;
     private int numCommande;
 
-    //Constructeur 
+    //Constructeur
     public Commande(int numCommande, Adresse adresseArrivee, double tempsRest, ArrayList<Produit> laCommande) {
         this.numCommande = numCommande;
         this.adresseArrivee = adresseArrivee;
         this.tempsRestant = tempsRest;
         this.laCommande = laCommande;
         this.dateCommande = LocalDateTime.now();
+        this.ratio = 0;
     }
 
-    public Commande(int numCommande) {
+    /*public Commande(int numCommande) {
         this.numCommande = numCommande;
+        this.adresseArrivee = null;
+        this.laCommande = null;
+        this.dateCommande = LocalDateTime.now();
+    }*/
+
+    //merci de me laisser mon constructeur de test :
+    public Commande(){
+        this.numCommande = 1;
         this.adresseArrivee = null;
         this.laCommande = null;
         this.dateCommande = LocalDateTime.now();
@@ -47,10 +56,6 @@ public class Commande {
         this.adresseArrivee = adresseArrivee;
     }
 
-    public ArrayList<Produit> getLaCommande() {
-        return laCommande;
-    }
-
     public void setLaCommande(ArrayList<Produit> laCommande) {
         this.laCommande = laCommande;
     }
@@ -63,7 +68,7 @@ public class Commande {
         this.ready = ready;
     }
 
-    public float getRatio() {
+    public double getRatio() {
         return ratio;
     }
 
@@ -79,17 +84,21 @@ public class Commande {
         this.dateCommande = dateCommande;
     }
 
-    public int getIntCommande(){
-        return numCommande;
-    }
-
-    public int getNumCommande() {
+    public int getNumCommande(){
         return numCommande;
     }
 
     public void setNumCommande(int numCommande) {
         this.numCommande = numCommande;
     }
+
+    public ArrayList<Produit> getCommande(){
+        return laCommande;
+    }
+
+    // public Produit getIndex(int i){
+    //     return laCommande.get(i);
+    // }
 
     //methode
 
@@ -105,12 +114,24 @@ public class Commande {
         return resultat;
     }
 
+    public void afficherLaCommande(){
+        System.out.println("Version toString");
+        toString();
+        System.out.println("Version complete");
+        int nbrProd = laCommande.size();
+        System.out.println("La commande " + this.getNumCommande() + " est composé de " + nbrProd +" produits.");
+        System.out.println("Elle contient : ");
+        for (Produit prod  : this.laCommande) {
+            if (prod != null){
+                System.out.println(" - " +prod.getNomProduit());
+            }
+        }
+    }
 
-    public Commande calcRatio(float tempsRestant, Adresse ad1) {
+    public void calcRatio(double tempsRestant, Adresse ad1) {
         //float distance;
         Adresse ad2 = adresseArrivee;
         this.ratio = tempsRestant / calcDistance(ad1, ad2);
-        return null;
     }
 
     public Duration calcDureeRestante(LocalDateTime dateCom, LocalDateTime sysDate) {
