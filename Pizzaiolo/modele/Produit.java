@@ -5,7 +5,7 @@ public class Produit {
     // ******* ATTRIBUTS *****************
     // ***********************************
 
-    private static int cpt = 1; // Pour identifier les produits
+    //private static int cpt = 1; // Pour identifier les produits
 
     private int IdProduit;
     private String NomProduit;
@@ -18,19 +18,15 @@ public class Produit {
 
     // Constructeur test
     public Produit(){
-        this.IdProduit = cpt;
+        this.IdProduit = 1;
         this.NomProduit = "test";
         this.PrixProduit = 1f;
-        this.CoverProduit = null;
-        cpt++;
     }
 
-    public Produit(String nom, float prix, String cover){
-        this.IdProduit = cpt;
+    public Produit(int IdProduit,String nom, float prix){
+        this.IdProduit = IdProduit;
         this.NomProduit = nom;
         this.PrixProduit = prix;
-        this.CoverProduit = cover;
-        cpt++;
     }
 
     public String getNomProduit() {

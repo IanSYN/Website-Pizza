@@ -5,6 +5,7 @@ import Modele.Commande;
 import Modele.Pizzavers;
 
 import java.awt.*;
+import inter.*;
 
 public class VueListPizza extends JFrame {
     // ***********************************
@@ -29,9 +30,9 @@ public class VueListPizza extends JFrame {
         this.modele = modele;
         this.listeCommande = listeCommande;
 
-        this.setBackground(Color.WHITE);
+        this.setBackground(Colors.redBG);
 
-        this.setSize(800, 600);
+        setMinimumSize(new Dimension(800,600));
         setTitle("Application Pizza Commande");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 

@@ -2,17 +2,19 @@ package Config;
 
 import java.sql.*;
 
+import javax.management.Query;
+
 public class OutilsJDBC {
-    public static Connection openConnection(String url) {
+    public static Connection openConnection() {
         Connection co = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            co = DriverManager.getConnection(url, "saes3pizzavers", "zltFcWcsZds/SMCK");
+            co = DriverManager.getConnection("jdbc:mysql://projets.iut-orsay.fr:3306/saes3pizzavers", "saes3pizzavers", "zltFcWcsZds/SMCK");
         } catch (ClassNotFoundException e) {
             System.out.println("il manque le driver mysql");
             System.exit(1);
         } catch (SQLException e) {
-            System.out.println("impossible de se connecter à l'url : " + url);
+            System.out.println("impossible de se connecter à l'url ");
             System.exit(1);
         }
         return co;
@@ -47,7 +49,7 @@ public class OutilsJDBC {
     public static void affichage(ResultSet rs) {
         try {
             while (rs.next()) {
-                for (int i = 1; i <= 3; i++) {
+                for (int i = 1; i <= 4; i++) {
                     System.out.println(rs.getString(i) + "\t");
                 }
                 System.out.println(" ");
@@ -57,12 +59,16 @@ public class OutilsJDBC {
         }
     }
 
+    public static ResultSet ExecuteurSQL(String Query){
+        Connection co = OutilsJDBC.openConnection();
+        ResultSet rs = OutilsJDBC.exec1Requete(Query, co, 1);
+        return rs;
+    }
+
     public static void main(String[] args) {
-        String url = "jdbc:mysql://projets.iut-orsay.fr:3306/saes3pizzavers";
-        Connection co = OutilsJDBC.openConnection(url);
-        String query = "SELECT * FROM VPizza";
+        Connection co = OutilsJDBC.openConnection();
+        String query = "SELECT idProduit, nomProduit, prixProduit, coverProduit FROM Produit";
         ResultSet rs = OutilsJDBC.exec1Requete(query, co, 1);
         OutilsJDBC.affichage(rs);
-
         OutilsJDBC.closeConnection(co);
     };}

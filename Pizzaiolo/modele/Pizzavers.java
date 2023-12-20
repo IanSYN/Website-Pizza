@@ -13,34 +13,44 @@ public class Pizzavers {
     // ***********************************
     // ******* ATTRIBUTS *****************
     // ***********************************
-    
+
     // Connexion à la base de données
-    // public static String url = "jdbc:mysql://projets.iut-orsay.fr:3306/saes3pizzavers";
-    // public static Connection co = OutilsJDBC.openConnection(url);
+    public static Connection co = OutilsJDBC.openConnection();
 
     public static ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
-    //public static ArrayList<Produit> listeProduits = new ArrayList<Produit>();
+    public static ArrayList<Produit> listeProduits = new ArrayList<Produit>();
+    public static ArrayList<Adresse> listeAdresses = new ArrayList<Adresse>();
 
     // ***********************************
     // ******* METHODES ******************
     // ***********************************
 
-    // public static void remplirListeProduits() throws SQLException {
+    public static void remplirListeProduits() throws SQLException {
 
-    //     String query = "SELECT nomProduit, prixProduit, coverProduit FROM `Produit`";
-    //     ResultSet rs = OutilsJDBC.exec1Requete(query, co, 1);
+        String query = "SELECT idProduit, nomProduit, prixProduit FROM Produit";
+        ResultSet rs = OutilsJDBC.exec1Requete(query, co, 1);
 
-    //     // On récupère les produits et on en forme des instances de Produit
-    //     while (rs.next()) {
-    //         listeProduits.add(new Produit(rs.getString(1), rs.getFloat(2), rs.getString(3)));
-    //     }
-    // }
+        // On récupère les produits et on en forme des instances de Produit
+        while (rs.next()) {
+            Produit P = new Produit(rs.getInt(1), rs.getString(2), rs.getFloat(3));
+            listeProduits.add(P);
+        }
+        for (Produit Produit : listeProduits) {
+            System.out.println(Produit.getNomProduit());
+        }
 
-    // public static void remplirListeCommandes() throws SQLException {
+        query = "SELECT numRue, nomRue, ville, CodePostal, latitudeGPS, longitudeGPS FROM `Adresse`";
+        rs = OutilsJDBC.exec1Requete(query, co, 1);
+        while (rs.next()) {
+            String adr = rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
+            Adresse Adresse = new Adresse(adr, rs.getDouble(5), rs.getDouble(6));
+            listeAdresses.add(Adresse);
+        }
 
-    //     String query = "SELECT nomProduit, prixProduit, coverProduit FROM `Produit`";
-    //     ResultSet rs = OutilsJDBC.exec1Requete(query, co, 1);
-    // }
+        for (Adresse adresse : listeAdresses) {
+            System.out.println(adresse.getAdresseArrivee());
+        }
+    }
 
     // Création du launcher de l'application
     public void lancerApplication(ArrayList<Commande> listeCommande){
@@ -48,37 +58,38 @@ public class Pizzavers {
         new VueListPizza(this, new Commande(), listeCommande);
     }
 
-    // public void afficher(ArrayList<Object> list){
-    //     for (Object object : list) {
-    //         System.out.println(object);
-    //     }
-    // }
+    public void afficher(ArrayList<Object> list){
+        for (Object object : list) {
+            System.out.println(object);
+        }
+    }
 
     public static void main(String[] args) {
-        ArrayList<Produit> listeProduits = new ArrayList<Produit>();
-        Produit produit1 = new Produit("Pizza 4 fromages", 10.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
-        Produit produit2 = new Produit("Pizza de la hess ", 18.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
-        listeProduits.add(produit1);
-        listeProduits.add(produit2);
+        // ArrayList<Produit> listeProduits = new ArrayList<Produit>();
+        // Produit produit1 = new Produit("Pizza 4 fromages", 10.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
+        // Produit produit2 = new Produit("Pizza de la hess ", 18.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
+        // listeProduits.add(produit1);
+        // listeProduits.add(produit2);
 
-        ArrayList<Produit> listeProduits2 = new ArrayList<Produit>();
-        Produit produit3 = new Produit("Pizza 2 fromages", 10.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
-        Produit produit4 = new Produit("Pizza de la richesse ", 18.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
-        listeProduits2.add(produit3);
-        listeProduits2.add(produit4);
+        // ArrayList<Produit> listeProduits2 = new ArrayList<Produit>();
+        // Produit produit3 = new Produit("Pizza 2 fromages", 10.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
+        // Produit produit4 = new Produit("Pizza de la richesse ", 18.00f, "https://www.pizzapai.fr/var/ezdemo_site/storage/images/media/images/pizza-4-fromages/104-1-fre-FR/Pizza-4-fromages.jpg");
+        // listeProduits2.add(produit3);
+        // listeProduits2.add(produit4);
 
-        Commande commande1 = new Commande(1, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.00, listeProduits);
-        Commande commande2 = new Commande(2, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.00, listeProduits2);
+        // Commande commande1 = new Commande(1, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.00, listeProduits);
+        // Commande commande2 = new Commande(2, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.00, listeProduits2);
 
-        listeCommandes = new ArrayList<Commande>();
-        listeCommandes.add(commande1);
-        listeCommandes.add(commande2);
+        // listeCommandes = new ArrayList<Commande>();
+        // listeCommandes.add(commande1);
+        // listeCommandes.add(commande2);
         try {
-                //remplirListeProduits();
+                remplirListeProduits();
 
-                Pizzavers application = new Pizzavers();
-                application.lancerApplication(listeCommandes);
+                //Pizzavers application = new Pizzavers();
+                //application.lancerApplication(listeCommandes);
 
+                OutilsJDBC.closeConnection(co);
             } catch (Exception e)   {
                 System.out.println(e);
             }

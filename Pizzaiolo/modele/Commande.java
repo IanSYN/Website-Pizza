@@ -9,7 +9,6 @@ public class Commande {
     private Adresse adresseArrivee;
     private ArrayList<Produit> laCommande;
     private boolean ready = false;
-    //ArrayList<Commande> commandePrete;
     private double ratio;
     private LocalDateTime dateCommande;
     private int numCommande;
@@ -22,6 +21,15 @@ public class Commande {
         this.laCommande = laCommande;
         this.dateCommande = LocalDateTime.now();
         this.ratio = 0;
+    }
+
+    public Commande(int numCommande, Adresse AdresseArrivee, ArrayList<Produit> laCommande) {
+        this.numCommande = numCommande;
+        this.adresseArrivee = AdresseArrivee;
+        this.tempsRestant = 45.0;
+        this.laCommande = Panier();
+        this.dateCommande = LocalDateTime.now();
+        this.ratio = calcRatio(tempsRestant, adresseArrivee);
     }
 
     /*public Commande(int numCommande) {
@@ -132,10 +140,11 @@ public class Commande {
         }
     }
 
-    public void calcRatio(double tempsRestant, Adresse ad1) {
+    public Double calcRatio(double tempsRestant, Adresse ad1) {
         //float distance;
         Adresse ad2 = adresseArrivee;
         this.ratio = tempsRestant / calcDistance(ad1, ad2);
+        return this.rat
     }
 
     public Duration calcDureeRestante(LocalDateTime dateCom, LocalDateTime sysDate) {

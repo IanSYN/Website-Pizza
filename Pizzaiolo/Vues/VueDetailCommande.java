@@ -1,5 +1,8 @@
 package Vues;
 import javax.swing.*;
+
+import Controlleur.ControlleurValidationCommande;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -14,14 +17,16 @@ public class VueDetailCommande extends JPanel{
 
     private Pizzavers application;
     private Commande Modele;
+    private VueListPizza vueListPizza;
 
     // ***********************************
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public VueDetailCommande(Pizzavers applications, Commande commande){
+    public VueDetailCommande(Pizzavers applications, Commande commande, VueListPizza vueListPizza){
         this.application = applications;
         this.Modele = commande;
+        this.vueListPizza = vueListPizza;
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.red));
@@ -31,6 +36,8 @@ public class VueDetailCommande extends JPanel{
             VueEtapeCommande Etape = new VueEtapeCommande(application, Produit);
             this.add(Etape);
         }
+
+        new ControlleurValidationCommande(applications, commande, this, vueListPizza);
     }
 
     // ***********************************
