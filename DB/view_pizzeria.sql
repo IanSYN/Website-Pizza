@@ -39,3 +39,15 @@ AS
 	(SELECT idProduit, nomCategorie, nomProduit, coverProduit, prixProduit 
 	FROM `Produit` P
 	INNER JOIN `Categorie` C ON P.idCategorie = C.idCategorie);
+
+
+CREATE OR REPLACE VIEW VPCommande
+AS
+	(SELECT idCommande, nomProduit, nomTaille, quantitePizza, quantiteIngredient*quantiteSupplement as qntProduitPizza FROM Pizza
+	inner join Produit on Produit.idProduit = Pizza.idProduit
+	inner join Taille on Taille.idTaille = Pizza.idTaille
+	natural join Base
+ 	natural join Ingredient
+	natural join PizzaPersonnalisee
+	natural join Supplement);
+
