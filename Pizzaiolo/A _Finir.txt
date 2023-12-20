@@ -1,0 +1,4 @@
+il faut finir VueAffichagePetitCommande.java :
+    Faire un premier test afin d'afficher les commandes qui doivent être produite.
+
+il faut finir le premier controlleur.
