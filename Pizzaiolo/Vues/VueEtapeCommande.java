@@ -6,6 +6,8 @@ import Modele.Pizzavers;
 import Modele.Produit;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class VueEtapeCommande extends JPanel{
     // ***********************************
@@ -50,23 +52,16 @@ public class VueEtapeCommande extends JPanel{
     // ******* GETTERS ET SETTERS ********
     // ***********************************
 
-    // ***********************************
-    // ******* GETTERS ET SETTERS ********
-    // ***********************************
 
     // ***********************************
     // ******* METHODES ******************
     // ***********************************
 
-    public static void main(String[] args) {
-        JFrame fenetre = new JFrame();
-        fenetre.setSize(1280, 720);
-        fenetre.setTitle("Application Pizza Commande");
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setVisible(true);
-        Produit p1 = new Produit();
-        System.out.println(p1.getNomProduit());
-        VueEtapeCommande a1 = new VueEtapeCommande(new Pizzavers(), p1);
-        fenetre.add(a1);
+    public boolean Valide(){
+        boolean selection = false;
+        if (this.Valider.isSelected() || this.Manque.isSelected()) {
+            selection = true;
+        }
+        return selection;
     }
 }

@@ -46,7 +46,7 @@ public class ControlleurAffichageCommande extends JPanel implements ActionListen
 
 	public void actionPerformed(ActionEvent e){
 		if(e.getActionCommand().equals(ACTION_AFFICHER)){
-			fenetreUtilisateur.setDroite(new VueDetailCommande(application, modele));
+			fenetreUtilisateur.setDroite(new VueDetailCommande(application, modele, fenetreUtilisateur));
 		}
 	}
 }
