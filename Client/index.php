@@ -20,4 +20,4 @@ require_once ("controller/$controller.php");
 require_once ("config/connexion.php");
 connexion::connect();
 $controller::$action();
-?>
+?> 
