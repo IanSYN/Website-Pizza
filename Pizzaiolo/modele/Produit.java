@@ -23,7 +23,7 @@ public class Produit {
         this.PrixProduit = 1f;
     }
 
-    public Produit(int IdProduit,String nom, float prix){
+    public Produit(int IdProduit, String nom, float prix){
         this.IdProduit = IdProduit;
         this.NomProduit = nom;
         this.PrixProduit = prix;
