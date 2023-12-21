@@ -1,6 +1,8 @@
 package Vues;
 import javax.swing.*;
 import java.util.*;
+import java.util.Timer;
+
 import Modele.Commande;
 import Modele.Pizzavers;
 
@@ -16,6 +18,8 @@ public class VueListPizza extends JFrame {
     private JPanel panelMilieu;
     private Commande modele;
     private ArrayList<Commande> listeCommande;
+
+    private static final int compteur = 0;
 
     //les 2 parties de l'interface
     private VuePetitListCommande gauche;
@@ -43,7 +47,7 @@ public class VueListPizza extends JFrame {
 		this.getContentPane().add(panelMilieu);
 
         this.setVisible(true);
-
+        
         reload();
     }
 
@@ -117,6 +121,18 @@ public class VueListPizza extends JFrame {
         pack();
 		repaint();
 		revalidate();
+        //timer();
+    }
+
+    public void timer() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                reload();
+                System.out.println("reload");
+            }
+        }, 10000, 1);
     }
 
 }
