@@ -53,7 +53,23 @@ AS
 
 CREATE OR REPLACE VIEW VCommande
 AS
-	(SELECT idCommande, idPanier, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza From Commande c
-	inner join Panier p on p.idCommande = c.idCommande
+	(SELECT c.idCommande, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza From Commande c
+    	inner join Panier p on p.idCommande = c.idCommande
+	left join  PizzaPersonnalisee pp on pp.idCommande = c.idCommande
+   	 union  SELECT c.idCommande, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza From Commande c
+   	 inner join Panier p on p.idCommande = c.idCommande
+	right join PizzaPersonnalisee pp on pp.idCommande = c.idCommande
+    	group by idCommande);
+
+CREATE OR REPLACE VIEW VPanierGlobal
+AS 
+	(SELECT idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza from Panier p
+	natural join Commande c 
 	inner join PizzaPersonnalisee pp on pp.idCommande = c.idCommande
-	group by idCommande, idPanier, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza);
+	group by idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza);
+
+CREATE OR REPLACE VIEW VPizzaPersonnalisee
+AS 
+	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza, quantiteSupplement  from PizzaPersonnalisee pp
+	inner join Supplement s on s.idPizzaPersonnalisee = pp.idPizzaPersonnalisee
+	group by pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza);
