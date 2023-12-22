@@ -11,7 +11,7 @@ AS
 	inner join Taille on Taille.idTaille = Pizza.idTaille
 	GROUP BY Pizza.idPizza, nomProduit, nomTaille);
 
-CREATE OR REPLACE VIEW VPizzaioloCommande
+/*CREATE OR REPLACE VIEW VPizzaioloCommande
 AS
 	(SELECT idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, quantiteIngredient*quantiteSupplement as qntProduitPizza FROM Pizza
 	inner join Produit on Produit.idProduit = Pizza.idProduit
@@ -21,7 +21,7 @@ AS
 	natural join PizzaPersonnalisee
 	natural join Supplement
 	GROUP BY idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, qntProduitPizza);
-
+*/
 
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
@@ -51,3 +51,9 @@ AS
 	natural join PizzaPersonnalisee
 	natural join Supplement);
 
+CREATE OR REPLACE VIEW VCommande
+AS
+	(SELECT idCommande, idPanier, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza From Commande c
+	inner join Panier p on p.idCommande = c.idCommande
+	inner join PizzaPersonnalisee pp on pp.idCommande = c.idCommande
+	group by idCommande, idPanier, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza);
