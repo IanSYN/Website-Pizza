@@ -4,7 +4,7 @@ require_once('model/Produit.php');
 require_once('model/VPizza.php');
 require_once('model/VProduit.php');
 
-class controlleurDefaut{
+class controllerDefaut{
 
     public static function Afficher(){
         $title = static::$classe;
