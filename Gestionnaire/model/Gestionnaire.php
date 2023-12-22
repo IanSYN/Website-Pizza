@@ -4,7 +4,7 @@ require_once('objet.php');
 class Gestionnaire extends objet {
     
     // Partie statique
-    protected static $identifiant = "idGestionnaire";
+    protected static $identifiant = "mailGestionnaire";
     protected static $classe = "Gestionnaire";
 
     // Partie attributs
