@@ -2,6 +2,9 @@ package Controlleur;
 import Modele.*;
 import Vues.*;
 import javax.swing.*;
+
+import Config.OutilsJDBC;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -39,7 +42,11 @@ public class ControlleurValidationCommande extends JPanel implements ActionListe
     // ***********************************
 
     public void actionPerformed(ActionEvent e){
-        System.out.println("ça marche");
+        System.out.println("ça marche " + modele.getNumCommande());
+        String query = "UPDATE Commande SET idEtatCommande = 2 WHERE idCommande = " + modele.getNumCommande()+1;
+        OutilsJDBC.ExecuteurSQLUpdate(query);
+        application.reload();
+
         // if(e.getActionCommand().equals(ACTION_VALIDER)){
         //     modele.setEtat("Valide");
         //     fenetreUtilisateur.setDroite(new VueDetailCommande(application, modele, fenetreUtilisateur));

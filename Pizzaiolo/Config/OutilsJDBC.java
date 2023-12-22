@@ -65,6 +65,16 @@ public class OutilsJDBC {
         return rs;
     }
 
+    public static void ExecuteurSQLUpdate(String Query){
+        Connection co = OutilsJDBC.openConnection();
+        try {
+            Statement st = co.createStatement();
+            st.executeUpdate(Query);
+        } catch (SQLException e) {
+            System.out.println("Problème lors de l'exécution de la requete : " + Query);
+        }
+    }
+
     public static void main(String[] args) {
         Connection co = OutilsJDBC.openConnection();
         String query = "SELECT idProduit, nomProduit, prixProduit, coverProduit FROM Produit";

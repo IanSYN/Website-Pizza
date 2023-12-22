@@ -7,6 +7,7 @@ import Modele.Commande;
 
 public class Livreur {
     private final static int MAXPLACE = 5;
+    private final static double MAX_VALUE = 999999999999.9999;
     ArrayList<Commande>commandePrete = new ArrayList<Commande>();
     ArrayList<Commande>cargo = new ArrayList<Commande>(MAXPLACE);
     Commande adresseL1;
@@ -37,7 +38,7 @@ public class Livreur {
 
     //Méthodes
     public void addCommandePrete(Commande c){
-        cargo.add(c);
+        commandePrete.add(c);
     }
 
     public void rmvCommandePrete(int pos){
@@ -63,7 +64,8 @@ public class Livreur {
     //**Note : Le livreur n'a pas le choix de sa livraison**/
     /*première commande = temps */
     /* 2 emes commande = ratio temps / distance par rapport a commande 1 */
-    /* repeat until 5 commandes */
+    /* 3 emes commande = ratio temps / distance par rapport a commande 2 
+     etc... */
 
     public Commande tempsMin(ArrayList<Commande> c) {
         if (c.isEmpty()) {
@@ -79,105 +81,119 @@ public class Livreur {
         }
 
         setAdresseL1(minCommande);
+        System.out.println (minCommande);
         return minCommande;
     }
 
     public Commande meilleurRatio(ArrayList<Commande> c) {
-        if (c.isEmpty()) {
-            return null; // Renvoyer null si la liste est vide
-        }
-    
-        Commande meilleureCommande = c.get(1); // Supposons que le premier élément a le meilleur ratio
-        Adresse adrMinArr = adresseL1.getAdresseArrivee(); //prenons l'adresse de la premiere commande du cargo
-        Double meilleurRatio = 999999999999.9999; 
+    if (c.isEmpty()) {
+        return null; // Renvoyer null si la liste est vide
+    }
 
-        //on prend la meilleur seconde addresse apres la 1 déja dans le cargo selon son ratio distance/temps
-        if (cargo.size() == 1){
-            for (int i = 0; i < c.size(); i++) {
-                if (c.get(i).calcRatio(c.get(i).getTempsRestant(), adrMinArr) < meilleurRatio){
-                    meilleurRatio = c.get(i).calcRatio(c.get(i).getTempsRestant(), adrMinArr);
-                    meilleureCommande = c.get(i);
-                }
-            }
-            return meilleureCommande;
-        }else{
-            for (int i = 1; i < c.size(); i++) {
-                Adresse adCommandePrecedente = c.get(i - 1).getAdresseArrivee();
-                if (c.get(i).calcRatio(c.get(i).getTempsRestant(), adCommandePrecedente) < meilleurRatio){
-                    meilleurRatio = c.get(i).calcRatio(c.get(i).getTempsRestant(), adrMinArr);
-                    meilleureCommande = c.get(i);
-                }
-            }
+    Commande meilleureCommande = c.get(0); // Supposons que le premier élément a le meilleur ratio
+    Adresse adrMinArr = adresseL1.getAdresseArrivee(); // prenons l'adresse de la première commande du cargo
+    Double meilleurRatio = Double.MAX_VALUE;
 
+    // On prend la meilleure seconde adresse après la première déjà dans le cargo selon son ratio distance/temps
+    if (cargo.size() == 1) {
+        for (int i = 0; i < c.size(); i++) {
+            if (c.get(i).calcRatio(c.get(i).getTempsRestant(), adrMinArr) < meilleurRatio) {
+                meilleurRatio = c.get(i).calcRatio(c.get(i).getTempsRestant(), adrMinArr);
+                meilleureCommande = c.get(i);
+            }
         }
         return meilleureCommande;
-
+    } else if (c.size() > 1) {
+        for (int i = 1; i < c.size(); i++) {
+            Adresse adCommandePrecedente = c.get(i - 1).getAdresseArrivee();
+            if (c.get(i).calcRatio(c.get(i).getTempsRestant(), adCommandePrecedente) < meilleurRatio) {
+                meilleurRatio = c.get(i).calcRatio(c.get(i).getTempsRestant(), adCommandePrecedente);
+                meilleureCommande = c.get(i);
+            }
+        }
     }
+
+    System.out.println(meilleureCommande);
+    return meilleureCommande;
+}
+
 
     public void DynamicPos(ArrayList<Commande> c){
         //Algorithme glouton pour trouver la position optimale
-        while (!commandePrete.isEmpty()){
-            while(!cargo.isEmpty()){
+        if (!commandePrete.isEmpty()){
                 for (Commande commande : c) {
                     if(cargo.isEmpty()){
                         cargo.add(tempsMin(c));
                         commandePrete.remove(tempsMin(c));
                         DynamicPos(c);
                     }
+                    else if(cargo.size()==5){
+                        afficherCargo();
+                    }
                     else if(commande.getTempsRestant() > 0){
                         cargo.add(meilleurRatio(c));
+                        commandePrete.remove(meilleurRatio(c));
                         DynamicPos(c);
                     }
                     else{
                         DynamicNeg(c);
                     }
                 }
-            }
+        }else{
+            afficherLesCommandesPretes();
         }
     }
 
     //a ameliorer (pour l'instant ça ajoute une commande dans le cargo des que le temps restant passe au negatif)
     private void DynamicNeg(ArrayList<Commande> c) {
-        while (!commandePrete.isEmpty()){
-            while(!cargo.isEmpty()){
+        if (!commandePrete.isEmpty()){
                 for (Commande commande : c) {
                     if(commande.getTempsRestant() <= 0){
                         if(commande.getTempsRestant() <= -10.00){
                             cargo.add(commande);
+                            commandePrete.remove(commande);
                             DynamicNeg(c);
                         }
                     }else{
                         DynamicPos(c);
                     }
                 }
+        }else{
+            afficherLesCommandesPretes();
+        }
+    }
+
+    public void afficherLesCommandesPretes() {
+        System.out.println("Detail de livraison pour chaques Commande prete a etre livrée :\n");
+        System.out.println("------------------------");
+        if (!commandePrete.isEmpty()){
+            for (Commande commande : this.commandePrete) {
+                System.out.println("COMMANDE.S TOUJOURS NON PRISE EN CHARGE");
+                System.out.println("Numéro de commande : " + commande.getNumCommande());
+                System.out.println("Temps restant : " + commande.getTempsRestant());
+                System.out.println("L'adresse de livraison : " + commande.getAdresseArrivee().getAdresseArrivee());
+                System.out.println("------------------------");
             }
-    
-        }
-
-    }
-
-    public void afficherLesCommandesPretes(ArrayList<Commande> c) {
-        System.out.println("Detail de livraison pour chaques Commande prete a etre livrée :");
-        
-        for (Commande commande : c) {
-            System.out.println("COMMANDE.S TOUJOURS NON PRISE EN CHARGE");
-            System.out.println("Numéro de commande : " + commande.getNumCommande());
-            System.out.println("Temps restant : " + commande.getTempsRestant());
-            System.out.println("L'adresse de livraison : " + commande.getAdresseArrivee());
-            System.out.println("------------------------");
+        }else{
+            System.out.println("Il n'y a aucune commande en attente de livraison ! \n");
         }
     }
 
-    public void afficherCargo(ArrayList<Commande> c) {
-        System.out.println("Detail de livraison pour chaques Commande dans le Cargo :");
-        
-        for (Commande commande : c) {
-            System.out.println("COMMANDE.S PRISE EN CHARGE");
-            System.out.println("Numéro de commande : " + commande.getNumCommande());
-            System.out.println("Temps restant : " + commande.getTempsRestant());
-            System.out.println("L'adresse de livraison : " + commande.getAdresseArrivee());
-            System.out.println("------------------------");
+    public void afficherCargo() {
+        System.out.println("Detail de livraison pour chaques Commande dans le Cargo :\n");
+        System.out.println("------------------------");
+        if (!cargo.isEmpty()){
+            for (Commande commande : this.cargo) {
+                System.out.println("COMMANDE.S PRISE EN CHARGE");
+                System.out.println("Numéro de commande : " + commande.getNumCommande());
+                System.out.println("Temps restant : " + commande.getTempsRestant());
+                System.out.println("L'adresse de livraison : " + commande.getAdresseArrivee().getAdresseArrivee());
+                System.out.println("------------------------");
+            }       
+        }else{
+            System.out.println("Le cargo est vide ! \n");
         }
+        
     }
 
     

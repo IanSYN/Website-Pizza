@@ -16,7 +16,7 @@ public class VuePetitListCommande extends JPanel {
     private VueAffichagePetitCommande vue;
     private ArrayList<Commande> Modele;
     private VueListPizza fenetreUtilisateur;
-    
+
     // ***********************************
     // ******* CONSTRUCTEURS *************
     // ***********************************
@@ -32,7 +32,7 @@ public class VuePetitListCommande extends JPanel {
         for (Commande commande2 : Modele) {
             vue = new VueAffichagePetitCommande(application, commande2, fenetreUtilisateur);
             this.add(vue);
-        } 
+        }
     }
 
     // ***********************************

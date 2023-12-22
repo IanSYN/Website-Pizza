@@ -16,7 +16,6 @@ public class VueListPizza extends JFrame {
 
     private Pizzavers Application;
     private JPanel panelMilieu;
-    private Commande modele;
     private ArrayList<Commande> listeCommande;
 
     private static final int compteur = 0;
@@ -29,9 +28,8 @@ public class VueListPizza extends JFrame {
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public VueListPizza(Pizzavers application, Commande modele, ArrayList<Commande> listeCommande) {
+    public VueListPizza(Pizzavers application, ArrayList<Commande> listeCommande) {
         this.Application = application;
-        this.modele = modele;
         this.listeCommande = listeCommande;
 
         this.setBackground(Colors.redBG);
@@ -69,14 +67,6 @@ public class VueListPizza extends JFrame {
 
     public void setPanelMilieu(JPanel panelMilieu) {
         this.panelMilieu = panelMilieu;
-    }
-
-    public Commande getModele() {
-        return modele;
-    }
-
-    public void setModele(Commande modele) {
-        this.modele = modele;
     }
 
     public ArrayList<Commande> getListeCommande() {

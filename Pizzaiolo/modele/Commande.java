@@ -1,8 +1,14 @@
 package Modele;
 
+import java.sql.ResultSet;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import javax.naming.spi.DirStateFactory.Result;
+
+import Config.*;
+import Modele.*;
 
 public class Commande {
     private double tempsRestant;
@@ -12,6 +18,7 @@ public class Commande {
     private double ratio;
     private LocalDateTime dateCommande;
     private int numCommande;
+    private float prixCommande;
 
     //Constructeur
     public Commande(int numCommande, Adresse adresseArrivee, double tempsRest, ArrayList<Produit> laCommande) {
@@ -27,7 +34,7 @@ public class Commande {
         this.numCommande = numCommande;
         this.adresseArrivee = AdresseArrivee;
         this.tempsRestant = 45.0;
-        this.laCommande = Panier();
+        this.laCommande = Panier(numCommande);
         this.dateCommande = LocalDateTime.now();
         this.ratio = calcRatio(tempsRestant, adresseArrivee);
     }
@@ -40,11 +47,14 @@ public class Commande {
     }*/
 
     //merci de me laisser mon constructeur de test :
-    public Commande(){
-        this.numCommande = 1;
-        this.adresseArrivee = null;
-        this.laCommande = null;
+    public Commande(int numCommande, Adresse adresseArrivee, float prixCommande) {
+        this.numCommande = numCommande;
+        this.adresseArrivee = adresseArrivee;
+        this.tempsRestant = 45.0;
+        this.laCommande = Panier(this.numCommande);
         this.dateCommande = LocalDateTime.now();
+        this.prixCommande = prixCommande;
+        this.ratio = 0;
     }
 
     // Getters and Setters
@@ -64,9 +74,9 @@ public class Commande {
         this.adresseArrivee = adresseArrivee;
     }
 
-    public void setLaCommande(ArrayList<Produit> laCommande) {
+    /*public void setLaCommande(ArrayList<Produit> laCommande) {
         this.laCommande = laCommande;
-    }
+    }*/
 
     public boolean isReady() {
         return ready;
@@ -105,16 +115,20 @@ public class Commande {
     }
 
     public float getPrixCommande(){
-        float prix = 0;
-        for (Produit prod : laCommande) {
-            prix += prod.getPrixProduit();
-        }
-        return prix;
+        return prixCommande;
     }
+
+    // public float getPrixCommande(){
+    //     float prix = 0;
+    //     for (Produit prod : laCommande) {
+    //         prix += prod.getPrixProduit();
+    //     }
+    //     return prix;
+    // }
 
     //methode
 
-    public String toString() {
+    /*public String toString() {
         String resultat = "";
 
         for (int i = 0; i< laCommande.size(); i++){
@@ -124,12 +138,9 @@ public class Commande {
         resultat = resultat.substring(0, resultat.length() - 2); // on retire les deux derniers caractères pour enlever la dernière virgule
 
         return resultat;
-    }
+    }*/
 
     public void afficherLaCommande(){
-        System.out.println("Version toString");
-        toString();
-        System.out.println("Version complete");
         int nbrProd = laCommande.size();
         System.out.println("La commande " + this.getNumCommande() + " est composé de " + nbrProd +" produits.");
         System.out.println("Elle contient : ");
@@ -144,7 +155,7 @@ public class Commande {
         //float distance;
         Adresse ad2 = adresseArrivee;
         this.ratio = tempsRestant / calcDistance(ad1, ad2);
-        return this.rat
+        return this.ratio;
     }
 
     public Duration calcDureeRestante(LocalDateTime dateCom, LocalDateTime sysDate) {
@@ -180,5 +191,57 @@ public class Commande {
 
         float distance = (float) (R * c); // La distance résultante en kilomètres
         return distance;
+    }
+
+    public ArrayList<Produit> Panier(int numCommande){
+        System.out.println("\t commande " + numCommande + " , en cours");
+        ArrayList<Produit> panier = new ArrayList<Produit>();
+        String query = "SELECT idPizzaPersonnalisee, idPizza, idIngredient, quantitePizza, quantiteSupplement FROM `VPizzaPersonnalisee` WHERE idCommande = " + numCommande;
+        ResultSet rs  = OutilsJDBC.ExecuteurSQL(query);
+        try {
+            while (rs.next()) {
+                PizzaPersonnalisee p = new PizzaPersonnalisee(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
+                panier.add(p);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        //query = "SELECT idProduit, quantiteProduit FROM `VCommande` WHERE idCommande = " + numCommande;
+        query = "SELECT idProduit, quantiteProduit FROM `Panier` WHERE idCommande = " + numCommande;
+        rs  = OutilsJDBC.ExecuteurSQL(query);
+        try {
+            rs.absolute(0);
+            while (rs.next()) {
+                int idProduit = rs.getInt(1);
+                //System.out.println(idProduit + " " + Pizzavers.listeProduits.get(idProduit-1).getNomProduit());;
+                if(Pizzavers.listeProduits.get(idProduit-1) != null){
+                    int valeur = rs.getInt(2);
+                    for (int i = 0; i < valeur; i++) {
+                        panier.add(Pizzavers.listeProduits.get(idProduit-1));
+                    }
+                }
+                else{
+                    System.out.println("Le produit n'existe pas");
+                }
+                // for (Produit produit : Pizzavers.listeProduits) {
+                //     if (produit.getIdProduit() == idProduit) {
+                //         int valeur = rs.getInt(2);
+                //         for (int i = 0; i < valeur; i++) {
+                //             panier.add(produit);
+                //         }
+                //     }
+                // }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return panier;
+    }
+
+    public void afficherPanier(){
+        for (Produit produit : laCommande) {
+            System.out.println(produit.getNomProduit() + "\t");
+        }
     }
 }
