@@ -41,5 +41,9 @@ class controllerDefaut{
         require_once('view/Accueil.php');
         require_once('view/fin.html');
     }
+
+    public static function AfficherPageGestionnaire(){
+        require_once('view/bienvenue.html');
+    }
 }
 ?>

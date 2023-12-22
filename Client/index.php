@@ -2,8 +2,8 @@
 
 $objet = "accueil";
 $action = "AfficherAccueil";
-$objets = ["accueil","connexion", "produit","panier"];
-$actions = ["afficherProduit","afficher","afficherAccueil"];
+$objets = ["accueil","connexion","produit","panier", "gestionnaire"];
+$actions = ["afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherPageGestionnaire"];
 
 if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
     $objet = $_GET['objet'];
