@@ -1,9 +1,9 @@
-package Modele;
+package modele;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import Modele.Commande;
+import modele.Commande;
 
 public class Livreur {
     private final static int MAXPLACE = 5;
@@ -128,7 +128,9 @@ public class Livreur {
                         DynamicPos(c);
                     }
                     else if(cargo.size()==5){
+                        System.out.println(MAXPLACE +" commandes ont été ajoutées au cargo du livreur");
                         afficherCargo();
+                        break;
                     }
                     else if(commande.getTempsRestant() > 0){
                         cargo.add(meilleurRatio(c));

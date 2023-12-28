@@ -1,4 +1,4 @@
-package Modele;
+package modele;
 
 import java.util.ArrayList;
 
@@ -65,6 +65,6 @@ public class MainTest {
         livreur.afficherLesCommandesPretes();
         System.out.println("Nous sommes la \n");
         //Nous raffichons les commandes actuellement dans le cargo/batch de livraison
-        livreur.afficherCargo();
+        //livreur.afficherCargo();
     }
 }
