@@ -12,7 +12,7 @@ class controllerGestionnaire extends controllerDefaut {
         $compte = Gestionnaire::getOne($email);
 
         // Cas où le compte n'a pas été trouvé dans la base de données
-        if ($compte === null)
+        if ($compte == null)
             return false;
 
         // Cas où le compte a été trouvé

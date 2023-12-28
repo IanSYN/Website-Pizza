@@ -3,6 +3,7 @@ require_once('model/Pizza.php');
 require_once('model/Produit.php');
 require_once('model/VPizza.php');
 require_once('model/VProduit.php');
+require_once('model/Gestionnaire.php');
 
 class controllerDefaut{
 
