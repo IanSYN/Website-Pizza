@@ -2,8 +2,9 @@
 require_once('model/Pizza.php');
 require_once('model/Produit.php');
 require_once('model/VPizza.php');
+require_once('model/VProduit.php');
 
-class controlleurDefaut{
+class controllerDefaut{
 
     public static function Afficher(){
         $title = static::$classe;
@@ -39,6 +40,10 @@ class controlleurDefaut{
         $listProd = $classProd::getAll();
         require_once('view/Accueil.php');
         require_once('view/fin.html');
+    }
+
+    public static function AfficherPageGestionnaire(){
+        require_once('view/bienvenue.html');
     }
 }
 ?>

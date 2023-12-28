@@ -1,22 +1,22 @@
 package modele;
 
-public class Pizza {
+public class Pizza extends Produit{
     // ***********************************
 	// ******* ATTRIBUTS *****************
 	// ***********************************
 
     private int idPizza;
     private String nomPizza;
-    private String taille;
+    private String nomTaille;
 
     // ***********************************
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public Pizza(int idPizza, String nomPizza, String taille) {
-        this.idPizza = idPizza;
+    public Pizza(int idPizza, String nomPizza, String nomTaille) {
+        super(idPizza);
         this.nomPizza = nomPizza;
-        this.taille = taille;
+        this.nomTaille = nomTaille;
     }
 
     // ***********************************
@@ -28,11 +28,15 @@ public class Pizza {
     }
 
     public String getNomPizza() {
+        return nomPizza + " " + nomTaille;
+    }
+
+    public String getNomPizza(int idPizza) {
         return nomPizza;
     }
 
     public String getTaille() {
-        return taille;
+        return nomTaille;
     }
 
     public void setIdPizza(int idPizza) {
@@ -44,7 +48,7 @@ public class Pizza {
     }
 
     public void setTaille(String taille) {
-        this.taille = taille;
+        this.nomTaille = taille;
     }
 
     // ***********************************

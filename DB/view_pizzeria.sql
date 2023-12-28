@@ -11,7 +11,7 @@ AS
 	inner join Taille on Taille.idTaille = Pizza.idTaille
 	GROUP BY Pizza.idPizza, nomProduit, nomTaille);
 
-CREATE OR REPLACE VIEW VPizzaioloCommande
+/*CREATE OR REPLACE VIEW VPizzaioloCommande
 AS
 	(SELECT idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, quantiteIngredient*quantiteSupplement as qntProduitPizza FROM Pizza
 	inner join Produit on Produit.idProduit = Pizza.idProduit
@@ -21,7 +21,7 @@ AS
 	natural join PizzaPersonnalisee
 	natural join Supplement
 	GROUP BY idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, qntProduitPizza);
-
+*/
 
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
@@ -39,3 +39,37 @@ AS
 	(SELECT idProduit, nomCategorie, nomProduit, coverProduit, prixProduit 
 	FROM `Produit` P
 	INNER JOIN `Categorie` C ON P.idCategorie = C.idCategorie);
+
+
+CREATE OR REPLACE VIEW VPCommande
+AS
+	(SELECT idCommande, nomProduit, nomTaille, quantitePizza, quantiteIngredient*quantiteSupplement as qntProduitPizza FROM Pizza
+	inner join Produit on Produit.idProduit = Pizza.idProduit
+	inner join Taille on Taille.idTaille = Pizza.idTaille
+	natural join Base
+ 	natural join Ingredient
+	natural join PizzaPersonnalisee
+	natural join Supplement);
+
+CREATE OR REPLACE VIEW VCommande
+AS
+	(SELECT c.idCommande, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza From Commande c
+    	inner join Panier p on p.idCommande = c.idCommande
+	left join  PizzaPersonnalisee pp on pp.idCommande = c.idCommande
+   	 union  SELECT c.idCommande, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza From Commande c
+   	 inner join Panier p on p.idCommande = c.idCommande
+	right join PizzaPersonnalisee pp on pp.idCommande = c.idCommande
+    	group by idCommande);
+
+CREATE OR REPLACE VIEW VPanierGlobal
+AS 
+	(SELECT idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza from Panier p
+	natural join Commande c 
+	inner join PizzaPersonnalisee pp on pp.idCommande = c.idCommande
+	group by idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza);
+
+CREATE OR REPLACE VIEW VPizzaPersonnalisee
+AS 
+	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza, quantiteSupplement  from PizzaPersonnalisee pp
+	inner join Supplement s on s.idPizzaPersonnalisee = pp.idPizzaPersonnalisee
+	group by pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza);

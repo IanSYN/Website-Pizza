@@ -7,24 +7,28 @@ body{
 }
 
 html{
-    border: red solid 5px;
+    border: #FF8369 solid 45px;
     border-radius: 10px;
+    background-color: #FF8369;
 }
 
 h1{
-    color: #F31C1B;
+    color: green;
+    font-size: larger;
+    font-weight: bold;
 }
 
 /***********************************************************/
 /***********Paramètre pour la barre de navigation***********/
 /***********************************************************/
+
 .contenerBarre{
     background-color: #FF8369;
 }
 
 .barre{
     display: grid;
-    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    grid-template-columns: 1fr repeat(4, 0.5fr);
     text-align: center;
     margin: 20px;
 }
@@ -39,6 +43,14 @@ h1{
     color: green;
 }
 
+.seConnecter a{
+    color:black;
+}
+
+.seConnecter img{
+    height: 1em;
+}
+
 /***********************************************************/
 /*************Paramètre pour la fin de page*****************/
 /***********************************************************/
@@ -47,8 +59,6 @@ h1{
     background-color: #FF8369;
     display: grid;
     grid-template-rows: 1fr 0.3fr;
-    border-top: black solid 5px;
-    border-bottom: black solid 5px;
     font-size: smaller;
     text-align: center;
 }
@@ -72,36 +82,82 @@ h1{
 /**************Paramètre pour la page d'accueil*************/
 /***********************************************************/
 
+.Accueil{
+    background-color: white;
+}
+
 .contener{
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 500px 1fr;
 }
 
 .EnAvant {
-    border-top: black solid 5px;
-    border-bottom: black solid 5px;
-    background-image: url("../img/pizzaRegina.jpeg");
+    border: black solid 5px;
+    background-image: url("../img/pizzaRegina.jpg");
     background-size: cover;
     background-position: center;
+    /*max-height: 350px;*/
 }
 
 .contenerListe{
     display: grid;
     grid-template-columns: 0.5fr 1fr;
+    border-bottom:black solid 5px;
+    border-right:black solid 5px;
+}
+
+.contenerListe p{
+    color: #FF8369;
+    font-size: larger;
+    font-weight:bold;
+    font-style: italic;
 }
 
 .ContenerNav{
-    border: black solid 5px;
+    border-right: black solid 5px;
+    border-left: black solid 5px;
 }
 
 .Navigation{
     display: grid;
-    grid-template-rows: 0.3fr 0.3fr 0.3fr 0.3fr 4fr;
+    grid-template-rows: repeat(5, 60px);
     text-align: center;
 
 }
 
-.ListeP p{
+.Navigation h1{
+    padding-top: 15px;
+
+}
+
+.Navigation a{
+    padding: 35px;
+    color: #FF8369;
+    font-size: larger;
+    font-weight:bold;
+    text-decoration: none;
+
+}
+
+.ListeP{
+    text-align: center;
+}
+
+.ListeP a{
+    text-decoration: none;
+    color: black;
+}
+
+.ListeP img{
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+}
+
+.containerObjet{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     text-align: center;
 }
 

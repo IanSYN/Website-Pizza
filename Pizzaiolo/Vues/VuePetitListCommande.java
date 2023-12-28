@@ -13,20 +13,33 @@ public class VuePetitListCommande extends JPanel {
 
     private Pizzavers application;
     //private ArrayList<ControlleurCommandeList> listCommande;
-    VueCommandePetit vue;
-    ArrayList<Commande> Modele;
+    private VueAffichagePetitCommande vue;
+    private ArrayList<Commande> Modele;
+    private VueListPizza fenetreUtilisateur;
+
     // ***********************************
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public VuePetitListCommande(Pizzavers applications, ArrayList<Commande> commande){
+    public VuePetitListCommande(Pizzavers applications, ArrayList<Commande> commande, VueListPizza vueListPizza){
         this.application = applications;
         this.Modele = commande;
+        this.fenetreUtilisateur = vueListPizza;
 
         this.setBackground(Color.WHITE);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
-        vue = new VueCommandePetit(applications, commande);
-        this.add(vue);  
+        for (Commande commande2 : Modele) {
+            vue = new VueAffichagePetitCommande(application, commande2, fenetreUtilisateur);
+            this.add(vue);
+        }
+    }
+
+    // ***********************************
+    // ******* GETTERS ET SETTERS ********
+    // ***********************************
+
+    public void addElement(JPanel element){
+        vue.add(element);
     }
 }

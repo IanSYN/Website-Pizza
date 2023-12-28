@@ -1,10 +1,13 @@
 package Vues;
 import javax.swing.*;
 import java.util.*;
+import java.util.Timer;
+
 import modele.Commande;
 import modele.Pizzavers;
 
 import java.awt.*;
+import inter.*;
 
 public class VueListPizza extends JFrame {
     // ***********************************
@@ -13,8 +16,9 @@ public class VueListPizza extends JFrame {
 
     private Pizzavers Application;
     private JPanel panelMilieu;
-    private Commande modele;
     private ArrayList<Commande> listeCommande;
+
+    private static final int compteur = 0;
 
     //les 2 parties de l'interface
     private VuePetitListCommande gauche;
@@ -24,28 +28,25 @@ public class VueListPizza extends JFrame {
     // ******* CONSTRUCTEURS *************
     // ***********************************
 
-    public VueListPizza(Pizzavers application, Commande modele, ArrayList<Commande> listeCommande) {
+    public VueListPizza(Pizzavers application, ArrayList<Commande> listeCommande) {
         this.Application = application;
-        this.modele = modele;
         this.listeCommande = listeCommande;
 
-        this.setBackground(Color.WHITE);
+        this.setBackground(Colors.redBG);
 
-        setSize(1280, 720);
-		setTitle("Application Pizza Commande");
+        setMinimumSize(new Dimension(800,600));
+        setTitle("Application Pizza Commande");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         panelMilieu = new JPanel(new GridLayout(1, 2));
-        gauche = new VuePetitListCommande(application, listeCommande);
-        droite = new VueDetailCommande(application, listeCommande);
+        gauche = new VuePetitListCommande(application, listeCommande, this);
 
         panelMilieu.add(gauche);
-        panelMilieu.add(droite);
 		this.getContentPane().add(panelMilieu);
 
         this.setVisible(true);
-
-        //reload();
+        
+        reload();
     }
 
     // ***********************************
@@ -56,6 +57,46 @@ public class VueListPizza extends JFrame {
         return Application;
     }
 
+    public void setApplication(Pizzavers application) {
+        Application = application;
+    }
+
+    public JPanel getPanelMilieu() {
+        return panelMilieu;
+    }
+
+    public void setPanelMilieu(JPanel panelMilieu) {
+        this.panelMilieu = panelMilieu;
+    }
+
+    public ArrayList<Commande> getListeCommande() {
+        return listeCommande;
+    }
+
+    public void setListeCommande(ArrayList<Commande> listeCommande) {
+        this.listeCommande = listeCommande;
+    }
+
+    public VuePetitListCommande getGauche() {
+        return gauche;
+    }
+
+    public void setGauche(VuePetitListCommande gauche) {
+        this.gauche = gauche;
+        this.add(gauche);
+        reload();
+    }
+
+    public VueDetailCommande getDroite() {
+        return droite;
+    }
+
+    public void setDroite(VueDetailCommande droite) {
+        this.droite = droite;
+        this.add(droite);
+        reload();
+    }
+
     // ***********************************
     // ******* METHODES ******************
     // ***********************************
@@ -63,19 +104,25 @@ public class VueListPizza extends JFrame {
     public void reload() {
         panelMilieu.removeAll();
 
-		// for (Commande com : modele.getContenuTableau()) {
-		// 	// Création de la vue associée à la liste courante
-		// 	// la création du controleur associé à la vue courante est gérée par le
-		// 	// constructeur de ConteneurListe.
-		// 	ConteneurListe conteneurListe = new ConteneurListe(liste, this, application);
-		// 	panelCentral.add(conteneurListe);
-		// }
+        gauche = new VuePetitListCommande(Application, listeCommande, this);
+        panelMilieu.add(gauche);
+        panelMilieu.add(droite);
 
-		// // On recrée le bouton pour ajouter une nouvelle liste.
-		// panelCentral.add(new ControleurAjouterListe(modele, new AjouterListe(application), this, application));
-
+        pack();
 		repaint();
 		revalidate();
+        //timer();
+    }
+
+    public void timer() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                reload();
+                System.out.println("reload");
+            }
+        }, 10000, 1);
     }
 
 }
