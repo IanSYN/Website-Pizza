@@ -13,7 +13,7 @@ class controllerConnexion extends controllerDefaut {
 
             // Vérification de l'authenticité des données
             if (controllerGestionnaire::estUnCompte($email, $mdp)) {
-                require_once('index.php?objet=gestionnaire&action=afficherPageGestionnaire');
+                include('index.php?objet=gestionnaire?action=afficherPageGestionnaire');
             }
             else {
                 // Affichage de la page de connexion avec erreur
@@ -26,9 +26,9 @@ class controllerConnexion extends controllerDefaut {
         // Si rien n'a été défini
         else {
             // Affichage de la page de connexion
-            require_once('view/connexion/debutConnexion.html');
-            require_once('view/connexion/frmConnexion.html');
-            require_once('view/connexion/finConnexion.html');
+            include('view/connexion/debutConnexion.html');
+            include('view/connexion/frmConnexion.html');
+            include('view/connexion/finConnexion.html');
         }
 
         
