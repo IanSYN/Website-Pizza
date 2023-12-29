@@ -13,7 +13,7 @@ class controllerConnexion extends controllerDefaut {
 
             // Vérification de l'authenticité des données
             if (controllerGestionnaire::estUnCompte($email, $mdp)) {
-                include('index.php?objet=gestionnaire?action=afficherPageGestionnaire');
+                header('index.php?objet=gestionnaire?action=afficherPageGestionnaire');
             }
             else {
                 // Affichage de la page de connexion avec erreur
