@@ -18,17 +18,19 @@ class controllerConnexion extends controllerDefaut {
             else {
                 // Affichage de la page de connexion avec erreur
                 require_once('view/connexion/debutConnexion.html');
+                require_once('view/menu.html');
                 require_once('view/connexion/frmConnexion_erreur.html');
-                require_once('view/connexion/finConnexion.html');
+                require_once('view/fin.html');
             }
         }
 
         // Si rien n'a été défini
         else {
             // Affichage de la page de connexion
-            include('view/connexion/debutConnexion.html');
-            include('view/connexion/frmConnexion.html');
-            include('view/connexion/finConnexion.html');
+            require_once('view/connexion/debutConnexion.html');
+            require_once('view/menu.html');
+            require_once('view/connexion/frmConnexion.html');
+            require_once('view/fin.html');
         }
 
         

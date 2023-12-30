@@ -1,13 +1,22 @@
+<div class="conteneurConnexion">
+    <form action="index.php?objet=connexion&action=afficherConnexion" method="post">
+        <br/>
+        <h3>Se connecter</h3>
         <p style="color : red;">ERREUR : Adresse E-mail et/ou mot de passe incorrect(s)</p>
         <div>
             <label for="email">Adresse E-mail </label>
             <input type="email" name="email" required />
         </div>
+        <br>
         <div>
             <label for="mdp">Mot de passe </label>
             <input type="password" name="mdp" required />
         </div>
+        <br>
         <div>
-            <input type="submit" name="boutonSeConnecter" value="Se Connecter" /> 
+            <input type="submit" name="boutonSeConnecter" value="Connexion" style="cursor: pointer;" /> 
         </div>
     </form>
+    <p><b>Ce formulaire ne fonctionne que pour les gestionnaires pour le moment</b></p>
+</div>
+
