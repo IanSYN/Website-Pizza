@@ -1,11 +1,11 @@
 package Vues;
 import javax.swing.*;
+
+import Modele.Commande;
+import Modele.Pizzavers;
+
 import java.util.*;
 import java.util.Timer;
-
-import modele.Commande;
-import modele.Pizzavers;
-
 import java.awt.*;
 import inter.*;
 

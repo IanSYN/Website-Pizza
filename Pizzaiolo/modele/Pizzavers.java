@@ -1,11 +1,11 @@
-package modele;
+package Modele;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import Config.OutilsJDBC;
-import modele.Commande;
+import Modele.Commande;
 import Vues.VueListPizza;
 
 public class Pizzavers {

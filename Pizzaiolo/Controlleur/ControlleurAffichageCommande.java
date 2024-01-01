@@ -1,8 +1,11 @@
 package Controlleur;
 
-import Modele.*;
 import Vues.*;
+
 import javax.swing.*;
+
+import Modele.*;
+
 import java.awt.*;
 import java.awt.event.*;
 

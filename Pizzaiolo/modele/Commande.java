@@ -1,4 +1,4 @@
-package modele;
+package Modele;
 
 import java.sql.ResultSet;
 import java.time.Duration;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.naming.spi.DirStateFactory.Result;
 
 import Config.*;
-import Modele.*;
+import modele.*;
 
 public class Commande {
     private double tempsRestant;
