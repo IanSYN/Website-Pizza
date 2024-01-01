@@ -6,7 +6,7 @@ import Controlleur.ControlleurValidationCommande;
 import java.awt.*;
 import java.util.ArrayList;
 
-import modele.*;
+import Modele.*;
 /**
  * VueDetailCommande
  */

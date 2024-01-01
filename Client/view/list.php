@@ -1,9 +1,7 @@
     <main>
         <ul>
             <?php
-                foreach ($tableau as $val) {
-                    echo "<li>$val</li>";
-                }
+                echo "$unProd";
             ?>
         </ul>
     </main>

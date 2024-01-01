@@ -1,11 +1,11 @@
-package modele;
+package Modele;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import Config.OutilsJDBC;
-import modele.Commande;
+import Modele.*;
 import Vues.VueListPizza;
 
 public class Pizzavers {
@@ -14,7 +14,7 @@ public class Pizzavers {
     // ***********************************
 
     // Connexion à la base de données
-    public static Connection co = OutilsJDBC.openConnection();
+    //public static Connection co = OutilsJDBC.openConnection();
 
     public static ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
     public static ArrayList<Produit> listeProduits = new ArrayList<Produit>();
@@ -29,7 +29,7 @@ public class Pizzavers {
     public static void remplirListeProduits() throws SQLException {
 
         String query = "SELECT idProduit, nomProduit FROM Produit";
-        ResultSet rs = OutilsJDBC.exec1Requete(query, co, 1);
+        //ResultSet rs = OutilsJDBC.exec1Requete(query, co, 1);
 
         // On récupère les produits et on en forme des instances de Produit
         while (rs.next()) {
@@ -156,14 +156,26 @@ public class Pizzavers {
         // listeCommandes.add(commande1);
         // listeCommandes.add(commande2);
         try {
-                remplirListeProduits();
+                //remplirListeProduits();
 
-                //Commande c1 = new Commande(1, listeAdresses.get(0), 45.00, listeProduits);
+                Produit produit1 = new Produit(1,"Pizza 4 fromages");
+                Produit produit2 = new Produit(1,"Pizza de la hess ");
+
+                listeProduits.add(produit1);
+                listeProduits.add(produit2);
+
+
+                Commande c1 = new Commande(1, null, 45.00, listeProduits);
+                Commande c2 = new Commande(2, null, 15.00, listeProduits);
+                Commande c3 = new Commande(3, null, 25.00, listeProduits);
+                listeCommandes.add(c1);
+                listeCommandes.add(c2);
+                listeCommandes.add(c3);
 
                 Pizzavers application = new Pizzavers();
                 application.lancerApplication(listeCommandes);
 
-                OutilsJDBC.closeConnection(co);
+                //OutilsJDBC.closeConnection(co);
             } catch (Exception e)   {
                 System.out.println(e);
             }

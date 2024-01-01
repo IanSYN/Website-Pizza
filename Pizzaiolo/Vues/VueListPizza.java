@@ -3,9 +3,7 @@ import javax.swing.*;
 import java.util.*;
 import java.util.Timer;
 
-import modele.Commande;
-import modele.Pizzavers;
-
+import Modele.*;
 import java.awt.*;
 import inter.*;
 

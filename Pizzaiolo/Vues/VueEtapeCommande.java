@@ -1,9 +1,7 @@
 package Vues;
 import javax.swing.*;
 
-import modele.Commande;
-import modele.Pizzavers;
-import modele.Produit;
+import Modele.*;
 
 import java.awt.*;
 import java.awt.event.ItemEvent;

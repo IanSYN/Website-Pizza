@@ -3,8 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-import modele.Commande;
-import modele.Pizzavers;
+import Modele.*;
 
 public class VuePetitListCommande extends JPanel {
     // ***********************************

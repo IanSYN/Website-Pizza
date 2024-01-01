@@ -1,4 +1,4 @@
-package modele;
+package Modele;
 
 import java.sql.ResultSet;
 import java.time.Duration;

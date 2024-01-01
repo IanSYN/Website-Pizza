@@ -33,8 +33,9 @@ class controllerDefaut{
     }
 
     public static function AfficherAccueil(){
+        $identifiant = static::$identifiant;
         $classCat = static::$classeC;
-        $classProd = static::$classeP;
+        $classProd = static::$classe;
         require_once('view/deb.html');
         require_once('view/menu.html');
         $listCate = $classCat::getAll();

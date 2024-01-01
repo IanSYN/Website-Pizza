@@ -1,4 +1,4 @@
-package modele;
+package Modele;
 
 public class Produit{
     // ***********************************
@@ -16,7 +16,6 @@ public class Produit{
     private int idIngredient;
     private int quantitePizza;
     private int quantiteIngredient;
-
     //pour pizza
     private String nomTaille;
 
