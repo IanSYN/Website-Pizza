@@ -5,7 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import Config.OutilsJDBC;
+<<<<<<< HEAD
 import Modele.*;
+=======
+import Modele.Commande;
+>>>>>>> refs/remotes/origin/main
 import Vues.VueListPizza;
 
 public class Pizzavers {

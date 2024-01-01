@@ -1,10 +1,17 @@
 package Vues;
 import javax.swing.*;
+
+import Modele.Commande;
+import Modele.Pizzavers;
+
 import java.awt.*;
 import java.util.*;
 
+<<<<<<< HEAD
 import Modele.*;
 
+=======
+>>>>>>> refs/remotes/origin/main
 public class VuePetitListCommande extends JPanel {
     // ***********************************
     // ******* ATTRIBUTS *****************

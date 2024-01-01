@@ -3,9 +3,10 @@ package Vues;
 import javax.print.attribute.standard.JobHoldUntil;
 import javax.swing.*;
 import Controlleur.*;
+import Modele.*;
+
 import java.awt.*;
 import java.util.*;
-import Modele.*;
 
 
 public class VueAffichagePetitCommande extends JPanel{

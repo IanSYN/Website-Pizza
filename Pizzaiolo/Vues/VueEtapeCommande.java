@@ -1,7 +1,13 @@
 package Vues;
 import javax.swing.*;
 
+<<<<<<< HEAD
 import Modele.*;
+=======
+import Modele.Commande;
+import Modele.Pizzavers;
+import Modele.Produit;
+>>>>>>> refs/remotes/origin/main
 
 import java.awt.*;
 import java.awt.event.ItemEvent;

@@ -2,11 +2,15 @@ package Vues;
 import javax.swing.*;
 
 import Controlleur.ControlleurValidationCommande;
+import Modele.*;
 
 import java.awt.*;
 import java.util.ArrayList;
+<<<<<<< HEAD
 
 import Modele.*;
+=======
+>>>>>>> refs/remotes/origin/main
 /**
  * VueDetailCommande
  */

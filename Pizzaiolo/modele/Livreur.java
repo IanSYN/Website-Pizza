@@ -3,7 +3,12 @@ package Modele;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import Modele.*;
+=======
+
+import Modele.Commande;
+>>>>>>> refs/remotes/origin/main
 
 public class Livreur {
     private final static int MAXPLACE = 5;
