@@ -1,16 +1,16 @@
 <?php
 require_once('controllerDefaut.php');
-require_once('model/Gestionnaire.php');
+require_once('model/Client.php');
 require_once('model/session.php');
 
-class controllerGestionnaire extends controllerDefaut {
-    protected static $classe = 'Gestionnaire';
-    protected static $identifiant = 'idGestionnaire';
+class controllerClient extends controllerDefaut {
+    protected static $classe = 'Client';
+    protected static $identifiant = 'idClient';
 
     public static function estUnCompte(string $email, string $mdp) {
 
         // On récupère le compte Gestionnaire associé à cette adresse mail
-        $compte = Gestionnaire::getOne($email);
+        $compte = Client::getOne($email);
 
         // Cas où le compte n'a pas été trouvé dans la base de données
         if ($compte == null)
@@ -18,16 +18,10 @@ class controllerGestionnaire extends controllerDefaut {
 
         // Cas où le compte a été trouvé
         else {
-            if ($compte->get('mdpGestionnaire') == $mdp) 
+            if ($compte->get('mdpClient') == $mdp) 
                 return true; // mot de passe correct
             else 
                 return false; // mot de passe incorrect
         }
     }
-
-    /*
-    public static function AfficherAccueilGestionnaire() {
-
-    }
-    */
 }

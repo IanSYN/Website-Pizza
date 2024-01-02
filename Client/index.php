@@ -1,9 +1,11 @@
 <?php
 
+session_start(); // On permet l'écriture dans $_SESSION
+
 $objet = "accueil";
 $action = "AfficherAccueil";
 $objets = ["accueil","connexion","produit","panier", "gestionnaire", "info"];
-$actions = ["afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherPageGestionnaire", "afficherPage", "afficherOne"];
+$actions = ["afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherAccueilGestionnaire", "afficherPage", "afficherOne", "connect", "disconnect"];
 
 if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
     $objet = $_GET['objet'];
