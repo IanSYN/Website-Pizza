@@ -16,7 +16,7 @@ class controllerAccueil extends controllerDefaut{
         $classCat = static::$classeC;
         $classProd = static::$classe;
         require_once('view/deb.html');
-        require_once('view/menu.html');
+        require_once('view/menu.php');
         $unProd = $classProd::getOne($id);
         require_once('view/list.php');
         require_once('view/fin.html');

@@ -1,6 +1,7 @@
 <?php
 require_once('controllerDefaut.php');
 require_once('controllerGestionnaire.php');
+require_once('controllerClient.php');
 
 class controllerConnexion extends controllerDefaut {
 
@@ -56,7 +57,11 @@ class controllerConnexion extends controllerDefaut {
                 $_SESSION["nom"] = $client->get("nomClient");
                 $_SESSION["compte"] = "client";
 
-                header("Location : index.php?objet=accueil&action=afficherAccueil");
+                echo "<pre>";
+                print_r($_SESSION);
+                echo "</pre>";
+
+                header("Location:index.php"); // On redirige la personne vers l'accueil
             }
             else {
                 // Affichage de la page de connexion avec erreur
@@ -76,7 +81,7 @@ class controllerConnexion extends controllerDefaut {
                                                  // supprimer le cookie de session
 
         // On revient à la fonction d'affichage d'accueil
-        self::AfficherAccueil();
+        header("Location:index.php"); // On redirige la personne vers l'accueil
     }
 }    
 ?>
