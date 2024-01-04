@@ -103,16 +103,16 @@ INSERT INTO `MoyenPaiement` VALUES
 (6, 'Paypal');
 
 INSERT INTO `Produit` VALUES
-(1, 'Margarita', 7, 'margarita.png', 3),
-(2, 'Tiramisu', 1.50, 'tiramisu.png', 1),
-(3, 'Coca cola', 1.50, 'cocacola.png', 2),
-(4, '4 Nuggets', 5, 'nuggets.png', 4),
-(5, 'Kinder bueno', 1.35, 'kinderbueno.png', 1),
-(6, 'Saumon', 7, 'pizzaSaumon.png', 3),
-(7, 'Quatres Fromages', 7, '4Fromages.png', 3),
-(8, 'Savoyarde', 7, 'savoyarde.png', 3),
-(9, 'Calzone', 7, 'calzone.png', 3),
-(10, 'Salami', 7, 'salami.png', 3);
+(1, 'Margarita', 7, 'margarita.png', NULL, 3),
+(2, 'Tiramisu', 1.50, 'tiramisu.png', NULL, 1),
+(3, 'Coca cola', 1.50, 'cocacola.png', NULL, 2),
+(4, '4 Nuggets', 5, 'nuggets.png', NULL, 4),
+(5, 'Kinder bueno', 1.35, 'kinderbueno.png', NULL, 1),
+(6, 'Saumon', 7, 'pizzaSaumon.png', NULL, 3),
+(7, 'Quatres Fromages', 7, '4Fromages.png', NULL, 3),
+(8, 'Savoyarde', 7, 'savoyarde.png', NULL, 3),
+(9, 'Calzone', 7, 'calzone.png', NULL, 3),
+(10, 'Salami', 7, 'salami.png', NULL, 3);
 
 INSERT INTO `Ingredient`(`idIngredient`, `nomIngredient`, `stockIngredient`, `prixIngredient`, `coverIngredient`, `idAllergene`) VALUES
 (1, 'Mozzarella', 1553, 0.99, 'mozzarella.png', 2),
