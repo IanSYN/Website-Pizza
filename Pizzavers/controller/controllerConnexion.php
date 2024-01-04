@@ -41,10 +41,12 @@ class controllerConnexion extends controllerDefaut {
 
             // Vérification de l'authenticité des données
             if (controllerGestionnaire::estUnCompte($email, $mdp)) {
+
                 // Paramétrage de $_SESSION
                 $_SESSION["email"] = $email;
                 $_SESSION["compte"] = "gestionnaire";
-                // A coder
+                
+                header("Location:index.php"); // On redirige le gestionnaire vers sa page d'accueil
             }
             elseif (controllerClient::estUnCompte($email, $mdp)) {
                 
@@ -56,10 +58,6 @@ class controllerConnexion extends controllerDefaut {
                 $_SESSION["prenom"] = $client->get("prenomClient");
                 $_SESSION["nom"] = $client->get("nomClient");
                 $_SESSION["compte"] = "client";
-
-                echo "<pre>";
-                print_r($_SESSION);
-                echo "</pre>";
 
                 header("Location:index.php"); // On redirige la personne vers l'accueil
             }
