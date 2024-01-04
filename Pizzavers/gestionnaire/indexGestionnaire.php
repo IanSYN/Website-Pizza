@@ -1,10 +1,10 @@
 <?php
 
     /* Valeurs par défaut */
-    $objet = "accueil";
+    $objet = "gestionnaire";
     $action = "afficherAccueilGestionnaire";
 
-    $objets = ["accueil","connexion"];
+    $objets = ["gestionnaire","connexion"];
     $actions = ["afficherAccueilGestionnaire", "disconnect"];
 
     if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
@@ -18,8 +18,8 @@
     $controller = "controller".ucfirst($objet);
     $action = ucfirst($action);
     
-    require_once ("controller/$controller.php");
-    require_once ("");
+    require_once ("gestionnaire/controller/$controller.php");
+    require_once ("config/connexion.php");
     connexion::connect();
     $controller::$action();
 ?>

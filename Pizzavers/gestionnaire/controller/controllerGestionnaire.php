@@ -1,5 +1,5 @@
 <?php
-require_once('controllerDefaut.php');
+require_once('controller/controllerDefaut.php');
 require_once('model/Gestionnaire.php');
 require_once('model/session.php');
 
@@ -29,3 +29,5 @@ class controllerGestionnaire extends controllerDefaut {
         include('gestionnaire/view/bienvenue.html');
     }
 }
+
+?>
