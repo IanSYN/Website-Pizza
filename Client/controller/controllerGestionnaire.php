@@ -24,8 +24,4 @@ class controllerGestionnaire extends controllerDefaut {
                 return false; // mot de passe incorrect
         }
     }
-
-    public static function AfficherAccueilGestionnaire() {
-        include('gestionnaire/view/bienvenue.html');
-    }
 }
