@@ -100,6 +100,7 @@ CREATE TABLE `Produit`(
    `nomProduit` VARCHAR(50)  NOT NULL,
    `prixProduit` DECIMAL(15,2)   NOT NULL,
    `coverProduit` VARCHAR(50)  NOT NULL,
+   `AlAffiche` TINYINT(4) NOT NULL DEFAULT 0,
    `idCategorie` INT(11) NOT NULL,
    PRIMARY KEY(`idProduit`),
    FOREIGN KEY(`idCategorie`) REFERENCES `Categorie`(`idCategorie`)
