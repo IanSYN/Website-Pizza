@@ -4,8 +4,8 @@ session_start(); // On permet l'écriture dans $_SESSION
 
 $objet = "accueil";
 $action = "AfficherAccueil";
-$objets = ["accueil","connexion","produit","panier", "gestionnaire", "info"];
-$actions = ["connect", "afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherPage", "afficherOne", "disconnect"];
+$objets = ["accueil","connexion","produit","panier", "gestionnaire", "info", "panier"];
+$actions = ["connect", "afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherPage", "afficherOne", "disconnect", "ajoutePanier", "afficherPanier"];
 
 /* Vérification de gestionnaire connecté */
 require_once("model/session.php");

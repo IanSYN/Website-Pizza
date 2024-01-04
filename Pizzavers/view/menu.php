@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div>
-                <a href="page2">
+                <a href="index.php?objet=panier&action=afficherPanier">
                     <button type="submit">Panier</button>
                 </a>
             </div>
