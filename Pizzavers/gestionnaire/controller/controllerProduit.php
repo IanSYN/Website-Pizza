@@ -16,7 +16,7 @@
             // Cas où un gestionnaire n'est pas connecté,
             // on renvoie une erreur 403 : Forbidden
             if (!(session::gestionnaireConnected())) {
-                header('HTTP/1.0 403 Forbidden'); 
+                self::AfficherErreur403();
             }
             else {
 
@@ -46,7 +46,7 @@
             // Cas où un gestionnaire n'est pas connecté,
             // on renvoie une erreur 403 : Forbidden
             //if (!(session::gestionnaireConnected())) {
-                header('HTTP/1.0 403 Forbidden'); 
+                self::AfficherErreur403(); 
             //}
 
 
