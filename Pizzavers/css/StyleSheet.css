@@ -2,7 +2,7 @@
 /* Fira Sans Regular */
 @font-face {
     font-family: 'Fira Sans';
-    src: url('../fonts//FiraSans-Regular.woff2') format('woff2');
+    src: url('../fonts/FiraSans-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
