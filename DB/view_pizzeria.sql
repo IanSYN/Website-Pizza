@@ -33,6 +33,14 @@ AS
 	inner join Produit on Produit.idProduit = Pizza.idProduit
 	GROUP BY nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit);
 
+CREATE OR REPLACE VIEW VPanier 
+AS
+	(SELECT nomProduit, quantiteProduit, nomClient, prenomClient, prixTotalCommande
+	FROM `Commande` C
+	INNER JOIN `Client` Cl ON CL.idClient = C.idClient
+	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
+	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
+
 
 CREATE OR REPLACE VIEW VProduit 
 AS
