@@ -46,6 +46,28 @@ class objet {
         }
     }
 
+    public static function getPanier($id){
+        $classRecuperee = static::$classe;
+        $identifiant = static::$identifiant;
+        //requete
+        $requetePreparee = "SELECT * FROM $classRecuperee WHERE $identifiant = :id_tag;";
+        //execution
+        $resultat = connexion::pdo()->prepare($requetePreparee);
+        $tags = array(':id_tag' => $id);
+        try{
+            $resultat->execute($tags);
+            //recuperation des resultats
+            $resultat->setFetchMode(PDO::FETCH_CLASS, $classRecuperee);
+            //renvoi du tableau
+            $element = $resultat->fetchAll();
+            //retourne le tableau
+            return $element;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
+
     public static function delete($id){
         $classRecuperee = static::$classe;
         $identifiant = static::$identifiant;

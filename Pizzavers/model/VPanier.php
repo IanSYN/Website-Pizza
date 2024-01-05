@@ -1,15 +1,17 @@
 <?php
 require_once('objet.php');
 
-class Panier extends objet
+class VPanier extends objet
 {
     protected static $identifiant = "idCommande";
+    protected static $classe = 'VPanier';
 
-    protected static $classe = 'Panier';
-
-    protected $idProduit;
-
+    protected $idCommande;
+    protected $nomProduit;
     protected $quantiteProduit;
+    protected $idClient;
+    protected $nomClient;
+    protected $prixTotal;
 
     //constructeur
     public function __construct($idCategorie = null, $nomCategorie = null) {
