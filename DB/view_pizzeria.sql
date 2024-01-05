@@ -35,18 +35,21 @@ AS
 
 CREATE OR REPLACE VIEW VPanier 
 AS
-	(SELECT nomProduit, quantiteProduit, C.idClient, prenomClient, prixTotalCommande
+	(SELECT C.idCommande, nomProduit, quantiteProduit, C.idClient, prenomClient, prixTotalCommande
 	FROM `Commande` C
 	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
 	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
 	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
 
 
-CREATE OR REPLACE VIEW VProduit 
+CREATE OR REPLACE VIEW VPanierPizza
 AS
-	(SELECT idProduit, nomCategorie, nomProduit, coverProduit, prixProduit 
-	FROM `Produit` P
-	INNER JOIN `Categorie` C ON P.idCategorie = C.idCategorie);
+	(SELECT C.idCommande, nomProduit, quantitePizza, C.idClient, prenomClient, prixTotalCommande
+	FROM `Commande` C
+	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
+	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
+	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit
+	INNER JOIN `PizzaPersonnalise` Pp ON Pp.idCommande = C.idCommande);
 
 
 CREATE OR REPLACE VIEW VPCommande
