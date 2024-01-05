@@ -1,0 +1,18 @@
+.conteneurProd{
+    background-color: white;
+}
+
+.Separator{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 10px;
+    text-align: center;
+    border: turquoise 10px solid;
+}
+
+.Prodimg img{
+    width: 80%;
+    height: 80%;
+    border: unset;
+    border-radius: 15px;
+}
