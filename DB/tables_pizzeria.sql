@@ -192,3 +192,16 @@ CREATE TABLE `Alerte`(
    FOREIGN KEY(`idIngredient`) REFERENCES `Ingredient`(`idIngredient`),
    FOREIGN KEY(`idGestionnaire`) REFERENCES `Gestionnaire`(`idGestionnaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `PaiementCB`(
+   `idCB` INT(11) NOT NULL AUTO_INCREMENT,
+   `codeCB` CHAR(16) NOT NULL,
+   `nomCB` VARCHAR(15) NOT NULL,
+   `dateExpiration` CHAR(5) NOT NULL,
+   `cryptoCB` CHAR(3) NOT NULL,
+   `datePaiement` DATETIME,
+   `etatPaiement` VARCHAR(30) NOT NULL CHECK (etatPaiement in ('En cours de paiement', 'Paiement validé', 'Paiement refusé', 'Paiement annulé')),
+    PRIMARY KEY(`idCB`),
+    UNIQUE(`codeCB`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
