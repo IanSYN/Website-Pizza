@@ -41,6 +41,16 @@ AS
 	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
 	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
 
+CREATE OR REPLACE VIEW VPanier 
+AS
+	(SELECT nomProduit, quantiteProduit, quantitePizza, prenomClient, prixTotalCommande
+	FROM `Commande` C
+	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
+	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
+	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit
+	INNER JOIN `PizzaPersonnalisee` Pp ON Pp.idCommande = C.idCommande);
+
+
 
 CREATE OR REPLACE VIEW VProduit 
 AS
