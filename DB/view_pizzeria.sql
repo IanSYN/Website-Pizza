@@ -37,7 +37,7 @@ CREATE OR REPLACE VIEW VPanier
 AS
 	(SELECT nomProduit, quantiteProduit, nomClient, prenomClient, prixTotalCommande
 	FROM `Commande` C
-	INNER JOIN `Client` Cl ON CL.idClient = C.idClient
+	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
 	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
 	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
 
