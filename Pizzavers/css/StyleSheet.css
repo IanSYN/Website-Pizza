@@ -1,16 +1,52 @@
-*{
+/* Importation des polices */
+/* Fira Sans Regular */
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts//FiraSans-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Fira Sans Italic */
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans-Italic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* Fira Sans Bold */
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Fira Sans Bold Italic */
+@font-face {
+    font-family: 'Fira Sans';
+    src: url('../fonts/FiraSans-BoldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+/* Code CSS */
+
+* {
     font: 1.2rem "Fira Sans", sans-serif;
 }
 
-body{
+body {
     margin: 0px;
 }
 
-html{
+html {
     background-color: #FF8369;
 }
 
-h1{
+h1 {
     color: green;
     font-size: larger;
     font-weight: bold;
@@ -20,22 +56,30 @@ h1{
 /***********Paramètre pour la barre de navigation***********/
 /***********************************************************/
 
-.contenerBarre{
+.contenerBarre {
     background-color: #FF8369;
 }
 
-.barre{
+.barre {
     display: grid;
     grid-template-columns: 1fr repeat(4, 0.5fr);
     text-align: center;
     margin: 20px;
 }
 
-.nom a{
+.nom a {
+    color: green;
     font-size: xx-large;
     text-align: center;
     font-weight: bolder;
     text-decoration: none;
+}
+
+.nom p {
+    color: black;
+    font-size: small;
+    text-align: center;
+    font-weight: bold;
 }
 
 .barre button {
@@ -50,12 +94,12 @@ h1{
     position: relative;
     font-weight: 1000;
     font-size: 17px;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     transition: all 250ms;
     overflow: hidden;
 }
-   
+
 .barre button::before {
     content: "";
     position: absolute;
@@ -66,28 +110,24 @@ h1{
     border-radius: 15px;
     background-color: #212121;
     z-index: -1;
-    -webkit-box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     transition: all 250ms
 }
-   
+
 .barre button:hover {
     color: #e8e8e8;
 }
-   
+
 .barre button:hover::before {
     width: 100%;
 }
 
-.nom a{
-    color: green;
+.seConnecter a {
+    color: black;
 }
 
-.seConnecter a{
-    color:black;
-}
-
-.seConnecter img{
+.seConnecter img {
     height: 1em;
 }
 
@@ -95,7 +135,7 @@ h1{
 /*************Paramètre pour la fin de page*****************/
 /***********************************************************/
 
-.contenerFin{
+.contenerFin {
     background-color: #FF8369;
     display: grid;
     grid-template-rows: 1fr 0.3fr;
@@ -122,7 +162,7 @@ h1{
 /**************Paramètre pour la page d'accueil*************/
 /***********************************************************/
 
-.Accueil{
+.Accueil {
     background-color: white;
 }
 
@@ -138,42 +178,42 @@ h1{
     margin-right: 30px;
 }
 
-.contenerListe{
+.contenerListe {
     display: grid;
     grid-template-columns: 0.5fr 1fr;
 
 }
 
-.contenerListe p{
+.contenerListe p {
     color: #FF8369;
     font-size: larger;
-    font-weight:bold;
+    font-weight: bold;
     font-style: italic;
 }
 
-.ContenerNav{
+.ContenerNav {
     border: unset;
     border-radius: 15px;
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
     margin: 50px;
 }
 
-.Navigation{
+.Navigation {
     display: grid;
     grid-template-rows: repeat(5, 100px);
     text-align: center;
 }
 
-.Navigation h1{
+.Navigation h1 {
     padding-top: 15px;
 
 }
 
-.Navigation a{
+.Navigation a {
     padding: 35px;
     color: #FF8369;
     font-size: larger;
-    font-weight:bold;
+    font-weight: bold;
     text-decoration: none;
     transition: all 250ms
 }
@@ -181,28 +221,28 @@ h1{
 .Navigation a:hover {
     color: black;
 }
-   
+
 .Navigation a:hover::before {
     width: 100%;
 }
 
-.ListeP{
+.ListeP {
     text-align: center;
 }
 
-.ListeP a{
+.ListeP a {
     text-decoration: none;
     color: black;
 }
 
-.ListeP img{
+.ListeP img {
     width: 200px;
     height: 200px;
     border: unset;
     border-radius: 15px;
 }
 
-.containerObjet{
+.containerObjet {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -213,7 +253,7 @@ h1{
 /***********Paramètre pour la page de connextion************/
 /***********************************************************/
 
-.conteneurConnexion{
+.conteneurConnexion {
     padding-top: 15%;
     padding-bottom: 15%;
     background-color: white;
@@ -221,7 +261,7 @@ h1{
     height: 300px;
 }
 
-.conteneurConnexion form{
+.conteneurConnexion form {
     padding-bottom: 30px;
     margin-left: 30%;
     margin-right: 30%;
@@ -230,8 +270,8 @@ h1{
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 }
 
-.conteneurConnexion input{
+.conteneurConnexion input {
     border: unset;
     border-radius: 15px;
-    box-shadow: 4px 8px 19px -3px rgba(0,0,0,0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
 }

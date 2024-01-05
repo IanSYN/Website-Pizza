@@ -26,7 +26,9 @@ class controllerGestionnaire extends controllerDefaut {
     }
 
     public static function AfficherAccueilGestionnaire() {
-        include('gestionnaire/view/bienvenue.html');
+        include('gestionnaire/view/debGestionnaire.html');
+        include('gestionnaire/view/menuGestionnaire.html');
+        include('gestionnaire/view/accueilGestionnaire.html');
     }
 }
 
