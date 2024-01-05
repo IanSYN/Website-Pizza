@@ -7,6 +7,14 @@ $action = "AfficherAccueil";
 $objets = ["accueil","connexion","produit","panier", "gestionnaire", "info", "panier"];
 $actions = ["connect", "afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherPage", "afficherOne", "disconnect", "ajoutePanier", "afficherPanier"];
 
+if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
+    $objet = $_GET['objet'];
+}
+
+if(isset($_GET['action']) && in_array($_GET['action'],$actions)){
+    $action = $_GET['action'];
+}
+
 /* Vérification de gestionnaire connecté */
 require_once("model/session.php");
 
@@ -29,14 +37,6 @@ if (session::gestionnaireConnected()) {
 
 // Autres cas
 else {
-    if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
-        $objet = $_GET['objet'];
-    }
-    
-    if(isset($_GET['action']) && in_array($_GET['action'],$actions)){
-        $action = $_GET['action'];
-    }
-    
     $controller = "controller".ucfirst($objet);
     $action = ucfirst($action);
     
