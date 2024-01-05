@@ -33,12 +33,36 @@ AS
 	inner join Produit on Produit.idProduit = Pizza.idProduit
 	GROUP BY nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit);
 
-
-CREATE OR REPLACE VIEW VProduit 
+CREATE OR REPLACE VIEW VPanier 
 AS
-	(SELECT idProduit, nomCategorie, nomProduit, coverProduit, prixProduit 
-	FROM `Produit` P
-	INNER JOIN `Categorie` C ON P.idCategorie = C.idCategorie);
+	(SELECT C.idCommande, nomProduit, quantiteProduit, C.idClient, prenomClient, prixTotalCommande
+	FROM `Commande` C
+	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
+	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
+	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
+
+
+CREATE OR REPLACE VIEW VPanierPizza
+AS
+	(SELECT C.idCommande, nomProduit, quantitePizza, C.idClient, prenomClient, prixTotalCommande
+	FROM `Commande` C
+	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
+	INNER JOIN `PizzaPersonnalisee` Pp ON Pp.idCommande = C.idCommande
+	INNER JOIN `Pizza` P ON P.idPizza = Pp.idPizza
+	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
+
+
+--pas bonne--
+CREATE OR REPLACE VIEW VPanierGlobal
+AS 
+	(SELECT DISTINCT C.idCommande, Pr.nomProduit, quantiteProduit, quantitePizza, C.idClient, prenomClient, prixTotalCommande
+	FROM `Commande` C
+	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
+    	INNER JOIN `Panier` Pa ON Pa.idCommande = C.idCommande
+   	INNER JOIN `Produit` Pro ON Pro.idProduit = Pa.idProduit
+	INNER JOIN `PizzaPersonnalisee` Pp ON Pp.idCommande = C.idCommande
+	INNER JOIN `Pizza` P ON P.idPizza = Pp.idPizza
+	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
 
 
 CREATE OR REPLACE VIEW VPCommande
@@ -51,6 +75,7 @@ AS
 	natural join PizzaPersonnalisee
 	natural join Supplement);
 
+
 CREATE OR REPLACE VIEW VCommande
 AS
 	(SELECT c.idCommande, idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza From Commande c
@@ -61,12 +86,6 @@ AS
 	right join PizzaPersonnalisee pp on pp.idCommande = c.idCommande
     	group by idCommande);
 
-CREATE OR REPLACE VIEW VPanierGlobal
-AS 
-	(SELECT idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza from Panier p
-	natural join Commande c 
-	inner join PizzaPersonnalisee pp on pp.idCommande = c.idCommande
-	group by idProduit, idPizzaPersonnalisee, quantiteProduit, quantitePizza);
 
 CREATE OR REPLACE VIEW VPizzaPersonnalisee
 AS 

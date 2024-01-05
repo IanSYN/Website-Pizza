@@ -86,13 +86,15 @@ CREATE TABLE `Commande`(
    `idEtatCommande` INT(11) NOT NULL,
    `codeCoupon` CHAR(8) ,
    `idClient` INT(11),
+   `idCB` INT(11),
    PRIMARY KEY(`idCommande`),
    UNIQUE(`codeCoupon`),
    FOREIGN KEY(`idMoyenPaiement`) REFERENCES `MoyenPaiement`(`idMoyenPaiement`),
    FOREIGN KEY(`idAdresse`) REFERENCES `Adresse`(`idAdresse`),
    FOREIGN KEY(`idEtatCommande`) REFERENCES `EtatCommande`(`idEtatCommande`),
    FOREIGN KEY(`codeCoupon`) REFERENCES `Coupon`(`codeCoupon`),
-   FOREIGN KEY(`idClient`) REFERENCES `Client`(`idClient`)
+   FOREIGN KEY(`idClient`) REFERENCES `Client`(`idClient`),
+   FOREIGN KEY(`idCB`) REFERENCES `PaiementCB`(`idCB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `Produit`(
@@ -192,3 +194,16 @@ CREATE TABLE `Alerte`(
    FOREIGN KEY(`idIngredient`) REFERENCES `Ingredient`(`idIngredient`),
    FOREIGN KEY(`idGestionnaire`) REFERENCES `Gestionnaire`(`idGestionnaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `PaiementCB`(
+   `idCB` INT(11) NOT NULL AUTO_INCREMENT,
+   `codeCB` CHAR(16) NOT NULL,
+   `nomCB` VARCHAR(15) NOT NULL,
+   `dateExpiration` CHAR(5) NOT NULL,
+   `cryptoCB` CHAR(3) NOT NULL,
+   `datePaiement` DATETIME,
+   `etatPaiement` VARCHAR(30) NOT NULL CHECK (etatPaiement in ('En cours de paiement', 'Paiement validé', 'Paiement refusé', 'Paiement annulé')),
+    PRIMARY KEY(`idCB`),
+    UNIQUE(`codeCB`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+

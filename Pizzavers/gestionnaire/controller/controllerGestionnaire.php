@@ -30,6 +30,17 @@ class controllerGestionnaire extends controllerDefaut {
         include('gestionnaire/view/menuGestionnaire.html');
         include('gestionnaire/view/accueilGestionnaire.html');
     }
+
+    public static function AfficherMonCompte() {
+        // On récupère le compte du gestionnaire à partir 
+        // de l'adresse mail spécifiée dans $_SESSION
+        $email = $_SESSION['email'];
+        $gest = Gestionnaire::getOne($email); 
+
+        include('gestionnaire/view/debGestionnaire.html');
+        include('gestionnaire/view/menuGestionnaire.html');
+        include('gestionnaire/view/viewMonCompte.php');
+    }
 }
 
 ?>
