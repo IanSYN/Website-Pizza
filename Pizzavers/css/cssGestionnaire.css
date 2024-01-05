@@ -3,6 +3,15 @@
 @import "StyleSheet.css";
 
 /* PARTIE HEADER */
+
+.nom p {
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    margin:0px;
+}
+
 /* Partie Barre gestionnaire */
 .barreGestionnaire{
     display: flex;
