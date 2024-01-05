@@ -1,6 +1,6 @@
 <div class="Accueil">
     <div class="contener">
-        <div class="EnAvant" style='background-image: url("img/pizzaRegina.jpg");'>
+        <div class="EnAvant" style='background-image: url("img/pizzaRegina.jpg");'> <!-- à mettre : un code php affichant la pizza à l'affiche -->
 
         </div>
         <div class="contenerListe">

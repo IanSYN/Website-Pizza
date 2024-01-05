@@ -8,15 +8,23 @@ class Produit extends objet
     protected $nomProduit;
     protected $prixProduit;
     protected $coverProduit;
+    protected $alAffiche;
     protected $idCategorie;
     //constructeur
-    public function __construct($idProduit = null, $nomProduit = null, $prixProduit = null, $coverProduit = null, $idCategorie = null) {
+    public function __construct($idProduit = null, $nomProduit = null, $prixProduit = null, $coverProduit = null, $alAffiche = null, $idCategorie = null) {
         if(!is_null($idProduit)){
             $this->idProduit = $idProduit;
             $this->nomProduit = $nomProduit;
             $this->prixProduit = $prixProduit;
             $this->coverProduit = $coverProduit;
             $this->idCategorie = $idCategorie;
+
+            if ($alAffiche == 1) {
+                $this->alAffiche = true;
+            }
+            else {
+                $this->alAffiche = false;
+            }
         }
     }
 
