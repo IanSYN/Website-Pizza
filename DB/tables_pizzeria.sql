@@ -86,13 +86,15 @@ CREATE TABLE `Commande`(
    `idEtatCommande` INT(11) NOT NULL,
    `codeCoupon` CHAR(8) ,
    `idClient` INT(11),
+   `idCB` INT(11),
    PRIMARY KEY(`idCommande`),
    UNIQUE(`codeCoupon`),
    FOREIGN KEY(`idMoyenPaiement`) REFERENCES `MoyenPaiement`(`idMoyenPaiement`),
    FOREIGN KEY(`idAdresse`) REFERENCES `Adresse`(`idAdresse`),
    FOREIGN KEY(`idEtatCommande`) REFERENCES `EtatCommande`(`idEtatCommande`),
    FOREIGN KEY(`codeCoupon`) REFERENCES `Coupon`(`codeCoupon`),
-   FOREIGN KEY(`idClient`) REFERENCES `Client`(`idClient`)
+   FOREIGN KEY(`idClient`) REFERENCES `Client`(`idClient`),
+   FOREIGN KEY(`idCB`) REFERENCES `PaiementCB`(`idCB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `Produit`(
