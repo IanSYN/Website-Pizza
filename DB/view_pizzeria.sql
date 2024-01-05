@@ -53,16 +53,16 @@ AS
 
 
 --pas bonne--
-CREATE OR REPLACE VIEW VPanierGlobal 
+CREATE OR REPLACE VIEW VPanierGlobal
 AS 
-	(SELECT C.idCommande, Pa.idProduit, nomProduit, quantiteProduit, quantitePizza, C.idClient, prenomClient, prixTotalCommande
+	(SELECT DISTINCT C.idCommande, Pr.nomProduit, quantiteProduit, quantitePizza, C.idClient, prenomClient, prixTotalCommande
 	FROM `Commande` C
 	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
     	INNER JOIN `Panier` Pa ON Pa.idCommande = C.idCommande
+   	INNER JOIN `Produit` Pro ON Pro.idProduit = Pa.idProduit
 	INNER JOIN `PizzaPersonnalisee` Pp ON Pp.idCommande = C.idCommande
 	INNER JOIN `Pizza` P ON P.idPizza = Pp.idPizza
 	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
-
 
 
 CREATE OR REPLACE VIEW VPCommande
