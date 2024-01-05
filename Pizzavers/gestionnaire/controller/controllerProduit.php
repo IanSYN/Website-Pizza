@@ -45,9 +45,54 @@
             
             // Cas où un gestionnaire n'est pas connecté,
             // on renvoie une erreur 403 : Forbidden
-            //if (!(session::gestionnaireConnected())) {
+            if (!(session::gestionnaireConnected())) {
                 self::AfficherErreur403(); 
-            //}
+            }
+            else {
+                try {
+                    
+                    // On cherche l'élément actuellement mis en affiche, 
+                    // afin de lui mettre son 'alAffiche' à 0
+                    $pizza = null;
+                    $tableauProduits = Produit::getAll();
+
+                    // On cherche l'idCategorie correspondant à Pizza
+                    $requete = "SELECT idCategorie FROM Categorie WHERE nomCategorie = 'Pizza';";
+                    $resultat = connexion::pdo()->query($requete);
+                    $idCategoriePizza = $resultat->fetchColumn();
+
+                    foreach($tableauProduits as $element) {
+
+                        // Si l'élément est une pizza et est à l'affiche,
+                        // alors on le stocke dans $pizza
+                        if (($element->get('idCategorie') == $idCategoriePizza) && ($element->get('alAffiche'))) {
+                            $pizza = $element;
+                            break;
+                        }
+                    }
+                    
+                    // On retire le statut de 'alAffiche' à l'ancienne pizza
+                    // et on l'applique à la nouvelle pizza, le tout, à l'aide
+                    // d'une requête préparée
+
+                    $requetePrepare = "UPDATE Produit SET alAffiche = 0 WHERE idProduit = :idAnciennePizza; UPDATE Produit SET alAffiche = 1 WHERE idProduit = :idNouvellePizza;";
+                    $statement = connexion::pdo()->prepare($requetePrepare);
+                    $tags = [
+                        ':idAnciennePizza' => $pizza->get("idProduit"),
+                        ':idNouvellePizza' => $_GET['idProduit']
+                    ];
+                    $statement->execute($tags);
+                    $statement->closeCursor();
+
+                    // On revient à la page
+                    self::PizzaAlAffiche();
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                }
+
+
+            }
 
 
         }
