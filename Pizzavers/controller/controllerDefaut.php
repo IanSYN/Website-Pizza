@@ -5,6 +5,7 @@ require_once('model/VPizza.php');
 require_once('model/VProduit.php');
 require_once('model/Gestionnaire.php');
 require_once('model/Client.php');
+require_once('model/VPanier.php');
 
 class controllerDefaut{
 

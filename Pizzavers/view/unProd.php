@@ -12,13 +12,14 @@
             ?>
             <?php
                 require_once("model/session.php");
+                $id = $unProd->get($identifiant);
 
                 if (session::clientConnected()) {
                     $prenom = $_SESSION["prenom"];
                     $nom = $_SESSION["nom"];
                     echo "
                     <div>
-                    <a href='index.php?objet=connexion&action=disconnect'>
+                    <a href='index.php?objet=accueil&action=afficherAjoute&$identifiant=$id'>
                         <button type='submit'>Ajouter au panier2</button>
                     </a>
                     </div>";

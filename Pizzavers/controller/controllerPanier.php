@@ -1,9 +1,9 @@
 <?php
 require_once('controllerDefaut.php');
-require_once('model/Panier.php');
+require_once('model/VPanier.php');
 class controllerPanier extends controllerDefaut{
 
-    protected static $identifiant = "idCommande";
+    protected static $identifiant = "idClient";
     protected static $classe = 'VPanier';
     public static function AjoutePanier(){
         $identifiant = static::$identifiant;
@@ -18,13 +18,7 @@ class controllerPanier extends controllerDefaut{
     public static function AfficherPanier(){
         $identifiant = static::$identifiant;
         $classe = static::$classe;
-        
-        if(isset($_GET[static::$identifiant])){
-            $id = $_GET[static::$identifiant];
-        }
-        else{
-            $id = NULL;
-        }
+        $id = $_SESSION["prenom"];
 
         require_once('view/Panier/debPanier.html');
         require_once('view/menu.php');
