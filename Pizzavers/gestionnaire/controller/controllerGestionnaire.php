@@ -2,6 +2,10 @@
 require_once('controller/controllerDefaut.php');
 require_once('model/Gestionnaire.php');
 require_once('model/session.php');
+require_once('model/VstatistiqueGlobal.php');
+require_once('model/VstatistiqueMensuel.php');
+require_once('model/VstatistiqueHebdomadaire.php');
+require_once('model/VstatistiqueJournalier.php');
 
 class controllerGestionnaire extends controllerDefaut {
     protected static $classe = 'Gestionnaire';
@@ -26,9 +30,13 @@ class controllerGestionnaire extends controllerDefaut {
     }
 
     public static function AfficherAccueilGestionnaire() {
+        $StatGlobal = VstatistiqueGlobal::getStat();
+        $StatMensuel = VstatistiqueMensuel::getStat();
+        $Stathebdo = VstatistiqueHebdomadaire::getStat();
+        $Statjour = VstatistiqueJournalier::getStat();
         include('gestionnaire/view/debGestionnaire.html');
         include('gestionnaire/view/menuGestionnaire.html');
-        include('gestionnaire/view/accueilGestionnaire.html');
+        include('gestionnaire/view/accueilGestionnaire.php');
     }
 
     public static function AfficherMonCompte() {

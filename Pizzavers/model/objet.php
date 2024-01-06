@@ -45,21 +45,5 @@ class objet {
             echo $e->getMessage();
         }
     }
-
-    public static function delete($id){
-        $classRecuperee = static::$classe;
-        $identifiant = static::$identifiant;
-        //requete
-        $requetePreparee = "DELETE FROM $classRecuperee WHERE $identifiant = :id_tag;";
-        //execution
-        $resultat = connexion::pdo()->prepare($requetePreparee);
-        $tags = array(':id_tag' => $id);
-        try{
-            $resultat->execute($tags);
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
-    }
 }
 ?>

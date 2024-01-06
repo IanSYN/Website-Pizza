@@ -4,8 +4,8 @@ require_once("objet.php");
 class VProduit extends objet
 {
     protected static $identifiant = "idProduit";
-
     protected static $classe = 'VProduit';
+    
     protected $idProduit;
     protected $nomCategorie;
     protected $nomProduit;

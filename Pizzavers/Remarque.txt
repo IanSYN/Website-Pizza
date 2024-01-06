@@ -1,6 +1,3 @@
-Il faudra faire comme Marc pour les controlleurs :
-    Séparer les fonctions pour évité de surcharger controlleurDefaut
-
 Il faudra séparer les css :
     faire un css universelle (styleSheet.Css) et le reste dans un autre css (cssAccueil.css)
 

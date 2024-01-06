@@ -13,7 +13,7 @@ class controllerConnexion extends controllerDefaut {
         // Affichage avec erreur
         if($erreur) {
             require_once('view/connexion/debutConnexion.html');
-            require_once('view/menu.html');
+            require_once('view/menu.php');
             require_once('view/connexion/frmConnexion_erreur.html');
             require_once('view/fin.html');            
         }
@@ -21,7 +21,7 @@ class controllerConnexion extends controllerDefaut {
         // Affichage sans erreur
         else {
             require_once('view/connexion/debutConnexion.html');
-            require_once('view/menu.html');
+            require_once('view/menu.php');
             require_once('view/connexion/frmConnexion.html');
             require_once('view/fin.html');
         }

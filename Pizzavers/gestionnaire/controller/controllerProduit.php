@@ -90,11 +90,72 @@
                 catch(PDOException $e){
                     echo $e->getMessage();
                 }
-
-
             }
+        }
 
+        public static function NosPizzas() {
 
+            // Cas où un gestionnaire n'est pas connecté,
+            // on renvoie une erreur 403 : Forbidden
+            if (!(session::gestionnaireConnected())) {
+                self::AfficherErreur403();
+            }
+            else {
+
+                // On importe tous les produits 
+                $tableauProduits = Produit::getAll();
+
+                try {
+                    // On cherche l'idCategorie correspondant à Pizza
+                    $requete = "SELECT idCategorie FROM Categorie WHERE nomCategorie = 'Pizza';";
+                    $resultat = connexion::pdo()->query($requete);
+                    $idCategoriePizza = $resultat->fetchColumn();
+
+                    // on affiche
+                    include('gestionnaire/view/debGestionnaire.html');
+                    include('gestionnaire/view/menuGestionnaire.html');
+                    include('gestionnaire/view/viewNosPizzas.php');
+
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                }
+            }
+        }
+
+        public static function NosProduit() {
+
+            // Cas où un gestionnaire n'est pas connecté,
+            // on renvoie une erreur 403 : Forbidden
+            if (!(session::gestionnaireConnected())) {
+                self::AfficherErreur403();
+            }
+            else {
+
+                // On importe tous les produits 
+                $tableauProduits = Produit::getAll();
+
+                try {
+                    include('gestionnaire/view/debGestionnaire.html');
+                    include('gestionnaire/view/menuGestionnaire.html');
+                    include('gestionnaire/view/viewNosProduit.php');
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                }
+            }
+        }
+
+        public static function AjouterPizza() {
+            include('gestionnaire/view/debGestionnaire.html');
+            include('gestionnaire/view/menuGestionnaire.html');
+            include('gestionnaire/view/formulaire.php');
+        }
+
+        public static function PizzaAjouter() {
+            include('gestionnaire/view/debGestionnaire.html');
+            include('gestionnaire/view/menuGestionnaire.html');
+            include('gestionnaire/view/pizzaAjouter.php');
         }
     }
 ?>

@@ -145,3 +145,19 @@ span img {
 .blocPizza-AlAffiche .disabled:hover {
     transform: none;
 }
+
+.ContenerGestionnaire {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.ContenerStatistique {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.ContenerStatistique h2 {
+    font-size: larger;
+}

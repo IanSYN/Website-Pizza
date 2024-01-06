@@ -8,7 +8,7 @@
         </div>
         <div class="Prodinf">
             <?php
-                echo "<h1>$unProd</h1>";
+                echo "<h1>".$unProd->get('nomProduit')."</h1>";
             ?>
             <?php
                 require_once("model/session.php");

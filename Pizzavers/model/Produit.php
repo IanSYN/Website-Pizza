@@ -33,5 +33,17 @@ class Produit extends objet
     {
         return "Produit " . $this->nomProduit . " (" . $this->idProduit . " " . $this->prixProduit . ")";
     }
+
+    public static function getAffiche(){
+        $classRecuperee = static::$classe;
+        $requete = "SELECT * FROM $classRecuperee WHERE alAffiche = 1;";
+        $resultat = connexion::pdo()->query($requete);
+        $resultat->setFetchMode(PDO::FETCH_CLASS, "Produit");
+        $tab = $resultat->fetchAll();
+        if (empty($tab)) {
+            return false;
+        }
+        return $tab[0];
+    }
 }
 ?>

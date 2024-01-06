@@ -31,7 +31,7 @@ class VPanier extends objet
         $classRecuperee = static::$classe;
         $identifiant = static::$identifiant;
         //requete
-        $requetePreparee = "SELECT * FROM $classRecuperee WHERE $identifiant = :id_tag;";
+        $requetePreparee = "SELECT * FROM $classRecuperee WHERE $identifiant = :id_tag; AND ";
         //execution
         $resultat = connexion::pdo()->prepare($requetePreparee);
         $tags = array(':id_tag' => $id);

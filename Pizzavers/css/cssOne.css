@@ -7,7 +7,6 @@
     grid-template-columns: repeat(2, 1fr);
     margin: 10px;
     text-align: center;
-    border: turquoise 10px solid;
 }
 
 .Prodimg img{

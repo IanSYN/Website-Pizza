@@ -1,5 +1,5 @@
 <div>
-    <p>Je suis la</p>
+    <h1>Panier</h1>
     <?php
         echo "<p>$id</p>";
         echo "<p>$identifiant</p>";
@@ -7,8 +7,8 @@
         foreach ($value as $val) {
             echo "<div class='row'>";
             echo "<h1>".$val->get('nomProduit')."</h1>";
-            echo "<h2>".$val->get('quantiteProduit')."</h2>";
-            echo "<h3>".$val->get('prixTotal')."</h3>";
+            echo "<h1>".$val->get('quantiteProduit')."</h1>";
+            echo "<h1>".$val->get('prixTotal')."</h1>";
             echo "</div>";
         }
     ?>

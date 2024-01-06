@@ -1,0 +1,26 @@
+/***********************************************************/
+/***********Paramètre pour la page de connection************/
+/***********************************************************/
+
+.conteneurConnexion {
+    padding-top: 15%;
+    padding-bottom: 15%;
+    background-color: white;
+    text-align: center;
+    height: 300px;
+}
+
+.conteneurConnexion form {
+    padding-bottom: 30px;
+    margin-left: 30%;
+    margin-right: 30%;
+    border: unset;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+.conteneurConnexion input {
+    border: unset;
+    border-radius: 15px;
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+}
