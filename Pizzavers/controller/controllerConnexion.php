@@ -55,6 +55,7 @@ class controllerConnexion extends controllerDefaut {
 
                 // Paramétrage de $_SESSION
                 $_SESSION["email"] = $email;
+                $_SESSION["idClient"] = $client->get("idClient");
                 $_SESSION["prenom"] = $client->get("prenomClient");
                 $_SESSION["nom"] = $client->get("nomClient");
                 $_SESSION["compte"] = "client";

@@ -6,8 +6,7 @@
         <p>Ajouter au Panier</p>
         <?php
         echo "<p>$id</p>";
-        echo "<p>$identifiant</p>";
-        echo "<p>$classe</p>";
+        echo "<p>$val</p>";
         ?>
     </div>
     <div class="Separator">

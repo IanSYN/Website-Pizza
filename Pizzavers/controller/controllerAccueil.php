@@ -32,7 +32,7 @@ class controllerAccueil extends controllerDefaut{
         $classProd = static::$classe;
         require_once('view/UnProd/debOne.html');
         require_once('view/menu.php');
-        $classPan::AjoutePanier($id);
+        //$val = $classPan::AjoutePanier($id);
         require_once('view/unProdAjoute.php');
         require_once('view/fin.html');
     }

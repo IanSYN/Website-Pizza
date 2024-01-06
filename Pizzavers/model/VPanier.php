@@ -3,9 +3,8 @@ require_once('objet.php');
 
 class VPanier extends objet
 {
-    protected static $identifiant = "prenomClient";
+    protected static $identifiant = "idClient";
     protected static $classe = 'VPanier';
-    protected static $Commande = "idCommande";
 
     protected $idCommande;
     protected $nomProduit;
@@ -52,11 +51,22 @@ class VPanier extends objet
 
     public static function AjoutePanier($id){
         $classRecuperee = 'Panier';
-        $idCommande = static::$Commande;
         $identifiant = static::$identifiant;
-        //requete
+
+        $checkQuery = "SELECT * FROM Commande WHERE idClient = :idClient";
+        $checkResult = connexion::pdo()->prepare($checkQuery);
+        $checkResult->execute(array(':idClient' => $id));
+        // $checkQuery = "SELECT * FROM Commande WHERE idCommande = :idCommande";
+        // $checkResult = connexion::pdo()->prepare($checkQuery);
+        // $checkResult->execute(array(':idCommande' => $idCommande));
+        // if ($checkResult->rowCount() == 0) {
+        //     // Handle the case where idCommande does not exist in Commande table
+        //     echo "idCommande does not exist in Commande table";
+        //     return;
+        // }
+
+        // If idCommande exists in Commande table, proceed with the insert
         // $requetePreparee = "INSERT INTO $classRecuperee VALUES (:idCommande, :idProduit, :quantiteProduit);";
-        // //execution
         // $resultat = connexion::pdo()->prepare($requetePreparee);
         // $tags = array(':idCommande' => (int)$idCommande,':idProduit' => (int)$id, ':quantiteProduit' => 1);
         // try{
@@ -65,26 +75,6 @@ class VPanier extends objet
         // catch(PDOException $e){
         //     echo $e->getMessage();
         // }
-        
-        $checkQuery = "SELECT * FROM Commande WHERE idCommande = :idCommande";
-        $checkResult = connexion::pdo()->prepare($checkQuery);
-        $checkResult->execute(array(':idCommande' => $idCommande));
-        if ($checkResult->rowCount() == 0) {
-            // Handle the case where idCommande does not exist in Commande table
-            echo "idCommande does not exist in Commande table";
-            return;
-        }
-
-        // If idCommande exists in Commande table, proceed with the insert
-        $requetePreparee = "INSERT INTO $classRecuperee VALUES (:idCommande, :idProduit, :quantiteProduit);";
-        $resultat = connexion::pdo()->prepare($requetePreparee);
-        $tags = array(':idCommande' => $idCommande,':idProduit' => (int)$id, ':quantiteProduit' => 1);
-        try{
-            $resultat->execute($tags);
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
     }
 }
 ?>
