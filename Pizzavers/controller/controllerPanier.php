@@ -1,5 +1,6 @@
 <?php
 require_once('controllerDefaut.php');
+require_once('controllerConnexion.php');
 require_once('model/VPanier.php');
 require_once('model/session.php');
 
@@ -18,15 +19,24 @@ class controllerPanier extends controllerDefaut{
     }
 
     public static function AfficherPanier(){
-        $identifiant = static::$identifiant;
-        $classe = static::$classe;
-        $id = $_SESSION['idClient'];
 
-        require_once('view/Panier/debPanier.html');
-        require_once('view/menu.php');
-        $value = $classe::getPanier($id);
-        require_once('view/Panier/Panier.php');
-        require_once('view/fin.html');
+        // Cas où aucun client n'est connecté
+        // on le renvoie vers la page de connexion
+        if (!(session::clientConnected())){
+            controllerConnexion::AfficherConnexion();
+        }
+        else {
+            $identifiant = static::$identifiant;
+            $classe = static::$classe;
+            $id = $_SESSION["idClient"];
+    
+            require_once('view/Panier/debPanier.html');
+            require_once('view/menu.php');
+            $value = $classe::getPanier($id);
+            require_once('view/Panier/Panier.php');
+            require_once('view/fin.html');
+        }
+
     }
 }
 ?>
