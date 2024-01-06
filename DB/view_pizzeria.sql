@@ -11,6 +11,30 @@ AS
 	inner join Taille on Taille.idTaille = Pizza.idTaille
 	GROUP BY Pizza.idPizza, nomProduit, nomTaille);
 
+CREATE OR REPLACE VIEW VStatGlobal 
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`);
+
+
+CREATE OR REPLACE VIEW VStatJournee 
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
+	where dateCommande = SYSDATE());
+
+
+CREATE OR REPLACE VIEW VStatSemaine
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
+	where dateCommande = WEEK(SYSDATE()));
+
+
+CREATE OR REPLACE VIEW VStatMois
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
+	where dateCommande = MONTH(SYSDATE()));
+
+
+
 /*CREATE OR REPLACE VIEW VPizzaioloCommande
 AS
 	(SELECT idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, quantiteIngredient*quantiteSupplement as qntProduitPizza FROM Pizza
