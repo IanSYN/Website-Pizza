@@ -11,6 +11,30 @@ AS
 	inner join Taille on Taille.idTaille = Pizza.idTaille
 	GROUP BY Pizza.idPizza, nomProduit, nomTaille);
 
+CREATE OR REPLACE VIEW VStatGlobal 
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`);
+
+
+CREATE OR REPLACE VIEW VStatJournee 
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
+	where dateCommande = SYSDATE());
+
+
+CREATE OR REPLACE VIEW VStatSemaine
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
+	where dateCommande = WEEK(SYSDATE()));
+
+
+CREATE OR REPLACE VIEW VStatMois
+AS 
+	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
+	where dateCommande = MONTH(SYSDATE()));
+
+
+
 /*CREATE OR REPLACE VIEW VPizzaioloCommande
 AS
 	(SELECT idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, quantiteIngredient*quantiteSupplement as qntProduitPizza FROM Pizza
@@ -35,8 +59,9 @@ AS
 
 CREATE OR REPLACE VIEW VPanier 
 AS
-	(SELECT C.idCommande, nomProduit, quantiteProduit, C.idClient, prenomClient, prixTotalCommande
+	(SELECT C.idCommande, nomProduit, quantiteProduit, E.idEtatCommande, C.idClient, prenomClient, prixTotalCommande
 	FROM `Commande` C
+	INNER JOIN `EtatCommande` E ON E.idEtatCommande = C.idEtatCommande
 	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
 	INNER JOIN `Panier` P ON P.idCommande = C.idCommande
 	INNER JOIN `Produit` Pr ON Pr.idProduit = P.idProduit);
