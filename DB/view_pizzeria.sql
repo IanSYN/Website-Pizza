@@ -47,6 +47,12 @@ AS
 	GROUP BY idCommande, nomProduit, nomTaille, nomIngredient, quantitePizza, qntProduitPizza);
 */
 
+CREATE OR REPLACE VIEW VStockIngr
+AS 
+	(SELECT idIngredient, nomIngredient, stockIngredient, coverIngredient
+	FROM Ingredient);
+
+
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
 	(SELECT nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit from Ingredient
