@@ -12,4 +12,6 @@
             echo "</div>";
         }
     ?>
+    <form action="index.php?objet=panier&action=pagePaiement" method="POST">
+        <input type="submit" name="boutonPayer" value="Payer" style="cursor: pointer;" />
 </div>

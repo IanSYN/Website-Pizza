@@ -5,7 +5,7 @@
     $action = "afficherAccueilGestionnaire";
 
     $objets = ["gestionnaire","connexion", "produit"];
-    $actions = ["afficherAccueilGestionnaire", "afficherMonCompte", "disconnect", "pizzaAlAffiche", "mettreAlAffiche", "nosPizzas", "nosProduit", "ajouterPizza", "pizzaAjouter"];
+    $actions = ["afficherAccueilGestionnaire", "afficherMonCompte", "disconnect", "pizzaAlAffiche", "mettreAlAffiche", "nosPizzas", "nosProduit", "ajouterPizza", "creerPizza"];
 
     if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
         $objet = $_GET['objet'];

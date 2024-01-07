@@ -3,11 +3,13 @@ require_once('controllerDefaut.php');
 require_once('controllerConnexion.php');
 require_once('model/VPanier.php');
 require_once('model/session.php');
+require_once('model/PaiementCB.php');
 
 class controllerPanier extends controllerDefaut{
 
     protected static $identifiant = "idClient";
     protected static $classe = 'VPanier';
+    protected static $paiement = 'PaiementCB';
     public static function AjoutePanier(){
         $identifiant = static::$identifiant;
         $classe = static::$classe;
@@ -37,6 +39,32 @@ class controllerPanier extends controllerDefaut{
             require_once('view/fin.html');
         }
 
+    }
+
+    public static function PagePaiement(){
+        require_once('view/paiement/debpaiement.html');
+        require_once('view/paiement/paiement.php');
+    }
+
+    public static function Payer(){
+        if(isset($_POST['boutonPayer'])){
+            $NCard = $_POST['NCard'];
+            $Crypto = $_POST['Crypto'];
+            $Date = $_POST['Date'];
+            $Nom = $_POST['Nom'];
+            $id = $_SESSION["idClient"];
+            
+            $classe = static::$paiement;
+            if($classe::payer($id, $NCard, $Crypto, $Date, $Nom)){
+                require_once('view/paiement/debpaiement.html');
+                require_once('view/paiement/valider.html');
+            }
+            else{
+                require_once('view/paiement/debpaiement.html');
+                require_once('view/paiement/refuser.html');
+            }
+            
+        }
     }
 }
 ?>

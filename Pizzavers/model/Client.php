@@ -27,6 +27,20 @@ class Client extends objet {
         }
     }
 
+    public static function creationClient($mailClient, $mdpClient, $nomClient, $prenomClient, $telClient) {
+        $classRecuperee = static::$classe;
+        $requete = "INSERT INTO $classRecuperee (mailClient, mdpClient, nomClient, prenomClient, telClient) VALUES (:mailClient, :mdpClient, :nomClient, :prenomClient, :telClient);";
+        $resultat = connexion::pdo()->prepare($requete);
+        $tags = array(':mailClient' => $mailClient, ':mdpClient' => $mdpClient, ':nomClient' => $nomClient, ':prenomClient' => $prenomClient, ':telClient' => $telClient);
+        try{
+            $resultat->execute($tags);
+            return true;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
     
 }
 ?>

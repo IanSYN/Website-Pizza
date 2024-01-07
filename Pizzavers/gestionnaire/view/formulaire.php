@@ -1,12 +1,15 @@
-<form href="index.php?objet=produit&action=pizzaAjouter" method="get">
-    <label for="nom">nom:</label>
-    <input type="text" id="nom" name="nom" required><br>
+<div class="Formulaire">
+<form action="index.php?objet=produit&action=creerPizza" method="POST" enctype="multipart/form-data">
+    <label for="nomProduit">Nom du produit:</label>
+    <input type="text" name="nomProduit" id="nomProduit" required>
 
-    <label for="prix">prix:</label>
-    <input type="prix" id="prix" name="prix" required><br>
+    <label for="prixProduit">Prix du produit:</label>
+    <input type="number" name="prixProduit" id="prixProduit" required>
 
-    <label for="picture">Picture:</label>
-    <input type="file" id="picture" name="picture"><br>
+    <label for="coverProduit">Image du produit:</label>
+    <input type="file" name="coverProduit" id="coverProduit" required>
 
-    <input type="submit" value="envoyer">
+    <input type="submit" name="boutonCreer" value="Ajouter le produit" style="cursor: pointer;" /> 
 </form>
+</div>
+</body>

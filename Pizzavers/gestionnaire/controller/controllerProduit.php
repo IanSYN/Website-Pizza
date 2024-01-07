@@ -152,10 +152,19 @@
             include('gestionnaire/view/formulaire.php');
         }
 
-        public static function PizzaAjouter() {
-            include('gestionnaire/view/debGestionnaire.html');
-            include('gestionnaire/view/menuGestionnaire.html');
-            include('gestionnaire/view/pizzaAjouter.php');
+        public static function CreerPizza(){
+            if (isset($_POST['nomProduit']) && isset($_POST['prixProduit']) && isset($_POST['coverProduit'])) {
+                $nomProduit = $_POST['nomProduit'];
+                $prixProduit = $_POST['prixProduit'];
+                $coverProduit = $_POST['coverProduit'];
+                $idCategorie = 3;
+                $alAffiche = 0;
+                Produit::creerProduit($nomProduit, $prixProduit, $coverProduit, $idCategorie, $alAffiche);
+                self::NosPizzas();
+            }
+            else {
+                self::AfficherErreur403();
+            }
         }
     }
 ?>

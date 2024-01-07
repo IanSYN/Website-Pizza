@@ -28,6 +28,14 @@ class controllerConnexion extends controllerDefaut {
 
     }
 
+    public static function AfficherInscription($erreur = false){
+        require_once('view/formulaire/debFormulaire.php');
+        require_once('view/menu.php');
+        require_once('view/formulaire/formulaire.php');
+        require_once('view/fin.html');
+
+    }
+
     // Fonction qui initialise une connexion
     // si le login et mdp sont corrects,
     // que ce soit pour un client ou un gestionnaire
@@ -81,6 +89,22 @@ class controllerConnexion extends controllerDefaut {
 
         // On revient à la fonction d'affichage d'accueil
         header("Location:index.php"); // On redirige la personne vers l'accueil
+    }
+
+    public static function Inscription() {
+        if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['tel'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $tel = $_POST['tel'];
+            if (Client::creationClient($email, $password, $nom, $prenom, $tel)) {
+                self::Connect();
+            }
+            else {
+                self::AfficherInscription(true);
+            }
+        }
     }
 }    
 ?>
