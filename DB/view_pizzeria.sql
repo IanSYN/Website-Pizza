@@ -55,10 +55,18 @@ AS
 
 CREATE OR REPLACE VIEW VAllergenePizza
 AS 
-	(SELECT A.idAllergene, idPizza, nomAllergene
+	(SELECT DISTINCT A.idAllergene, idPizza, nomAllergene
 	FROM Allergene A
 	INNER JOIN Ingredient I on I.idAllergene = A.idAllergene
 	INNER JOIN Base B on B.idIngredient = I.idIngredient);
+
+
+CREATE OR REPLACE VIEW VIngrPersonnalisee
+AS 
+	(SELECT PP.idPizzaPersonnalisee, S.idIngredient nomIngredient, prixIngredient, quantiteSupplement
+	FROM Supplement S
+	INNER JOIN Ingredient I on I.idIngredient = S.idIngredient
+	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee);
 
 
 CREATE OR REPLACE VIEW VPizzaIngr
@@ -83,7 +91,7 @@ AS
 
 CREATE OR REPLACE VIEW VPanierPizza
 AS
-	(SELECT C.idCommande, nomProduit, quantitePizza, C.idClient, prenomClient, prixTotalCommande
+	(SELECT C.idCommande, nomProduit, quantitePizza, idEtatCommande, C.idClient, prenomClient, prixTotalCommande
 	FROM `Commande` C
 	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
 	INNER JOIN `PizzaPersonnalisee` Pp ON Pp.idCommande = C.idCommande

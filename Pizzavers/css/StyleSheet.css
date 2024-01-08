@@ -155,3 +155,53 @@ main {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
+@media (max-width: 850px) {
+    .barre {
+        display: grid;
+        grid-template-columns: 1fr; /* Change to a single column for mobile */
+    }
+
+    .barre button {
+        width: 100%;
+        margin-bottom: 10px; /* Add margin between buttons for better spacing */
+    }
+
+    .product-container {
+        display: grid;
+        grid-template-columns: 1fr; /* One column for each product */
+    }
+
+    /* Hide the Nos Offres bar in mobile view */
+    .ContenerNav {
+        display: none;
+    }
+
+    .containerObjet {
+        display: flex!important;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+      
+    .ListeP {
+        width: 100%;
+    }
+    
+    .contenerListe {
+        display: block!important;
+        width: 100%;
+    }
+
+    .conteneurListeP {
+        width: 100%;
+    }
+        
+    .containerObjet > * {
+        margin: 5px!important;
+    }
+
+    .enAvant{
+        height: 0px!important;
+    }
+}
