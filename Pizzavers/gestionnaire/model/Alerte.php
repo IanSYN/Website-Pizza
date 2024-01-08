@@ -29,12 +29,30 @@ class Alerte extends objet {
         }
     }    
 
-    // Fonction renvoyant les alertes d'un gestionnaire à partir de 
-    // son idGestionnaire
+    /*
+    // Méthode renvoyant le nom de l'ingrédient
+    public function getNomIngredient() {
+        $idIngr = $this->idIngredient;
+        $requete = "SELECT nomIngredient FROM Ingredient WHERE idIngredient = $idIngr";
+        $resultat = connexion::pdo()->query($requete);
+        return $resultat->fetchColumn();
+    }
+
+    // Méthode renvoyant le nom de l'image de l'ingrédient
+    public function getCoverIngredient() {
+        $idIngr = $this->idIngredient;
+        $requete = "SELECT coverIngredient FROM Ingredient WHERE idIngredient = $idIngr";
+        $resultat = connexion::pdo()->query($requete);
+        return $resultat->fetchColumn();
+    }
+    */
+
+    // Fonction renvoyant les alertes d'un gestionnaire
+    // et seulement celles dont le seuil a été dépassé
     public static function getMesAlertes($idGestionnaire) {
 
-        //requete
-        $requetePreparee = "SELECT * FROM Alerte WHERE idGestionnaire = :id_gest;";
+        // requete comprenant récupérant les alertes dont le seuil a été dépassé
+        $requetePreparee = "SELECT * FROM Alerte WHERE idGestionnaire = :id_gest AND verifSeuil = 1";
 
         //execution
         $resultat = connexion::pdo()->prepare($requetePreparee);
@@ -45,7 +63,7 @@ class Alerte extends objet {
             //recuperation des resultats
             $resultat->setFetchMode(PDO::FETCH_CLASS, 'Alerte');
             //renvoi du tableau
-            $element = $resultat->fetch();
+            $element = $resultat->fetchAll();
             //retourne le tableau
             return $element;
         }
