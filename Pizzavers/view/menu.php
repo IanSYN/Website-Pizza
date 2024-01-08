@@ -11,7 +11,7 @@
             </div>
             <div>
                 <a href="index.php?objet=info&action=afficherPage">
-                    <button type="submit">qui sommes nous ?</button>
+                    <button type="submit">Qui sommes nous ?</button>
                 </a>
             </div>
             <div>
