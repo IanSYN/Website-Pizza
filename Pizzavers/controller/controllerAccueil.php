@@ -13,7 +13,7 @@ class controllerAccueil extends controllerDefaut{
     protected static $identifiant = 'idProduit';
     protected static $classeP = 'VPanier';
     protected static $identifiantP = 'idClient';
-    
+
     public static function AfficherOne(){
         $id = $_GET[static::$identifiant];
         $identifiant = static::$identifiant;

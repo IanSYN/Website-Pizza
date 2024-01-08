@@ -9,6 +9,7 @@ class VPanier extends objet
     protected $idCommande;
     protected $nomProduit;
     protected $quantiteProduit;
+    protected $idEtatCommande;
     protected $idClient;
     protected $prenomClient;
     protected $prixTotal;
@@ -27,7 +28,7 @@ class VPanier extends objet
         return $this->nomCategorie . "(" . $this->idCategorie . ")";
     }
 
-    public static function getPanier($id){
+    public static function getPanierProduit($id){
         $classRecuperee = static::$classe;
         $identifiant = static::$identifiant;
         //requete
@@ -49,32 +50,63 @@ class VPanier extends objet
         }
     }
 
-    public static function AjoutePanier($id){
-        $classRecuperee = 'Panier';
+    public static function getPanierPizza($id){
+        $classRecuperee = 'VPanierPizza';
         $identifiant = static::$identifiant;
+        //requete
+        $requetePreparee = "SELECT * FROM $classRecuperee WHERE $identifiant = :id_tag;";
+        //execution
+        $resultat = connexion::pdo()->prepare($requetePreparee);
+        $tags = array(':id_tag' => $id);
+        try{
+            $resultat->execute($tags);
+            //recuperation des resultats
+            $resultat->setFetchMode(PDO::FETCH_CLASS, static::$classe);
+            //renvoi du tableau
+            $element = $resultat->fetchAll();
+            //retourne le tableau
+            return $element;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+    }
 
-        $checkQuery = "SELECT * FROM Commande WHERE idClient = :idClient";
-        $checkResult = connexion::pdo()->prepare($checkQuery);
-        $checkResult->execute(array(':idClient' => $id));
-        // $checkQuery = "SELECT * FROM Commande WHERE idCommande = :idCommande";
-        // $checkResult = connexion::pdo()->prepare($checkQuery);
-        // $checkResult->execute(array(':idCommande' => $idCommande));
-        // if ($checkResult->rowCount() == 0) {
-        //     // Handle the case where idCommande does not exist in Commande table
-        //     echo "idCommande does not exist in Commande table";
-        //     return;
-        // }
-
-        // If idCommande exists in Commande table, proceed with the insert
-        // $requetePreparee = "INSERT INTO $classRecuperee VALUES (:idCommande, :idProduit, :quantiteProduit);";
-        // $resultat = connexion::pdo()->prepare($requetePreparee);
-        // $tags = array(':idCommande' => (int)$idCommande,':idProduit' => (int)$id, ':quantiteProduit' => 1);
-        // try{
-        //     $resultat->execute($tags);
-        // }
-        // catch(PDOException $e){
-        //     echo $e->getMessage();
-        // }
+    public static function AjoutePanierProduit($idCommande, $idProd){
+        $class = 'Panier';
+        $requeteCheck = "SELECT * FROM $class WHERE idCommande = :idCommande AND idProduit = :idProd;";
+        $resultat = connexion::pdo()->prepare($requeteCheck);
+        $tags = array(':idCommande' => $idCommande, ':idProd' => $idProd);
+        try{
+            $resultat->execute($tags);
+            $resultat->setFetchMode(PDO::FETCH_CLASS, $class);
+            $element = $resultat->fetchAll();
+            if(empty($element)){
+                $requetePreparee = "INSERT INTO $class VALUES (:idCommande, :idProd, 1);";
+                $resultat = connexion::pdo()->prepare($requetePreparee);
+                $tags = array(':idCommande' => $idCommande, ':idProd' => $idProd);
+                try{
+                    $resultat->execute($tags);
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                }
+            }
+            else{
+                $requetePreparee = "UPDATE $class SET quantiteProduit = quantiteProduit + 1 WHERE idCommande = :idCommande AND idProduit = :idProd;";
+                $resultat = connexion::pdo()->prepare($requetePreparee);
+                $tags = array(':idCommande' => $idCommande, ':idProd' => $idProd);
+                try{
+                    $resultat->execute($tags);
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                }
+            }
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
 }
 ?>

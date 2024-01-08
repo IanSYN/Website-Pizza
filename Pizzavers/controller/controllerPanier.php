@@ -4,20 +4,23 @@ require_once('controllerConnexion.php');
 require_once('model/VPanier.php');
 require_once('model/session.php');
 require_once('model/PaiementCB.php');
+require_once('model/Commande.php');
 
 class controllerPanier extends controllerDefaut{
 
     protected static $identifiant = "idClient";
     protected static $classe = 'VPanier';
     protected static $paiement = 'PaiementCB';
+
     public static function AjoutePanier(){
         $identifiant = static::$identifiant;
         $classe = static::$classe;
+        $id = $_SESSION["idClient"];
+        $idProd = $_GET[static::$identifiant];
 
-        require_once('view/Panier/debPanier.html');
-        require_once('view/menu.php');
-        require_once('view/Panier/Panier.php');
-        require_once('view/fin.html');
+        $idPanier = Commande::idPanier($id);
+        $classe::AjoutePanierProduit($idPanier, $idProd);
+        self::AfficherPanier();
     }
 
     public static function AfficherPanier(){
@@ -34,7 +37,8 @@ class controllerPanier extends controllerDefaut{
     
             require_once('view/Panier/debPanier.html');
             require_once('view/menu.php');
-            $value = $classe::getPanier($id);
+            $PizValue = $classe::getPanierPizza($id);
+            $value = $classe::getPanierProduit($id);
             require_once('view/Panier/Panier.php');
             require_once('view/fin.html');
         }

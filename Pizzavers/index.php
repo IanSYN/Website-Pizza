@@ -26,7 +26,7 @@ if (session::gestionnaireConnected()) {
     if ($objet == "connexion" && $action == "disconnect") {
         require_once("controller/controllerConnexion.php");
         controllerConnexion::Disconnect();
-    } 
+    }
 
     // Autres cas
     else {
