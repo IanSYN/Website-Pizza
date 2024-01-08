@@ -36,7 +36,7 @@ class controllerGestionnaire extends controllerDefaut {
         $Statjour = VstatistiqueJournalier::getStat();
         include('gestionnaire/view/debGestionnaire.html');
         include('gestionnaire/view/menuGestionnaire.html');
-        include('gestionnaire/view/accueilGestionnaire.php');
+        include('gestionnaire/view/Accueil/accueilGestionnaire.php');
     }
 
     public static function AfficherMonCompte() {
@@ -47,7 +47,7 @@ class controllerGestionnaire extends controllerDefaut {
 
         include('gestionnaire/view/debGestionnaire.html');
         include('gestionnaire/view/menuGestionnaire.html');
-        include('gestionnaire/view/viewMonCompte.php');
+        include('gestionnaire/view/Compte/viewMonCompte.php');
     }
 }
 

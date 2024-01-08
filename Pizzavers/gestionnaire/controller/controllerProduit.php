@@ -32,7 +32,7 @@
                     // on affiche
                     include('gestionnaire/view/debGestionnaire.html');
                     include('gestionnaire/view/menuGestionnaire.html');
-                    include('gestionnaire/view/viewPizzaAlAffiche.php');
+                    include('gestionnaire/view/Pizza/viewPizzaAlAffiche.php');
 
                 }
                 catch(PDOException $e){
@@ -114,7 +114,7 @@
                     // on affiche
                     include('gestionnaire/view/debGestionnaire.html');
                     include('gestionnaire/view/menuGestionnaire.html');
-                    include('gestionnaire/view/viewNosPizzas.php');
+                    include('gestionnaire/view/Pizza/viewNosPizzas.php');
 
                 }
                 catch(PDOException $e){
@@ -138,7 +138,7 @@
                 try {
                     include('gestionnaire/view/debGestionnaire.html');
                     include('gestionnaire/view/menuGestionnaire.html');
-                    include('gestionnaire/view/viewNosProduit.php');
+                    include('gestionnaire/view/Produit/viewNosProduit.php');
                 }
                 catch(PDOException $e){
                     echo $e->getMessage();
@@ -149,7 +149,7 @@
         public static function AjouterPizza() {
             include('gestionnaire/view/debGestionnaire.html');
             include('gestionnaire/view/menuGestionnaire.html');
-            include('gestionnaire/view/formulaire.php');
+            include('gestionnaire/view/Produit/formulaireProduit.html');
         }
 
         public static function CreerPizza(){

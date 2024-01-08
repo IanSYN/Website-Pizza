@@ -50,15 +50,19 @@ class controllerConnexion extends controllerDefaut {
             // Vérification de l'authenticité des données
             if (controllerGestionnaire::estUnCompte($email, $mdp)) {
 
+                // Récupération du gestionnaire en question
+                $gestionnaire = Gestionnaire::getOne($email);
+
                 // Paramétrage de $_SESSION
                 $_SESSION["email"] = $email;
+                $_SESSION["idGestionnaire"] = $gestionnaire->get("idGestionnaire");
                 $_SESSION["compte"] = "gestionnaire";
                 
                 header("Location:index.php"); // On redirige le gestionnaire vers sa page d'accueil
             }
             elseif (controllerClient::estUnCompte($email, $mdp)) {
                 
-                // Récupération du gestionnaire en question
+                // Récupération du client en question
                 $client = Client::getOne($email);
 
                 // Paramétrage de $_SESSION
