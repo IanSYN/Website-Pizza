@@ -55,7 +55,7 @@ AS
 
 CREATE OR REPLACE VIEW VAllergenePizza
 AS 
-	(SELECT idAllergene, idPizza, nomAllergene
+	(SELECT A.idAllergene, idPizza, nomAllergene
 	FROM Allergene A
 	INNER JOIN Ingredient I on I.idAllergene = A.idAllergene
 	INNER JOIN Base B on B.idIngredient = I.idIngredient);
