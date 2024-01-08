@@ -1,7 +1,7 @@
 <main>
     <h1>Mon compte gestionnaire</h1>
     <?php
-    echo "<div>";
+    echo "<div class='gestio'>";
     echo "<h2>Adresse mail</h2>";
     echo "<p>".$gest->get('mailGestionnaire')."</p>";
     echo "<button type='button'>Modifier</button>";
