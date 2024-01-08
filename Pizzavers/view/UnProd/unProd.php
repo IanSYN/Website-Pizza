@@ -19,8 +19,8 @@
                     $nom = $_SESSION["nom"];
                     echo "
                     <div>
-                    <a href='index.php?objet=accueil&action=afficherAjoute&$identifiant=$id'>
-                        <button type='submit'>Ajouter au panier2</button>
+                    <a href='index.php?objet=accueil&action=ajoutePanier&$identifiant=$id'>
+                        <button type='submit'>Ajouter au panier 4</button>
                     </a>
                     </div>";
                 }

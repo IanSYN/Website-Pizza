@@ -4,6 +4,13 @@
         echo "<p>$id</p>";
         echo "<p>$identifiant</p>";
         echo "<p>$classe</p>";
+        foreach ($PizValue as $val2) {
+            echo "<div class='row'>";
+            echo "<h1>".$val2->get('nomProduit')."</h1>";
+            echo "<h1>".$val2->get('quantiteProduit')."</h1>";
+            echo "<h1>".$val2->get('prixTotal')."</h1>";
+            echo "</div>";
+        }
         foreach ($value as $val) {
             echo "<div class='row'>";
             echo "<h1>".$val->get('nomProduit')."</h1>";
