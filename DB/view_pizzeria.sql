@@ -91,7 +91,7 @@ AS
 
 CREATE OR REPLACE VIEW VPanierPizza
 AS
-	(SELECT C.idCommande, nomProduit, quantitePizza, C.idClient, prenomClient, prixTotalCommande
+	(SELECT C.idCommande, nomProduit, quantitePizza, idEtatCommande, C.idClient, prenomClient, prixTotalCommande
 	FROM `Commande` C
 	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
 	INNER JOIN `PizzaPersonnalisee` Pp ON Pp.idCommande = C.idCommande
