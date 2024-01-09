@@ -1,4 +1,8 @@
 /* PARTIE HEADER */
+.nom h1 {
+    font-size: 30px;
+    margin: 0px;
+}
 
 .nom p {
     color: black;
