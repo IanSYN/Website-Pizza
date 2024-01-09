@@ -37,7 +37,7 @@ public class VueListPizza extends JFrame {
         this.setBackground(Colors.redBG);
 
         setMinimumSize(new Dimension(800,600));
-        setResizable(false);
+        //setResizable(false);
         setTitle("Application Pizza Commande");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -49,9 +49,9 @@ public class VueListPizza extends JFrame {
 
         this.setVisible(true);
 
-        startTimer();
+        //startTimer();
         reload();
-        System.out.println("fin");
+        //System.out.println("fin");
     }
 
     // ***********************************
@@ -134,7 +134,7 @@ public class VueListPizza extends JFrame {
     }
 
     public void reloadCommande() {
-        listeCommande = Application.reload();
+        //listeCommande = Application.reload();
         // for (Commande commande : newlisteCommande) {
         //     if (!listeCommande.contains(commande)) {
         //         listeCommande.add(commande);

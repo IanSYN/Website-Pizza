@@ -56,14 +56,27 @@ public class VueAffichagePetitCommande extends JPanel{
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             public void run() {
-                Modele.MoinsTempsRestant();
                 System.out.println(Modele.getTempsRestant());
                 if (Modele.getTempsRestant() == 0) {
                     System.out.println("génération du code promo");
+                    Modele.codePromo();
                     tempsRestant.setForeground(Color.RED);
+                    setBackground(Color.WHITE);
                 }
+                Modele.MoinsTempsRestant();
                 tempsRestant.setText("Temps restant (min): " + Modele.getTempsRestant());
             }
-        }, 0, 1000); // Change the delay to 1000 milliseconds (1 second) and set the initial delay to 0
+        }, 0, 10000); // Change the delay to 1000 milliseconds (1 second) and set the initial delay to 0
     }
 }
+
+
+// ///exemple de code
+
+// //couleur timer rouge
+// tempsRestant.setForeground(Color.RED);
+
+// //function génération code promo
+// public void genererCodePromo(){
+//     //génération du code promo aleatoire et insert to base de donnée
+// }
