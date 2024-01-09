@@ -66,6 +66,15 @@ BEGIN
     END IF;
 END//
 
+-- Déclencheur pour appeler la procédure après la mise à jour d'Alerte
+-- après avoir paramétré les seuils d'alerte
+CREATE TRIGGER verifManqueStock
+AFTER UPDATE ON Alerte
+FOR EACH ROW
+BEGIN
+    CALL checkStockIngr(OLD.idIngredient);
+END//
+
 -- Insert dans Pizza les 2 autres tailles de la pizza medium inserée 
 CREATE PROCEDURE pizzaTaille (IN idProd INT(11))
 BEGIN    

@@ -4,6 +4,7 @@ require_once('model/objet.php');
 class Alerte extends objet {
 
     // Partie statique
+    protected static $identifiant = "idIngredient";
     protected static $classe = "Alerte";
 
     // Partie attributs
@@ -28,43 +29,6 @@ class Alerte extends objet {
             }
         }
     }  
-    
-    
-    // Méthode renvoyant le nom de l'ingrédient dont l'alerte fait l'objet
-    public function getNomIngredient() {
-        $ingr = $this->idIngredient;
-        $requete = "SELECT nomIngredient FROM Ingredient WHERE idIngredient = $ingr";
-        $result = connexion::pdo()->query($requete);
-        return $result->fetchColumn();
-    }
-
-    // Méthode renvoyant le nom de l'ingrédient dont l'alerte fait l'objet
-    public function getCoverIngredient() {
-        $ingr = $this->idIngredient;
-        $requete = "SELECT coverIngredient FROM Ingredient WHERE idIngredient = $ingr";
-        $result = connexion::pdo()->query($requete);
-        return $result->fetchColumn();
-    }
-
-    /* Fonctions statiques */
-
-    /*
-    // Méthode renvoyant le nom de l'ingrédient
-    public function getNomIngredient() {
-        $idIngr = $this->idIngredient;
-        $requete = "SELECT nomIngredient FROM Ingredient WHERE idIngredient = $idIngr";
-        $resultat = connexion::pdo()->query($requete);
-        return $resultat->fetchColumn();
-    }
-
-    // Méthode renvoyant le nom de l'image de l'ingrédient
-    public function getCoverIngredient() {
-        $idIngr = $this->idIngredient;
-        $requete = "SELECT coverIngredient FROM Ingredient WHERE idIngredient = $idIngr";
-        $resultat = connexion::pdo()->query($requete);
-        return $resultat->fetchColumn();
-    }
-    */
 
     // Fonction renvoyant les alertes d'un gestionnaire
     // et seulement celles dont le seuil a été dépassé

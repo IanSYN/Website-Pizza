@@ -3,7 +3,7 @@
 .alerte {
     display: grid;
     
-    grid-template-columns: 150px auto;
+    grid-template-columns: 150px auto auto;
     grid-template-rows: 75px 75px;
 }
 
@@ -42,9 +42,13 @@
     margin: 0;
 }
 
-
+/* Pour centrer le bouton du bas */
 .buttonDiv {
     display: flex;
     justify-content: center;
+}
+
+.save {
+    background-color: green;
 }
 

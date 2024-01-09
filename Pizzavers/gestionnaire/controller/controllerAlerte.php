@@ -59,7 +59,35 @@ class controllerAlerte extends controllerDefaut {
     // Fonction permettant d'afficher les paramètres d'alerte
     // pour régler les seuils d'alerte
     public static function ParametresAlerte() {
-        
+
+        // On affiche le début
+        include('gestionnaire/view/Alerte/debutAlerte.html');
+        include('gestionnaire/view/menuGestionnaire.html');
+        include('gestionnaire/view/Alerte/titreParametresAlerte.html');
+
+        // On récupère tous les ingrédients 
+        $lesIngredients = Ingredient::getAll();
+
+        foreach ($lesIngredients as $unIngredient) {
+
+            // On récupère les informations à afficher
+            $nom = $unIngredient->get('nomIngredient');
+            $cover = $unIngredient->get('coverIngredient');
+            $stock = $unIngredient->get('stockIngredient');
+
+            // On cherche l'alerte correspondant à cet ingrédient
+            $alerte = Alerte::getOne($unIngredient->get('idIngredient'));
+            $seuil = 0.0;
+
+            // Si l'alerte n'a pas été trouvée
+            if($alerte != null) {
+                $seuil = $alerte->get('seuilIngredient');
+                include('gestionnaire/view/Alerte/viewParametresAlerte.html');
+            }
+        }
+
+        // On affiche la fin
+        include('gestionnaire/view/Alerte/finParametresAlerte.html');
     }
 }
 ?>
