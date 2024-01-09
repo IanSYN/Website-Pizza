@@ -4,22 +4,42 @@
     display: grid;
     
     grid-template-columns: 150px auto;
-    grid-template-rows: 150
+    grid-template-rows: 75px 75px;
 }
 
 .alerte img {
+
+    /* Se trouve tout à gauche */
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
     height: 150px;
     margin-right: 10px;
 }
 
 .alerte h3 {
-    font-size: 1.5em; /* Taille du titre */
-    font-weight: bold; /* Texte en gras */
-    margin: 0; /* Supprime les marges par défaut du titre */
+
+    /* Se trouve en haut à droite */
+    grid-column-start: 2;
+    grid-row-start: 1;
+
+    align-self: end; 
+
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
 }
 
 .alerte p {
-    margin: 0; /* Supprime les marges par défaut du paragraphe */
+
+    /* Se trouve en bas à droite */
+    grid-column-start: 2;
+    grid-row-start: 2;
+    
+    align-self: start;
+
+    margin: 0;
 }
 
 
@@ -29,6 +49,9 @@ main button {
 
     background-color: #FF8369;
     color: white;
+
+    margin-left: auto;
+    margin-right: auto;
 
     padding-bottom: 4px;
     padding-left: 10px;
