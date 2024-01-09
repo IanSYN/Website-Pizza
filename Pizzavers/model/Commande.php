@@ -25,41 +25,26 @@ class Commande {
         $this->idClient = $idClient;
         $this->idCB = $idCB;
     }
-    public static function idPanier($id){
-        $classRecuperee = static::$classe;
-        $identifiant = static::$identifiant;
-        //requete verifiant si le client a deja un panier
-        $requetePreparee = "SELECT * FROM $classRecuperee WHERE 'idClient' = :id_tag AND idEtatCommande = 1;";
-        //execution
-        $resultat = connexion::pdo()->prepare($requetePreparee);
-        $tags = array(':id_tag' => $id);
-        $element = null;
-        try{
-            $resultat->execute($tags);
-            //recuperation des resultats
-            $resultat->setFetchMode(PDO::FETCH_CLASS, $classRecuperee);
-            //renvoi du tableau
-            $element = $resultat->fetchAll();
-            //retourne le tableau
-            if(empty($element)){
-                $requetePreparee = "INSERT INTO $classRecuperee VALUES (1, now(), 0.0, 1, NULL, 1, NULL, 1);";
-                $resultat = connexion::pdo()->prepare($requetePreparee);
-                $tags = array(':id_tag' => $id);
-                try{
-                    $resultat->execute($tags);
-                    self::AjoutePanier($id);
-                }
-                catch(PDOException $e){
-                    echo $e->getMessage();
-                }
-            }
-            $idCommande = $element[0]->get('idCommande');
-            return $idCommande;
-        }
-        catch(PDOException $e){
-            echo $e->getMessage();
-        }
-    }
+    // public static function idPanier($id){
+    //     $classRecuperee = static::$classe;
+    //     //requete verifiant si le client a deja un panier
+    //     $requete = "SELECT * FROM $classRecuperee WHERE idClient = :id_tag AND idEtatCommande = 1;";
+    //     //execution
+    //     $resultat = connexion::pdo()->prepare($requete);
+    //     $tags = array(':id_tag' => $id);
+    //     try{
+    //         $resultat->execute($tags);
+    //         //recuperation des resultats
+    //         $resultat->setFetchMode(PDO::FETCH_CLASS, $classRecuperee);
+    //         //renvoi du tableau
+    //         $element = $resultat->fetch();
+    //         //retourne le tableau
+    //         return $element;
+    //     }
+    //     catch(PDOException $e){
+    //         echo $e->getMessage();
+    //     }
+    // }
 }
 
 ?>

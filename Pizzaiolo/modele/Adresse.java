@@ -1,8 +1,4 @@
 package Modele;
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
 
 public class Adresse {
     String addresseArrivee;

@@ -16,11 +16,11 @@ class controllerPanier extends controllerDefaut{
         $identifiant = static::$identifiant;
         $classe = static::$classe;
         $id = $_SESSION["idClient"];
-        $idProd = $_GET[static::$identifiant];
-
-        $idPanier = Commande::idPanier($id);
-        $classe::AjoutePanierProduit($idPanier, $idProd);
-        self::AfficherPanier();
+        $idProd = $_GET["idProduit"];
+        //$idPanier = Commande::idPanier($id);
+        // $classe::AjoutePanierProduit($idPanier, $idProd);
+        //self::AfficherPanier();
+        require_once('view/test.php');
     }
 
     public static function AfficherPanier(){
@@ -34,7 +34,7 @@ class controllerPanier extends controllerDefaut{
             $identifiant = static::$identifiant;
             $classe = static::$classe;
             $id = $_SESSION["idClient"];
-    
+
             require_once('view/Panier/debPanier.html');
             require_once('view/menu.php');
             $PizValue = $classe::getPanierPizza($id);

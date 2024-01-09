@@ -9,6 +9,16 @@
         <div class="Prodinf">
             <?php
                 echo "<h1>".$unProd->get('nomProduit')."</h1>";
+                echo "<ul>";
+                /*foreach($listQtnIngr as $unElement){
+                    $valQtn = $unElement->get('quantiteIngredient')." ";
+                }*/
+                foreach($listProd as $unElement){
+                    echo "<li> ".$unElement->get('nomIngredient')." ";
+                    echo "<button class='ajouterIngr' type='button'> + </button>";
+                    echo "<button class='DiminuerIngr' type='button'> - </button></li>";
+                }
+                echo "</ul>";
             ?>
             <?php
                 require_once("model/session.php");
@@ -19,7 +29,7 @@
                     $nom = $_SESSION["nom"];
                     echo "
                     <div>
-                    <a href='index.php?objet=accueil&action=ajoutePanier&$identifiant=$id'>
+                    <a href='index.php?objet=panier&action=ajoutePanier&$identifiant=$id'>
                         <button type='submit'>Ajouter au panier 4</button>
                     </a>
                     </div>";

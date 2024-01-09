@@ -27,7 +27,26 @@ class Alerte extends objet {
                 $this->verifSeuil = false;
             }
         }
-    }    
+    }  
+    
+    
+    // Méthode renvoyant le nom de l'ingrédient dont l'alerte fait l'objet
+    public function getNomIngredient() {
+        $ingr = $this->idIngredient;
+        $requete = "SELECT nomIngredient FROM Ingredient WHERE idIngredient = $ingr";
+        $result = connexion::pdo()->query($requete);
+        return $result->fetchColumn();
+    }
+
+    // Méthode renvoyant le nom de l'ingrédient dont l'alerte fait l'objet
+    public function getCoverIngredient() {
+        $ingr = $this->idIngredient;
+        $requete = "SELECT coverIngredient FROM Ingredient WHERE idIngredient = $ingr";
+        $result = connexion::pdo()->query($requete);
+        return $result->fetchColumn();
+    }
+
+    /* Fonctions statiques */
 
     // Fonction renvoyant les alertes d'un gestionnaire à partir de 
     // son idGestionnaire
