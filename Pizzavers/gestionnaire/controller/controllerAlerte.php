@@ -15,9 +15,9 @@ class controllerAlerte extends controllerDefaut {
         if (count($lesAlertes) == 0) {
             
             // On affiche le message d'absence d'alerte
-            include('gestionnaire/view/debGestionnaire.html');
-            include('gestionnaire/view/menuGestionnaire.html');
             include('gestionnaire/view/Alerte/debutAlerte.html');
+            include('gestionnaire/view/menuGestionnaire.html');
+            include('gestionnaire/view/Alerte/titreAlerte.html');
             include('gestionnaire/view/Alerte/viewAucuneAlerte.html');
             include('gestionnaire/view/Alerte/finAlerte.html');
         }
@@ -26,9 +26,9 @@ class controllerAlerte extends controllerDefaut {
         else {
 
             // On affiche le début
-            include('gestionnaire/view/debGestionnaire.html');
-            include('gestionnaire/view/menuGestionnaire.html');
             include('gestionnaire/view/Alerte/debutAlerte.html');
+            include('gestionnaire/view/menuGestionnaire.html');
+            include('gestionnaire/view/Alerte/titreAlerte.html');
 
             foreach ($lesAlertes as $uneAlerte) {
 
@@ -53,6 +53,13 @@ class controllerAlerte extends controllerDefaut {
     // Fonction qui renvoie le nombre d'alertes 
     public static function nbAlertes() {
         return count(Alerte::getMesAlertes($_SESSION['idGestionnaire']));
+    }
+
+
+    // Fonction permettant d'afficher les paramètres d'alerte
+    // pour régler les seuils d'alerte
+    public static function ParametresAlerte() {
+        
     }
 }
 ?>

@@ -30,7 +30,7 @@
                     $idCategoriePizza = $resultat->fetchColumn();
 
                     // on affiche
-                    include('gestionnaire/view/debGestionnaire.html');
+                    include('gestionnaire/view/Pizza/debutAlAffiche.html');
                     include('gestionnaire/view/menuGestionnaire.html');
                     include('gestionnaire/view/Pizza/viewPizzaAlAffiche.php');
 

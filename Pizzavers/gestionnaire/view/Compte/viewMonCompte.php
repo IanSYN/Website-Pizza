@@ -10,7 +10,8 @@
     echo "<p>".$gest->get('telGestionnaire')."</p>";
     echo "<button type='button'>Modifier</button>";
     echo "<a href='index.php?objet=connexion&action=disconnect'>";
-    echo "<button>Déconnexion</button> </a>";
+    echo "<br />";
+    echo "<button class='deconnexion'>Déconnexion</button> </a>";
     echo "</div>"
     ?>
     

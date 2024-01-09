@@ -1,8 +1,8 @@
-/* Partie CSS pour le gestionnaire */
-
-@import "StyleSheet.css";
-
 /* PARTIE HEADER */
+.nom h1 {
+    font-size: 30px;
+    margin: 0px;
+}
 
 .nom p {
     color: black;
@@ -80,40 +80,17 @@ main h1 {
     text-align: center;
 }
 
-/* Blocs de menu */
+/* Boutons du main */
 
-span {
-    background-color: antiquewhite;
-}
-
-span img {
-    border-radius: 20px;
-    width: 200px;
-}
-
-/* Partie de la page AlAffiche */
-
-.blocPizza-AlAffiche {
-    display: flex;
-
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 10px;
-    justify-content: flex-start;
-
-}
-
-.blocPizza-AlAffiche img {
-    height: 150px;
-    margin: 10px;
-}
-
-.blocPizza-AlAffiche button {
+/* Boutons actifs */
+main button {
     border-radius: 22px;
     border-style: solid;
 
     background-color: #FF8369;
     color: white;
+
+    margin: 8px;
 
     padding-bottom: 4px;
     padding-left: 10px;
@@ -123,11 +100,12 @@ span img {
     transition: all 100ms ease-out 10ms;
 }
 
-.blocPizza-AlAffiche button:hover {
+main button:hover {
     transform: scale(1.1);
 }
 
-.blocPizza-AlAffiche .disabled {
+/* Boutons inactifs */
+.disabled {
     border-radius: 22px;
     border-style: solid;
 
@@ -142,9 +120,26 @@ span img {
     transition: none;
 }
 
-.blocPizza-AlAffiche .disabled:hover {
+.disabled:hover {
     transform: none;
 }
+
+/* Bouton de déconnexion */
+.deconnexion {
+    background-color: #fb4a26;
+}
+
+/* Blocs de menu */
+
+span {
+    background-color: antiquewhite;
+}
+
+span img {
+    border-radius: 20px;
+    width: 200px;
+}
+
 
 .ContenerGestionnaire {
     text-align: center;

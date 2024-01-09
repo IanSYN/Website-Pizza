@@ -1,0 +1,16 @@
+/* Partie de la page AlAffiche */
+
+.blocPizza-AlAffiche {
+    display: flex;
+
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: flex-start;
+
+}
+
+.blocPizza-AlAffiche img {
+    height: 150px;
+    margin: 10px;
+}
