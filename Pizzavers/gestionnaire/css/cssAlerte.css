@@ -1,4 +1,4 @@
-/* Partie de la page AlAffiche */
+/* Partie de la page Alerte*/
 
 .alerte {
     display: grid;
@@ -43,6 +43,11 @@
 }
 
 
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+}
+
 main button {
     border-radius: 22px;
     border-style: solid;
@@ -50,8 +55,7 @@ main button {
     background-color: #FF8369;
     color: white;
 
-    margin-left: auto;
-    margin-right: auto;
+    margin: 8px;
 
     padding-bottom: 4px;
     padding-left: 10px;
