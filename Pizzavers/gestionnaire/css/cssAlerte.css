@@ -48,23 +48,3 @@
     justify-content: center;
 }
 
-main button {
-    border-radius: 22px;
-    border-style: solid;
-
-    background-color: #FF8369;
-    color: white;
-
-    margin: 8px;
-
-    padding-bottom: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 4px;
-
-    transition: all 100ms ease-out 10ms;
-}
-
-main button:hover {
-    transform: scale(1.1);
-}
