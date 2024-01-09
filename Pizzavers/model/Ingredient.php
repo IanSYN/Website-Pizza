@@ -1,15 +1,24 @@
 <?php
 require_once('objet.php');
 
+<<<<<<< HEAD
 class Ingredient extends objet
 {
     protected static $identifiant = "idIngredient";
 
     protected static $classe = 'Ingredient';
+=======
+class Ingredient extends objet {
+    
+    // Partie statique
+    protected static $identifiant = "idIngredient";
+    protected static $classe = "Ingredient";
+>>>>>>> 340f14f21a836bf5850326861c9a3cc2bd8ba48c
 
     // Partie attributs
     protected int $idIngredient;
     protected string $nomIngredient;
+<<<<<<< HEAD
     protected string $prixIngredient;
     protected string $coverIngredient;
 
@@ -42,6 +51,22 @@ class Ingredient extends objet
         catch(PDOException $e){
             echo $e->getMessage();
             return false;
+=======
+    protected float $stockIngredient;
+    protected float $prixIngredient;
+    protected string $coverIngredient;
+    protected ?int $idAllergene;
+
+    // Constructeur
+    public function __construct($idIngredient = null, $nomIngredient = null, $stockIngredient = null, $prixIngredient = null, $coverIngredient = null, $idAllergene = null) {
+        if(!is_null($idIngredient)) {
+            $this->idIngredient = $idIngredient;
+            $this->nomIngredient = $nomIngredient;
+            $this->stockIngredient = $stockIngredient;
+            $this->prixIngredient = $prixIngredient;
+            $this->coverIngredient = $coverIngredient;
+            $this->idAllergene = $idAllergene;
+>>>>>>> 340f14f21a836bf5850326861c9a3cc2bd8ba48c
         }
     }
 }
