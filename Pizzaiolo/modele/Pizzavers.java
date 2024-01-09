@@ -34,7 +34,9 @@ public class Pizzavers {
         // On récupère les produits et on en forme des instances de Produit
         while (rs.next()) {
             Produit P = new Produit(rs.getInt(1), rs.getString(2));
-            listeProduits.add(P);
+            if (!listeProduits.contains(P)) {
+                listeProduits.add(P);
+            }
         }
         //ça marche
         // for (Produit Produit : listeProduits) {
@@ -43,10 +45,14 @@ public class Pizzavers {
 
         query = "SELECT numRue, nomRue, ville, CodePostal, latitudeGPS, longitudeGPS FROM `Adresse`";
         rs = OutilsJDBC.exec1Requete(query, co, 1);
+
         while (rs.next()) {
+            listeAdresses.add(null);
             String adr = rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) + " " + rs.getString(4);
             Adresse Adresse = new Adresse(adr, rs.getDouble(5), rs.getDouble(6));
-            listeAdresses.add(Adresse);
+            if(!listeAdresses.contains(Adresse)){
+                listeAdresses.add(Adresse);
+            }
         }
 
         //ça marche
@@ -59,7 +65,9 @@ public class Pizzavers {
 
         while (rs.next()) {
             Pizza S = new Pizza(rs.getInt(1), rs.getString(2), rs.getString(3));
-            listePizzas.add(S);
+            if (!listePizzas.contains(S)) {
+                listePizzas.add(S);
+            }
         }
 
         // for (Pizza pizza : listePizzas) {
@@ -71,7 +79,9 @@ public class Pizzavers {
 
         while (rs.next()) {
             Ingredient I = new Ingredient(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4));
-            listeIngredients.add(I);
+            if (!listeIngredients.contains(I)) {
+                listeIngredients.add(I);
+            }
         }
 
         // for (Ingredient ingredient : listeIngredients) {
@@ -82,7 +92,7 @@ public class Pizzavers {
         rs = OutilsJDBC.exec1Requete(query, co, 1);
 
         while (rs.next()) {
-            Commande C = new Commande(rs.getInt(1), listeAdresses.get(rs.getInt(3) - 1), rs.getFloat(2));
+            Commande C = new Commande(rs.getInt(1), listeAdresses.get(rs.getInt(3)), rs.getFloat(2));
             if(!listeCommandes.contains(C)){
                 listeCommandes.add(C);
             }
@@ -91,13 +101,14 @@ public class Pizzavers {
         // for (Commande commande : listeCommandes) {
         //     commande.afficherPanier();
         // }
-        listeCommandes.get(0).afficherPanier();
+        //listeCommandes.get(0).afficherPanier();
     }
 
     // Création du launcher de l'application
     public void lancerApplication(ArrayList<Commande> listeCommande){
         //lancer la page d'accueil
         new VueListPizza(this, listeCommande);
+        reload();
     }
 
     // public void afficher(ArrayList<Object> list){
@@ -106,31 +117,35 @@ public class Pizzavers {
     //     }
     // }
 
-    public void reload(){
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    remplirListeProduits();
-                    reload();
-                    lancerApplication(listeCommandes);
-                } catch (SQLException e) {
-                    System.err.println(e);
-                }
-                System.out.println("nouvelle commande");
-            }
-        }, 10, 1);
+    public ArrayList<Commande> reload(){
+        clearAll();
+        try {
+            co = OutilsJDBC.openConnection();
+            remplirListeProduits();
+            OutilsJDBC.closeConnection(co);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listeCommandes;
+    }
+
+    public void clearAll(){
+        listeCommandes.clear();
+        listeProduits.clear();
+        listeAdresses.clear();
+        listePizzas.clear();
+        listeIngredients.clear();
     }
 
     public static void main(String[] args) {
         try {
                 remplirListeProduits();
+                System.out.println();
 
                 Pizzavers application = new Pizzavers();
                 application.lancerApplication(listeCommandes);
 
-                OutilsJDBC.closeConnection(co);
             } catch (Exception e)   {
                 System.out.println(e);
             }

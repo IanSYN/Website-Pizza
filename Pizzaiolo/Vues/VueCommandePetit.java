@@ -44,8 +44,6 @@ public class VueCommandePetit extends JPanel {
         this.add(nbProduit);
         this.add(PrixCommande);
         this.add(bouton);
-
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
 }

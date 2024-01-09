@@ -7,6 +7,7 @@ import Modele.*;
 
 import java.awt.*;
 import java.util.*;
+import java.util.Timer;
 
 
 public class VueAffichagePetitCommande extends JPanel{
@@ -46,7 +47,23 @@ public class VueAffichagePetitCommande extends JPanel{
         this.add(tempsRestant);
         this.add(prixTotal);
         this.add(nbProduit);
+        startTimer();
 
         new ControlleurAffichageCommande(application, Modele, this, fenetreUtilisateur);
+    }
+
+    public void startTimer() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                Modele.MoinsTempsRestant();
+                System.out.println(Modele.getTempsRestant());
+                if (Modele.getTempsRestant() == 0) {
+                    System.out.println("génération du code promo");
+                    tempsRestant.setForeground(Color.RED);
+                }
+                tempsRestant.setText("Temps restant (min): " + Modele.getTempsRestant());
+            }
+        }, 0, 1000); // Change the delay to 1000 milliseconds (1 second) and set the initial delay to 0
     }
 }

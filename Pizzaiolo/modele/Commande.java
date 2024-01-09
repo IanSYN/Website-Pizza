@@ -62,8 +62,8 @@ public class Commande {
         return tempsRestant;
     }
 
-    public void setTempsRestant(float tempsRestant) {
-        this.tempsRestant = tempsRestant;
+    public void MoinsTempsRestant() {
+        this.tempsRestant--;
     }
 
     public Adresse getAdresseArrivee() {
