@@ -71,10 +71,8 @@ INSERT INTO `EtatCommande` VALUES
 (5, 'Livré');
 
 INSERT INTO `Gestionnaire`(`idGestionnaire`, `mdpGestionnaire`, `mailGestionnaire`, `telGestionnaire`) VALUES
-(1, 'mdpGest1', 'gest1@example.com', '0612345678'),
-(2, 'mdpGest2', 'gest2@example.com', '0698765432'),
-(3, 'mdpGest3', 'gest3@example.com', '0655555555');
-(4, 'mdpGest4', 'sarahmy.messaoudi@gmail.com', '0625000000');
+(1, 'mdpGest3', 'gest3@example.com', '0655555555');
+(2, 'mdpGest4', 'sarahmy.messaoudi@gmail.com', '0625000000');
 
 INSERT INTO `Adresse`(`idAdresse`, `numRue`, `nomRue`, `ville`, `codePostal`, `latitudeGPS`, `longitudeGPS`) VALUES
 (1,13,'Avenue des sciences','Gif sur yvette','91190','48.711734','2.1705202'),
@@ -189,13 +187,18 @@ INSERT INTO `Base` (`idPizza`, `idIngredient`, `quantiteIngredient`) VALUES
 (6, 7, 110);
 
 INSERT INTO `Alerte` VALUES
-(1, 2, 450, NULL),
-(2, 2, 300, NULL),
-(3, 2, 55, NULL),
-(4, 2, 200, NULL),
-(5, 2, 100, NULL),
-(6, 2, 500, NULL),
-(7, 2, 500, NULL)
+(1, 2, 450, 0),
+(2, 2, 300, 0),
+(3, 2, 55, 0),
+(4, 2, 200, 0),
+(5, 2, 100, 0),
+(6, 2, 500, 0),
+(7, 2, 50, 0),
+(8, 2, 100, 0), 
+(9, 2, 200, 0), 
+(10, 2, 450, 0), 
+(11, 2, 25, 0), 
+(12, 2, 25, 0);
 
 INSERT INTO `Commande` (`idCommande`, `dateCommande`, `prixTotalCommande`, `idMoyenPaiement`, `idAdresse`, `idEtatCommande`, `codeCoupon`, `idClient`) VALUES 
 (1,'2023-12-15',0.0,1,2,1,NULL,1),
