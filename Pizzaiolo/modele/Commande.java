@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.naming.spi.DirStateFactory.Result;
 
 import Config.*;
-import modele.*;
+import Modele.*;
 
 public class Commande {
     private double tempsRestant;

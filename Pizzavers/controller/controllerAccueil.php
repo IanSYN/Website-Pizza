@@ -5,6 +5,8 @@ require_once('model/Categorie.php');
 require_once('model/VPanier.php');
 require_once('model/VProduit.php');
 require_once('model/Produit.php');
+require_once('model/Ingredient.php');
+//require_once('model/Base.php');
 class controllerAccueil extends controllerDefaut{
 
     protected static $classeC = 'Categorie';
@@ -22,6 +24,8 @@ class controllerAccueil extends controllerDefaut{
         require_once('view/UnProd/debOne.html');
         require_once('view/menu.php');
         $unProd = $classProd::getOne($id);
+        $listProd = Ingredient::getAll();
+        //$listQtnIngr = Base::getIngreAll();
         require_once('view/UnProd/unProd.php');
         require_once('view/fin.html');
     }

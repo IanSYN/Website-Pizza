@@ -6,11 +6,8 @@ import Modele.Pizzavers;
 
 import java.util.*;
 import java.util.Timer;
-<<<<<<< HEAD
 
 import Modele.*;
-=======
->>>>>>> refs/remotes/origin/main
 import java.awt.*;
 import inter.*;
 
