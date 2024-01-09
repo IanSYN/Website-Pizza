@@ -63,10 +63,12 @@ AS
 
 CREATE OR REPLACE VIEW VIngrPersonnalisee
 AS 
-	(SELECT S.idPizzaPersonnalisee, nomIngredient, prixIngredient, quantiteSupplement, S.idIngredient
+	(SELECT S.idPizzaPersonnalisee, nomIngredient, prixIngredient, quantiteIngredient, quantiteSupplement, S.idIngredient
 	FROM Supplement S
 	INNER JOIN Ingredient I on I.idIngredient = S.idIngredient
+    	INNER JOIN Base B on B.idIngredient = I.idIngredient
 	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee);
+
 
 
 CREATE OR REPLACE VIEW VPizzaIngr
