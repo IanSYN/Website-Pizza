@@ -82,7 +82,7 @@ class controllerAlerte extends controllerDefaut {
             // Si l'alerte n'a pas été trouvée
             if($alerte != null) {
                 $seuil = $alerte->get('seuilIngredient');
-                include('gestionnaire/view/Alerte/viewParametresAlerte.html');
+                include('gestionnaire/view/Alerte/viewParametresAlerte.php');
             }
         }
 

@@ -1,5 +1,5 @@
 <main>
-    <h1>Nos produit</h1>
+    <h1>Nos produits</h1>
     <?php
     foreach ($tableauProduits as $element) {
         if ($element->get("idCategorie") != 3) {
@@ -9,7 +9,7 @@
             $urlImage = $element->get("coverProduit");
             $alAffiche = $element->get("alAffiche");
 
-            echo "<div class='blocPizza-AlAffiche'>";
+            echo "<div class='blocProduit'>";
             echo "<img src='img/$urlImage' />";
             echo "<p>$nomProduit</p>";
             echo "<a href='index.php?objet=produit&action=mettreAlAffiche&idProduit=$idProduit'> <button type='button' /> Supprimer </button></a>";

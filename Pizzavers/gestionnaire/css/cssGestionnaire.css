@@ -129,6 +129,37 @@ main button:hover {
     background-color: #fb4a26;
 }
 
+/* Pour centrer le bouton du bas */
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+/* Bouton d'enregistrement */
+.save {
+    background-color: green;
+}
+
+
+/* Partie de l'affichage des produits */
+
+.blocProduit {
+    display: flex;
+
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: flex-start;
+
+}
+
+.blocProduit img {
+    height: 150px;
+    margin: 10px;
+}
+
+
+
 /* Blocs de menu */
 
 span {

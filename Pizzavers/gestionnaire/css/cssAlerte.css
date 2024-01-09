@@ -42,13 +42,5 @@
     margin: 0;
 }
 
-/* Pour centrer le bouton du bas */
-.buttonDiv {
-    display: flex;
-    justify-content: center;
-}
 
-.save {
-    background-color: green;
-}
 

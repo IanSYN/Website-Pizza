@@ -12,7 +12,7 @@
             $alAffiche = $element->get("alAffiche");
            
 
-            echo "<div class='blocPizza-AlAffiche'>";
+            echo "<div class='blocProduit'>";
             echo "<img src='img/$urlImage' />";
             echo "<p> Pizza ".$nomProduit." </p>";
             echo "<a href='index.php?objet=produit&action=mettreAlAffiche&idProduit=$idProduit'> <button type='button' /> Supprimer </button></a>";
@@ -20,5 +20,7 @@
         }
     }
     ?>
-    <a href='index.php?objet=produit&action=ajouterPizza'> <button type='button'> Ajouter </button></a>
+    <div class="buttonDiv">
+        <a href='index.php?objet=produit&action=ajouterPizza'> <button type='button'> Ajouter </button></a>
+    </div>
 </main>

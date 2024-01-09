@@ -12,7 +12,7 @@
             $alAffiche = $element->get("alAffiche");
            
 
-            echo "<div class='blocPizza-AlAffiche'>";
+            echo "<div class='blocProduit'>";
             echo "<img src='img/$urlImage' />";
             echo "<p> Pizza ".$nomProduit." </p>";
 
