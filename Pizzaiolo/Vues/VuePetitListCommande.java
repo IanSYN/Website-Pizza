@@ -1,6 +1,7 @@
 package Vues;
 import javax.swing.*;
 
+import Controlleur.ControlleurActualiser;
 import Modele.Commande;
 import Modele.Pizzavers;
 
@@ -29,13 +30,15 @@ public class VuePetitListCommande extends JPanel {
         this.Modele = commande;
         this.fenetreUtilisateur = vueListPizza;
 
-        this.setBackground(Color.WHITE);
+        this.setBackground(Color.GREEN);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
         for (Commande commande2 : Modele) {
             vue = new VueAffichagePetitCommande(application, commande2, fenetreUtilisateur);
             this.add(vue);
         }
+
+        new ControlleurActualiser(applications, this);
     }
 
     // ***********************************
@@ -44,5 +47,9 @@ public class VuePetitListCommande extends JPanel {
 
     public void addElement(JPanel element){
         vue.add(element);
+    }
+
+    public VueListPizza getApplication() {
+        return fenetreUtilisateur;
     }
 }

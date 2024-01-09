@@ -20,7 +20,7 @@ public class VueListPizza extends JFrame {
     private JPanel panelMilieu;
     private ArrayList<Commande> listeCommande;
 
-    private static final int compteur = 0;
+    private static int compteur = 0;
 
     //les 2 parties de l'interface
     private VuePetitListCommande gauche;
@@ -37,6 +37,7 @@ public class VueListPizza extends JFrame {
         this.setBackground(Colors.redBG);
 
         setMinimumSize(new Dimension(800,600));
+        setResizable(false);
         setTitle("Application Pizza Commande");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -47,8 +48,10 @@ public class VueListPizza extends JFrame {
 		this.getContentPane().add(panelMilieu);
 
         this.setVisible(true);
-        
+
+        startTimer();
         reload();
+        System.out.println("fin");
     }
 
     // ***********************************
@@ -103,28 +106,50 @@ public class VueListPizza extends JFrame {
     // ******* METHODES ******************
     // ***********************************
 
+    public void startTimer() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                compteur++;
+                System.out.println(compteur);
+                if (compteur == 10) {
+                    compteur = 0;
+                    reloadCommande();
+                }
+            }
+        }, 0, 1000); // Change the delay to 1000 milliseconds (1 second) and set the initial delay to 0
+    }
+
     public void reload() {
         panelMilieu.removeAll();
-
         gauche = new VuePetitListCommande(Application, listeCommande, this);
         panelMilieu.add(gauche);
-        panelMilieu.add(droite);
+        if (droite != null) {
+            panelMilieu.add(droite);
+        }
 
         pack();
 		repaint();
 		revalidate();
-        //timer();
     }
 
-    public void timer() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                reload();
-                System.out.println("reload");
-            }
-        }, 10000, 1);
+    public void reloadCommande() {
+        listeCommande = Application.reload();
+        // for (Commande commande : newlisteCommande) {
+        //     if (!listeCommande.contains(commande)) {
+        //         listeCommande.add(commande);
+        //     }
+        // }
+        // for (Commande commande2 : listeCommande) {
+        //         if (!newlisteCommande.contains(commande2)) {
+        //             listeCommande.remove(commande2);
+        //         }
+        // }
+        reload();
+    }
+
+    public void test() {
+        System.out.println("test");
     }
 
 }
