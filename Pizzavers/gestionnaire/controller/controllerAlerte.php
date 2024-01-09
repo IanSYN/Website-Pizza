@@ -17,7 +17,7 @@ class controllerAlerte extends controllerDefaut {
             // On affiche le message d'absence d'alerte
             include('gestionnaire/view/Alerte/debutAlerte.html');
             include('gestionnaire/view/menuGestionnaire.html');
-            include('gestionnaire/view/Alerte/debutAlerte.html');
+            include('gestionnaire/view/Alerte/titreAlerte.html');
             include('gestionnaire/view/Alerte/viewAucuneAlerte.html');
             include('gestionnaire/view/Alerte/finAlerte.html');
         }
@@ -28,7 +28,7 @@ class controllerAlerte extends controllerDefaut {
             // On affiche le début
             include('gestionnaire/view/Alerte/debutAlerte.html');
             include('gestionnaire/view/menuGestionnaire.html');
-            include('gestionnaire/view/Alerte/debutAlerte.html');
+            include('gestionnaire/view/Alerte/titreAlerte.html');
 
             foreach ($lesAlertes as $uneAlerte) {
 

@@ -1,21 +1,29 @@
 /* Partie de la page AlAffiche */
 
-.blocPizza-AlAffiche {
-    display: flex;
-
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 10px;
-    justify-content: flex-start;
-
+.alerte {
+    display: grid;
+    
+    grid-template-columns: 150px auto;
+    grid-template-rows: 150
 }
 
-.blocPizza-AlAffiche img {
+.alerte img {
     height: 150px;
-    margin: 10px;
+    margin-right: 10px;
 }
 
-.blocPizza-AlAffiche button {
+.alerte h3 {
+    font-size: 1.5em; /* Taille du titre */
+    font-weight: bold; /* Texte en gras */
+    margin: 0; /* Supprime les marges par défaut du titre */
+}
+
+.alerte p {
+    margin: 0; /* Supprime les marges par défaut du paragraphe */
+}
+
+
+main button {
     border-radius: 22px;
     border-style: solid;
 
@@ -30,25 +38,6 @@
     transition: all 100ms ease-out 10ms;
 }
 
-.blocPizza-AlAffiche button:hover {
+main button:hover {
     transform: scale(1.1);
-}
-
-.blocPizza-AlAffiche .disabled {
-    border-radius: 22px;
-    border-style: solid;
-
-    background-color: #FFC7BC;
-    color: black;
-
-    padding-bottom: 4px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 4px;
-    
-    transition: none;
-}
-
-.blocPizza-AlAffiche .disabled:hover {
-    transform: none;
 }
