@@ -15,7 +15,7 @@ class controllerAlerte extends controllerDefaut {
         if (count($lesAlertes) == 0) {
             
             // On affiche le message d'absence d'alerte
-            include('gestionnaire/view/debGestionnaire.html');
+            include('gestionnaire/view/Alerte/debutAlerte.html');
             include('gestionnaire/view/menuGestionnaire.html');
             include('gestionnaire/view/Alerte/debutAlerte.html');
             include('gestionnaire/view/Alerte/viewAucuneAlerte.html');
@@ -26,7 +26,7 @@ class controllerAlerte extends controllerDefaut {
         else {
 
             // On affiche le début
-            include('gestionnaire/view/debGestionnaire.html');
+            include('gestionnaire/view/Alerte/debutAlerte.html');
             include('gestionnaire/view/menuGestionnaire.html');
             include('gestionnaire/view/Alerte/debutAlerte.html');
 
