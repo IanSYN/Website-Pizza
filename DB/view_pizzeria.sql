@@ -70,6 +70,13 @@ AS
 	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee);
 
 
+CREATE OR REPLACE VIEW VIngrBase
+AS 
+	(SELECT P.idPizza, P.idProduit, P.idTaille, B.idIngredient, nomIngredient, quantiteIngredient
+	FROM Pizza P
+	INNER JOIN Base B on B.idPizza = P.idPizza
+   	INNER JOIN Ingredient I on I.idIngredient = B.idIngredient);
+
 
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
