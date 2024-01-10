@@ -55,10 +55,12 @@ AS
 
 CREATE OR REPLACE VIEW VAllergenePizza
 AS 
-	(SELECT DISTINCT A.idAllergene, idPizza, nomAllergene
+	(SELECT DISTINCT P.idProduit, B.idPizza, A.idAllergene, nomAllergene
 	FROM Allergene A
 	INNER JOIN Ingredient I on I.idAllergene = A.idAllergene
-	INNER JOIN Base B on B.idIngredient = I.idIngredient);
+	INNER JOIN Base B on B.idIngredient = I.idIngredient
+    	INNER JOIN Pizza P on P.idPizza = B.idPizza
+	INNER JOIN Produit Pr on Pr.idProduit = P.idPizza);
 
 
 CREATE OR REPLACE VIEW VIngrPersonnalisee
