@@ -4,9 +4,10 @@
     $objet = "gestionnaire";
     $action = "afficherAccueilGestionnaire";
 
-    $objets = ["alerte", "connexion", "gestionnaire", "produit"];
+    $objets = ["alerte", "connexion", "gestionnaire", "ingredient", "produit"];
     $actions = [
         "afficherAccueilGestionnaire",
+        "afficherEtatStock",
         "afficherMesAlertes",
         "afficherMonCompte",
         "ajouterPizza",

@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div>
-                <a>
+                <a href="index.php?objet=ingredient&action=afficherEtatStock">
                     <button>Etat des stocks</button>
                 </a>
             </div>
