@@ -90,7 +90,7 @@ AS
 
 CREATE OR REPLACE VIEW VPanier 
 AS
-	(SELECT C.idCommande, nomProduit, quantiteProduit, E.idEtatCommande, C.idClient, prenomClient, prixTotalCommande
+	(SELECT C.idCommande, P.idProduit, nomProduit, quantiteProduit, E.idEtatCommande, C.idClient, prenomClient, prixTotalCommande
 	FROM `Commande` C
 	INNER JOIN `EtatCommande` E ON E.idEtatCommande = C.idEtatCommande
 	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
