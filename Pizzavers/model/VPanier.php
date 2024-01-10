@@ -7,18 +7,29 @@ class VPanier extends objet
     protected static $classe = 'VPanier';
 
     protected $idCommande;
+    protected $idProduit;
+    protected $idCategorie;
     protected $nomProduit;
     protected $quantiteProduit;
     protected $idEtatCommande;
     protected $idClient;
     protected $prenomClient;
-    protected $prixTotal;
+    protected $prixTotalCommande;
+    protected $coverProduit;
 
     //constructeur
-    public function __construct($idCategorie = null, $nomCategorie = null) {
-        if(!is_null($idCategorie)){
+    public function __construct($idCommande = null, $idProduit = null, $idCategorie = null, $nomProduit = null, $quantiteProduit = null, $idEtatCommande = null, $idClient = null, $prenomClient = null, $prixTotalCommande = null, $coverProduit = null) {
+        if(!is_null($idCommande)){
+            $this->idCommande = $idCommande;
+            $this->idProduit = $idProduit;
             $this->idCategorie = $idCategorie;
-            $this->nomCategorie = $nomCategorie;
+            $this->nomProduit = $nomProduit;
+            $this->quantiteProduit = $quantiteProduit;
+            $this->idEtatCommande = $idEtatCommande;
+            $this->idClient = $idClient;
+            $this->prenomClient = $prenomClient;
+            $this->prixTotalCommande = $prixTotalCommande;
+            $this->coverProduit = $coverProduit;
         }
     }
 
@@ -32,7 +43,7 @@ class VPanier extends objet
         $classRecuperee = static::$classe;
         $identifiant = static::$identifiant;
         //requete
-        $requetePreparee = "SELECT * FROM $classRecuperee WHERE $identifiant = :id_tag; AND ";
+        $requetePreparee = "SELECT * FROM $classRecuperee WHERE $identifiant = :id_tag;";
         //execution
         $resultat = connexion::pdo()->prepare($requetePreparee);
         $tags = array(':id_tag' => $id);
@@ -79,7 +90,6 @@ class VPanier extends objet
         $tags = array(':idCommande' => $idCommande, ':idProd' => $idProd);
         try{
             $resultat->execute($tags);
-            $resultat->setFetchMode(PDO::FETCH_CLASS, $class);
             $element = $resultat->fetchAll();
             if(empty($element)){
                 $requetePreparee = "INSERT INTO $class VALUES (:idCommande, :idProd, 1);";
@@ -106,6 +116,90 @@ class VPanier extends objet
         }
         catch(PDOException $e){
             echo $e->getMessage();
+        }
+    }
+
+    public static function SupprimerPanierProduit($idcmd, $idProd){
+        $class = 'Panier';
+        $requeteCheck = "SELECT * FROM $class WHERE idCommande = :idCommande AND idProduit = :idProd;";
+        $resultat = connexion::pdo()->prepare($requeteCheck);
+        $tags = array(':idCommande' => $idcmd, ':idProd' => $idProd);
+        try{
+            $resultat->execute($tags);
+            $element = $resultat->fetchAll();
+            if(!empty($element)){
+                $requetePreparee = "DELETE FROM $class WHERE idCommande = :idCommande AND idProduit = :idProd";
+                $resultat = connexion::pdo()->prepare($requetePreparee);
+                $tags = array(':idCommande' => $idcmd, ':idProd' => $idProd);
+                try{
+                    $resultat->execute($tags);
+                    return true;
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                    return false;
+                }
+            }
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function DownPanierProduit($idcmd, $idProd){
+        $class = 'Panier';
+        $requeteCheck = "SELECT * FROM $class WHERE idCommande = :idCommande AND idProduit = :idProd;";
+        $resultat = connexion::pdo()->prepare($requeteCheck);
+        $tags = array(':idCommande' => $idcmd, ':idProd' => $idProd);
+        try{
+            $resultat->execute($tags);
+            $element = $resultat->fetchAll();
+            if(!empty($element)){
+                $requetePreparee = "UPDATE $class SET quantiteProduit = quantiteProduit - 1 WHERE idCommande = :idCommande AND idProduit = :idProd;";
+                $resultat = connexion::pdo()->prepare($requetePreparee);
+                $tags = array(':idCommande' => $idcmd, ':idProd' => $idProd);
+                try{
+                    $resultat->execute($tags);
+                    return true;
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                    return false;
+                }
+            }
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function UpPanierProduit($idcmd, $idProd){
+        $class = 'Panier';
+        $requeteCheck = "SELECT * FROM $class WHERE idCommande = :idCommande AND idProduit = :idProd;";
+        $resultat = connexion::pdo()->prepare($requeteCheck);
+        $tags = array(':idCommande' => $idcmd, ':idProd' => $idProd);
+        try{
+            $resultat->execute($tags);
+            $element = $resultat->fetchAll();
+            if(!empty($element)){
+                $requetePreparee = "UPDATE $class SET quantiteProduit = quantiteProduit + 1 WHERE idCommande = :idCommande AND idProduit = :idProd;";
+                $resultat = connexion::pdo()->prepare($requetePreparee);
+                $tags = array(':idCommande' => $idcmd, ':idProd' => $idProd);
+                try{
+                    $resultat->execute($tags);
+                    return true;
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                    return false;
+                }
+            }
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
         }
     }
 }

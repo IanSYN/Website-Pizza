@@ -17,10 +17,10 @@ class controllerPanier extends controllerDefaut{
         $classe = static::$classe;
         $id = $_SESSION["idClient"];
         $idProd = $_GET["idProduit"];
-        //$idPanier = Commande::idPanier($id);
-        // $classe::AjoutePanierProduit($idPanier, $idProd);
-        //self::AfficherPanier();
-        require_once('view/test.php');
+        $idPanier = Commande::idPanier($id);
+        $classe::AjoutePanierProduit($idPanier, $idProd);
+        self::AfficherPanier();
+        //require_once('view/test.php');
     }
 
     public static function AfficherPanier(){
@@ -37,7 +37,7 @@ class controllerPanier extends controllerDefaut{
 
             require_once('view/Panier/debPanier.html');
             require_once('view/menu.php');
-            $PizValue = $classe::getPanierPizza($id);
+            //$PizValue = $classe::getPanierPizza($id);
             $value = $classe::getPanierProduit($id);
             require_once('view/Panier/Panier.php');
             require_once('view/fin.html');
@@ -69,6 +69,33 @@ class controllerPanier extends controllerDefaut{
             }
             
         }
+    }
+
+    public static function SupprimerPanier(){
+        $identifiant = static::$identifiant;
+        $classe = static::$classe;
+        $idcmd = $_GET["idCommande"];
+        $idProd = $_GET["idProduit"];;
+        $classe::SupprimerPanierProduit($idcmd, $idProd);
+        self::AfficherPanier();
+    }
+
+    public static function Up(){
+        $identifiant = static::$identifiant;
+        $classe = static::$classe;
+        $idcmd = $_GET["idCommande"];
+        $idProd = $_GET["idProduit"];;
+        $classe::UpPanierProduit($idcmd, $idProd);
+        self::AfficherPanier();
+    }
+
+    public static function Down(){
+        $identifiant = static::$identifiant;
+        $classe = static::$classe;
+        $idcmd = $_GET["idCommande"];
+        $idProd = $_GET["idProduit"];;
+        $classe::DownPanierProduit($idcmd, $idProd);
+        self::AfficherPanier();
     }
 }
 ?>

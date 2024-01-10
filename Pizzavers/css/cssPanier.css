@@ -1,11 +1,124 @@
+h1 {
+    text-align: center;
+    margin: 10px;
+}
+
+.ContenerPanier {
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.PanierProd {
+    margin: 10px;
+    border: unset;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    padding: 10px;
+
+}
+
+.ContenerResume {
+    background-color: white;
+    text-align: center;
+    border: unset;
+    border-radius: 15px;
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    margin: 30px;
+    padding: 10px;
+    position: fixed;
+    width: 25%;
+}
+
+.fond {
+    background-color: none;
+    border: unset;
+    border-radius: 15px;
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    margin: 30px;
+    padding: 10px;
+
+}
+
 .row {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     margin: 10px;
     border: unset;
     border-radius: 15px;
     background-color: white;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    padding: 10px;
 }
 
 .row h1{
-    margin: 10px;
+    margin: 20px;
+}
+
+.bouton {
+    text-align: left;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.bouton button {
+    size: cover;
+}
+
+label {
+    display: inline-block;
+    width: 230px;
+    text-align: left;
+}
+
+.Paye {
+  background-color: #fff000;
+  border-radius: 12px;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-align: center;
+  transition: 200ms;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.Paye:not(:disabled):hover,
+.Paye:not(:disabled):focus {
+  outline: 0;
+  background: #f4e603;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.2), 0 3px 8px 0 rgba(0,0,0,.15);
+}
+
+.Paye:disabled {
+  filter: saturate(0.2) opacity(0.5);
+  -webkit-filter: saturate(0.2) opacity(0.5);
+  cursor: not-allowed;
+}
+
+/* CSS */
+.Supp {
+    margin: 20px;
+    outline: none;
+    color: #DAA06D;
+    padding: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    border: 2px dashed #DAA06D;
+    border-radius: 15px;
+    background-color: #EADDCA;
+    box-shadow: 0 0 0 4px #EADDCA, 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    transition: .1s ease-in-out, .4s color;
+}
+  
+.Supp:active {
+transform: translateX(0.1em) translateY(0.1em);
+box-shadow: 0 0 0 4px #EADDCA, 1.5px 1.5px 2.5px 1.5px rgba(0, 0, 0, 0.5);
 }

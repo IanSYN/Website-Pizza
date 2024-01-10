@@ -45,7 +45,6 @@ class Produit extends objet
         }
         return $tab[0];
     }
-
     public static function creerProduit($nomProduit, $prixProduit, $coverProduit, $idCategorie, $alAffiche){
         $classRecuperee = static::$classe;
         $requete = "INSERT INTO $classRecuperee (nomProduit, prixProduit, coverProduit, idCategorie, alAffiche) VALUES (:nomProduit, :prixProduit, :coverProduit, :idCategorie, :alAffiche);";

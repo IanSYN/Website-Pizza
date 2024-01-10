@@ -5,8 +5,11 @@ require_once('model/Categorie.php');
 require_once('model/VPanier.php');
 require_once('model/VProduit.php');
 require_once('model/Produit.php');
-require_once('model/Ingredient.php');
-//require_once('model/Base.php');
+
+require_once('model/VIngrBase.php');
+require_once('model/VAllergenePizza.php');
+
+
 class controllerAccueil extends controllerDefaut{
 
     protected static $classeC = 'Categorie';
@@ -15,18 +18,25 @@ class controllerAccueil extends controllerDefaut{
     protected static $identifiant = 'idProduit';
     protected static $classeP = 'VPanier';
     protected static $identifiantP = 'idClient';
+    //protected static $identifiantB = 'idPizza';
+    //protected static $identifiantCI = 'idIngredient';
+
 
     public static function AfficherOne(){
         $id = $_GET[static::$identifiant];
+        //$id1 = static::$identifiantB;
+        //$id2 = static::$identifiantCI;
         $identifiant = static::$identifiant;
         $classCat = static::$classeC;
         $classProd = static::$classe;
         require_once('view/UnProd/debOne.html');
         require_once('view/menu.php');
         $unProd = $classProd::getOne($id);
-        $listProd = Ingredient::getAll();
+        $lstIngr = VIngrBase::getOneVIngrBase($id);
+        $lstAllergene = VAllergenePizza::getOneVAP($id);
         //$listQtnIngr = Base::getIngreAll();
         require_once('view/UnProd/unProd.php');
+        //require_once('view/test.php');
         require_once('view/fin.html');
     }
     public static function AfficherAjoute(){
