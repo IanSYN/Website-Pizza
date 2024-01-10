@@ -1,4 +1,3 @@
-<main>
     <h1>Nos Pizzas</h1>
     <?php
     foreach ($tableauProduits as $element) {
@@ -24,3 +23,5 @@
         <a href='index.php?objet=produit&action=ajouterPizza'> <button type='button'> Ajouter </button></a>
     </div>
 </main>
+</body>
+</html>

@@ -1,5 +1,4 @@
-<main>
-    <h1>Pizzas à l'affiche</h1>
+<h1>Pizzas à l'affiche</h1>
     <?php
     foreach ($tableauProduits as $element) {
 
@@ -29,3 +28,4 @@
     ?>
 </main>
 </body>
+</html>

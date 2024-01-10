@@ -32,27 +32,28 @@ BEGIN
     UPDATE Ingredient SET stockIngredient = (quantiteActuelle + quantiteAjoutee) WHERE `Ingredient`.`idIngredient` = idIngrRecherche;
 END //
     
--- Procédure pour vérifier le stock d'ingrédients
-
-CREATE PROCEDURE checkStockIngr(IN idIngrRecherche INT(11))
+-- Fonction qui vérifie si le seuil de l'ingrédient a été dépassé
+CREATE FUNCTION checkStockIngr(IN idIngrRecherche INT(11))
+RETURNS BOOLEAN
 BEGIN
-    DECLARE nomIngr VARCHAR(30);
     DECLARE seuilIngr INT;
     DECLARE stockIngr INT;
 
     -- Sélection du seuil d'alerte, du nouveau stock de l'ingrédient, de son nom 
-    SELECT A.seuilIngredient, I.stockIngredient, I.nomIngredient
-    INTO seuilIngr, stockIngr, nomIngr
+    SELECT A.seuilIngredient, I.stockIngredient
+    INTO seuilIngr, stockIngr
     FROM Alerte A
     INNER JOIN Ingredient I ON A.idIngredient = I.idIngredient
     WHERE I.idIngredient = idIngrRecherche;
 
     -- Vérification du stock par rapport au seuil et envoi d'email si nécessaire
     IF stockIngr < seuilIngr THEN
-        -- On envoie un mail pour alerter le gestionnaire
-         UPDATE Alerte SET verifSeuil = TRUE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
+        -- On renvoi
+        -- UPDATE Alerte SET verifSeuil = TRUE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
+        RETURN TRUE;
     ELSE 
-         UPDATE Alerte SET verifSeuil = FALSE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
+        -- UPDATE Alerte SET verifSeuil = FALSE WHERE `Alerte`.`idIngredient` = idIngrRecherche;
+        RETURN FALSE;
     END IF;
 END //
     
@@ -62,26 +63,27 @@ AFTER UPDATE ON Ingredient
 FOR EACH ROW
 BEGIN
     IF (OLD.stockIngredient <> NEW.stockIngredient) THEN
-    	CALL checkStockIngr(OLD.idIngredient);
+        UPDATE Alerte SET verifSeuil = checkStockIngr(OLD.idIngredient) WHERE `Alerte`.`idIngredient` = OLD.idIngredient;
+    	-- checkStockIngr(OLD.idIngredient);
     END IF;
 END//
 
 -- Déclencheur pour appeler la procédure après la mise à jour d'Alerte
 -- après avoir paramétré les seuils d'alerte
 CREATE TRIGGER verifManqueStock
-AFTER UPDATE ON Alerte
+BEFORE UPDATE ON Alerte
 FOR EACH ROW
 BEGIN
-    CALL checkStockIngr(OLD.idIngredient);
+    SET NEW.verifSeuil = checkStockIngr(OLD.idIngredient);
 END//
 
 -- Déclencheur pour appeler la procédure après l'insertion d'une Alerte
 -- après avoir paramétré les seuils d'alerte
 CREATE TRIGGER insertAlerteManqueStock
-AFTER INSERT ON Alerte
+BEFORE INSERT ON Alerte
 FOR EACH ROW
 BEGIN
-    CALL checkStockIngr(NEW.idIngredient);
+    SET NEW.verifSeuil = checkStockIngr(NEW.idIngredient);
 END//
 
 -- Insert dans Pizza les 2 autres tailles de la pizza medium inserée 

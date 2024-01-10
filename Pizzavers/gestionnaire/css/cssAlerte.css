@@ -53,3 +53,24 @@
     margin-top: 50px;
 }
 
+
+/* Barre de message de paramètres enregistrées */
+.paramEnregistres {
+    background-color: #30dc9c;
+    color: #1E7C39;
+    padding: 8px;
+
+    display: flex;
+    align-items: center;
+    
+}
+
+.paramEnregistres img {
+    height: 1em;
+}
+
+.paramEnregistres p {
+    margin-bottom: 0px;
+    margin-left: 8px;
+    margin-top: 0px;
+}

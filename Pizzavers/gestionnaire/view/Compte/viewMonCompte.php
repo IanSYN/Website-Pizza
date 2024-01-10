@@ -1,5 +1,4 @@
-<main>
-    <h1>Mon compte gestionnaire</h1>
+<h1>Mon compte gestionnaire</h1>
     <?php
     echo "<div class='gestio'>";
     echo "<h2>Adresse mail</h2>";
@@ -16,3 +15,5 @@
     ?>
     
 </main>
+</body>
+</html>
