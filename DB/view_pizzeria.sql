@@ -72,7 +72,7 @@ AS
 
 CREATE OR REPLACE VIEW VIngrBase
 AS 
-	(SELECT P.idPizza, P.idProduit, P.idTaille, B.idIngredient, nomIngredient, quantiteIngredient
+	(SELECT P.idPizza, P.idProduit, P.idTaille, B.idIngredient, nomIngredient, quantiteIngredient, coverIngredient
 	FROM Pizza P
 	INNER JOIN Base B on B.idPizza = P.idPizza
    	INNER JOIN Ingredient I on I.idIngredient = B.idIngredient);
