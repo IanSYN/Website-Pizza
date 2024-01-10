@@ -9,11 +9,11 @@
     font-size: 16px;
     text-align: center;
     font-weight: bold;
-    margin:0px;
+    margin: 0px;
 }
 
 /* Partie Barre gestionnaire */
-.barreGestionnaire{
+.barreGestionnaire {
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -68,7 +68,6 @@
 }
 
 
-
 /* PARTIE MAIN */
 
 main {
@@ -116,7 +115,7 @@ main button:hover {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 4px;
-    
+
     transition: none;
 }
 
@@ -193,6 +192,6 @@ span img {
     padding: 10px;
 }
 
-h2{
+h2 {
     font-weight: bold;
 }

@@ -50,12 +50,6 @@ class controllerAlerte extends controllerDefaut {
 
     }
 
-    // Fonction qui renvoie le nombre d'alertes 
-    public static function nbAlertes() {
-        return count(Alerte::getMesAlertes($_SESSION['idGestionnaire']));
-    }
-
-
     // Fonction permettant d'afficher les paramètres d'alerte
     // pour régler les seuils d'alerte
     public static function ParametresAlerte($succes = false) {
