@@ -55,10 +55,12 @@ AS
 
 CREATE OR REPLACE VIEW VAllergenePizza
 AS 
-	(SELECT DISTINCT A.idAllergene, idPizza, nomAllergene
+	(SELECT DISTINCT P.idProduit, B.idPizza, A.idAllergene, nomAllergene
 	FROM Allergene A
 	INNER JOIN Ingredient I on I.idAllergene = A.idAllergene
-	INNER JOIN Base B on B.idIngredient = I.idIngredient);
+	INNER JOIN Base B on B.idIngredient = I.idIngredient
+    	INNER JOIN Pizza P on P.idPizza = B.idPizza
+	INNER JOIN Produit Pr on Pr.idProduit = P.idPizza);
 
 
 CREATE OR REPLACE VIEW VIngrPersonnalisee
@@ -69,6 +71,13 @@ AS
     	INNER JOIN Base B on B.idIngredient = I.idIngredient
 	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee);
 
+
+CREATE OR REPLACE VIEW VIngrBase
+AS 
+	(SELECT P.idPizza, P.idProduit, P.idTaille, B.idIngredient, nomIngredient, quantiteIngredient, coverIngredient
+	FROM Pizza P
+	INNER JOIN Base B on B.idPizza = P.idPizza
+   	INNER JOIN Ingredient I on I.idIngredient = B.idIngredient);
 
 
 CREATE OR REPLACE VIEW VPizzaIngr
@@ -83,7 +92,7 @@ AS
 
 CREATE OR REPLACE VIEW VPanier 
 AS
-	(SELECT C.idCommande, nomProduit, quantiteProduit, E.idEtatCommande, C.idClient, prenomClient, prixTotalCommande
+	(SELECT C.idCommande, P.idProduit, Pr.idCategorie, nomProduit, quantiteProduit, E.idEtatCommande, C.idClient, prenomClient, prixTotalCommande, coverProduit
 	FROM `Commande` C
 	INNER JOIN `EtatCommande` E ON E.idEtatCommande = C.idEtatCommande
 	INNER JOIN `Client` Cl ON Cl.idClient = C.idClient
