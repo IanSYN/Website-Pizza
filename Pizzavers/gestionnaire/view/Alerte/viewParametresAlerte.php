@@ -1,9 +1,8 @@
-<div class='alerte'>
+<section class='alerte'>
 <?php
     echo "<img src='img/ingredient/$cover' />";
     echo "<h3> $nom </h3>";
     echo "<p> Stock actuel : $stock g </p>";
 ?>
-    <!-- Tu en es là bg -->
-    <input type="number" id="">
-</div>
+    <input type="number" id="<?php echo "$idIngr"?>" name="<?php echo "$idIngr"?>" value="<?php echo $seuil?>" min="0.0" step="0.1" required/>
+</section>

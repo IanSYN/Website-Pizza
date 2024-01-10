@@ -3,7 +3,7 @@
 .alerte {
     display: grid;
     
-    grid-template-columns: 150px auto auto;
+    grid-template-columns: 150px max-content 5em;
     grid-template-rows: 75px 75px;
 }
 
@@ -42,5 +42,14 @@
     margin: 0;
 }
 
+.alerte input {
+    /* Se trouve tout à droite lorsque les paramètres sont affichés */
+    grid-column-start: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
 
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-top: 50px;
+}
 
