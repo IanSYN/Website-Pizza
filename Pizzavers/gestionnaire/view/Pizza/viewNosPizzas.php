@@ -15,7 +15,7 @@
             echo "<div class='blocProduit'>";
             echo "<img src='img/$urlImage' />";
             echo "<p> Pizza ".$nomProduit." </p>";
-            echo "<a href='index.php?objet=produit&action=mettreAlAffiche&idProduit=$idProduit'> <button type='button' /> Supprimer </button></a>";
+            echo "<a href='index.php?objet=produit&action=mettreAlAffiche&idProduit=$idProduit'> <button type='button' /> Supprimer </button> <button type='button' /> Recette </button></a>";
             echo "</div>";
         }
     }

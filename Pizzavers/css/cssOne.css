@@ -9,9 +9,51 @@
     text-align: center;
 }
 
+h1{
+    text-align: center;
+    text-decoration: bold;
+    color: green;
+}
+
+h2{
+    text-align: center;
+    text-decoration: bold;
+    font-style: italic;
+    color: red;
+}
+
+.Prodimg{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
 .Prodimg img{
-    width: 80%;
-    height: 80%;
-    border: unset;
-    border-radius: 15px;
+    width: 18%;
+    border: thick double green;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.Prodinf img{
+    height: 25%;
+    object-position: center bottom;
+    text-align: center;
+    border: 2px black;
+}
+
+ul{
+    border: 3px black;
+    padding: 0;
+}
+
+li{
+    padding: 5px;
+    text-align: center;
+}
+
+.Prodinf li.qtn{
+    border: 2px solid grey;
+    width: fit-content;
+    padding: 5px;
+    text-align: center;
 }

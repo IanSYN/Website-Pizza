@@ -8,8 +8,8 @@
     <body>
         <?php
         echo "<p>$id</p>";
-        echo "<p>$idProd</p>";
-        echo "<p>$idPanier</p>";
+        echo "<p>$id1</p>";
+        echo "<p>$lstIngr</p>";
         ?>
     </body>
 </html>
