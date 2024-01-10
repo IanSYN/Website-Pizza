@@ -110,7 +110,7 @@ class controllerAlerte extends controllerDefaut {
 
             // Si l'alerte n'est pas présente dans la base de données
             // on la crée
-            if($alerte != null) {
+            if($alerte == null) {
                 $requetePrepare = "INSERT INTO Alerte VALUES (:idIngr, :idGest, :seuil, 0);";
             } 
 
