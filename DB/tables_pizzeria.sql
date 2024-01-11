@@ -176,8 +176,6 @@ CREATE TABLE `Base`(
 
 CREATE TABLE `Supplement`(
    `idIngredient` INT(11),
-   `idPizza` INT(11),
-   `idCommande` INT(11),
    `idPizzaPersonnalisee` INT(11),
    `quantiteSupplement` VARCHAR(50) CHECK (quantiteSupplement >= 0),
    PRIMARY KEY(`idIngredient`, `idPizzaPersonnalisee`),
