@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test du transfert de fichiers</title>
+</head>
+<body>
+    <form action="testUpload.php" method="post" enctype="multipart/form-data">
+        <label for="fileToUpload">Image du produit:</label>
+        <input type="file" accept="jpeg" name="fileToUpload" id="fileToUpload"/>
+        <input type="submit" name="boutonCreer" value="Ajouter le produit" style="cursor: pointer;" /> 
+    </form>
+</body>
+</html>
