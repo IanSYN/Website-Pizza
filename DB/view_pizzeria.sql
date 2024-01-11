@@ -81,6 +81,16 @@ AS
    	INNER JOIN Ingredient I on I.idIngredient = B.idIngredient);
 
 
+CREATE OR REPLACE VIEW VIngrBase
+AS 
+	(SELECT P.idPizza, P.idProduit, P.idTaille, B.idIngredient, S.idPizzaPersonnalisee, nomIngredient, quantiteIngredient, coverIngredient, prixIngredient, quantiteSupplement, C.idClient
+	FROM Supplement S
+	INNER JOIN Ingredient I on I.idIngredient = S.idIngredient
+    	INNER JOIN Base B on B.idIngredient = I.idIngredient
+    	INNER JOIN Pizza P on P.idPizza = B.idPizza
+	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee
+    	INNER JOIN Commande C on C.idCommande = PP.idCommande);
+
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
 	(SELECT nomProduit, nomIngredient, nomTaille, coverIngredient, nomAllergene, prixProduit from Ingredient
