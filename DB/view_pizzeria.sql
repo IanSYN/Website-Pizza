@@ -158,6 +158,6 @@ AS
 
 CREATE OR REPLACE VIEW VPizzaPersonnalisee
 AS 
-	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza, quantiteSupplement  from PizzaPersonnalisee pp
+	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, nomIngredient, quantitePizza, quantiteSupplement from PizzaPersonnalisee pp
 	inner join Supplement s on s.idPizzaPersonnalisee = pp.idPizzaPersonnalisee
-	group by pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza);
+    	inner join Ingredient I on I.idIngredient = s.idIngredient);
