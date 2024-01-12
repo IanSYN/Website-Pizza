@@ -65,11 +65,12 @@ AS
 
 CREATE OR REPLACE VIEW VIngrPersonnalisee
 AS 
-	(SELECT S.idPizzaPersonnalisee, nomIngredient, prixIngredient, quantiteIngredient, quantiteSupplement, S.idIngredient
+	(SELECT S.idPizzaPersonnalisee, nomIngredient, prixIngredient, quantiteIngredient, quantiteSupplement, S.idIngredient, C.idClient
 	FROM Supplement S
 	INNER JOIN Ingredient I on I.idIngredient = S.idIngredient
     	INNER JOIN Base B on B.idIngredient = I.idIngredient
-	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee);
+	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee
+   	INNER JOIN Commande C on C.idCommande = PP.idCommande);
 
 
 CREATE OR REPLACE VIEW VIngrBase
@@ -79,6 +80,16 @@ AS
 	INNER JOIN Base B on B.idPizza = P.idPizza
    	INNER JOIN Ingredient I on I.idIngredient = B.idIngredient);
 
+
+CREATE OR REPLACE VIEW VIngrBase
+AS 
+	(SELECT P.idPizza, P.idProduit, P.idTaille, B.idIngredient, S.idPizzaPersonnalisee, nomIngredient, quantiteIngredient, coverIngredient, prixIngredient, quantiteSupplement, C.idClient
+	FROM Supplement S
+	INNER JOIN Ingredient I on I.idIngredient = S.idIngredient
+    	INNER JOIN Base B on B.idIngredient = I.idIngredient
+    	INNER JOIN Pizza P on P.idPizza = B.idPizza
+	INNER JOIN PizzaPersonnalisee PP on PP.idPizzaPersonnalisee = S.idPizzaPersonnalisee
+    	INNER JOIN Commande C on C.idCommande = PP.idCommande);
 
 CREATE OR REPLACE VIEW VPizzaIngr
 AS
@@ -147,6 +158,6 @@ AS
 
 CREATE OR REPLACE VIEW VPizzaPersonnalisee
 AS 
-	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza, quantiteSupplement  from PizzaPersonnalisee pp
+	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, nomIngredient, quantitePizza, quantiteSupplement from PizzaPersonnalisee pp
 	inner join Supplement s on s.idPizzaPersonnalisee = pp.idPizzaPersonnalisee
-	group by pp.idPizzaPersonnalisee, idPizza, idCommande, idIngredient, quantitePizza);
+    	inner join Ingredient I on I.idIngredient = s.idIngredient);

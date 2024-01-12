@@ -147,7 +147,7 @@ CREATE TABLE `Pizza`(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `PizzaPersonnalisee`(
-   `idPizzaPersonnalisee` INT(11) NOT NULL,
+   `idPizzaPersonnalisee` INT(11) NOT NULL AUTO_INCREMENT,
    `quantitePizza` INT(11) NOT NULL,
    `idPizza` INT(11),
    `idCommande` INT(11),
@@ -176,8 +176,6 @@ CREATE TABLE `Base`(
 
 CREATE TABLE `Supplement`(
    `idIngredient` INT(11),
-   `idPizza` INT(11),
-   `idCommande` INT(11),
    `idPizzaPersonnalisee` INT(11),
    `quantiteSupplement` VARCHAR(50) CHECK (quantiteSupplement >= 0),
    PRIMARY KEY(`idIngredient`, `idPizzaPersonnalisee`),
