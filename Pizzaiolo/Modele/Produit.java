@@ -38,7 +38,7 @@ public class Produit{
         this.quantitePizza = quantitePizza;
         this.quantiteIngredient = quantiteIngredient;
     }
-
+    
     public Produit(int IdProduit, String nom){
         this.IdProduit = IdProduit;
         this.NomProduit = nom;

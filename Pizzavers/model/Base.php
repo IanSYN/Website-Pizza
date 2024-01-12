@@ -3,6 +3,8 @@ require_once('objet.php');
 
 class Base extends objet{
 
+    protected static $identifiant = "idPizza"; // Pour la fonction delete
+
     protected static $identifiantA = "idPizza";
     protected static $identifiantB = "idIngredient";
 
@@ -36,4 +38,5 @@ class Base extends objet{
     //         return false;
     //     }
     // }
+
 }

@@ -2,6 +2,7 @@
 require_once('controllerDefaut.php');
 require_once('controllerGestionnaire.php');
 require_once('controllerClient.php');
+require_once('model/Commande.php');
 
 class controllerConnexion extends controllerDefaut {
 
@@ -15,9 +16,9 @@ class controllerConnexion extends controllerDefaut {
             require_once('view/connexion/debutConnexion.html');
             require_once('view/menu.php');
             require_once('view/connexion/frmConnexion_erreur.html');
-            require_once('view/fin.html');            
+            require_once('view/fin.html');
         }
-        
+
         // Affichage sans erreur
         else {
             require_once('view/connexion/debutConnexion.html');
@@ -110,5 +111,5 @@ class controllerConnexion extends controllerDefaut {
             }
         }
     }
-}    
+}
 ?>

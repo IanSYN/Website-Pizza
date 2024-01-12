@@ -196,20 +196,20 @@ public class Commande {
     public ArrayList<Produit> Panier(int numCommande){
         System.out.println("\t commande " + numCommande + " , en cours");
         ArrayList<Produit> panier = new ArrayList<Produit>();
-        String query = "SELECT idPizzaPersonnalisee, idPizza, idIngredient, quantitePizza, quantiteSupplement FROM `VPizzaPersonnalisee` WHERE idCommande = " + numCommande;
-        ResultSet rs  = OutilsJDBC.ExecuteurSQL(query);
-        try {
-            while (rs.next()) {
-                PizzaPersonnalisee p = new PizzaPersonnalisee(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
-                panier.add(p);
-            }
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
+        // String query = "SELECT idPizzaPersonnalisee, idPizza, idIngredient, quantitePizza, quantiteSupplement FROM `VPizzaPersonnalisee` WHERE idCommande = " + numCommande;
+        // ResultSet rs  = OutilsJDBC.ExecuteurSQL(query);
+        // try {
+        //     while (rs.next()) {
+        //         PizzaPersonnalisee p = new PizzaPersonnalisee(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
+        //         panier.add(p);
+        //     }
+        // }
+        // catch (Exception e){
+        //     System.out.println(e);
+        // }
         //query = "SELECT idProduit, quantiteProduit FROM `VCommande` WHERE idCommande = " + numCommande;
-        query = "SELECT idProduit, quantiteProduit FROM `Panier` WHERE idCommande = " + numCommande;
-        rs  = OutilsJDBC.ExecuteurSQL(query);
+        String query = "SELECT idProduit, quantiteProduit FROM `Panier` WHERE idCommande = " + numCommande;
+        ResultSet rs  = OutilsJDBC.ExecuteurSQL(query);
         try {
             rs.absolute(0);
             while (rs.next()) {
@@ -252,8 +252,8 @@ public class Commande {
             int random = (int) (Math.random() * 26);
             codePromo += (char) (random + 65);
         }
-        // String query = "INSERT INTO `Coupon`(`codeCoupon`, 'datePeremptionCoupon', `idClient`) VALUES ('" + codePromo + "', null, null')";
-        // OutilsJDBC.ExecuteurSQL(query);
+        String query = "INSERT INTO `Coupon`(`codeCoupon`, 'datePeremptionCoupon', `idClient`) VALUES ('" + codePromo + "', null, null)";
+        OutilsJDBC.ExecuteurSQL(query);
         System.out.println("Votre code promo est : " + codePromo);
     }
 }

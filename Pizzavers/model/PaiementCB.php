@@ -3,7 +3,6 @@
     class PaiementCB extends Objet {
         protected static $identifiant = "idCB";
         protected static $classe = 'PaiementCB';
-        
         protected $idCB;
         protected $codeCB;
         protected $nomCB;

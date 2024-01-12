@@ -1,7 +1,10 @@
 <?php
     require_once('controller/controllerDefaut.php');
     require_once('model/Produit.php');
-    require_once('model/Categorie.php'); // au cas où
+    require_once('model/Pizza.php');
+    require_once('model/Base.php');
+    require_once('model/PizzaPersonalisee.php');
+    require_once('model/Categorie.php');
     require_once('model/session.php');
 
     class controllerProduit extends controllerDefaut {
@@ -20,7 +23,7 @@
             }
             else {
 
-                // On importe tous les produits 
+                // On importe tous les produits
                 $tableauProduits = Produit::getAll();
 
                 try {
@@ -215,6 +218,59 @@
                 self::AfficherErreur403();
             }
         }
+
+        /*
+        // Permet de supprimer un produit à partir de son $id
+        public static function SupprimerProduit($idProd) {
+
+            // On récupère les infos de ce produit
+            $produit = Produit::getOne($idProd);
+
+            $categ = $produit->get('idCategorie');
+
+            // Cas où il s'agit d'une pizza
+            if ($categ == 3) {
+                
+                // On récupère les identifiants de pizzas du produit
+                $requete = "SELECT idPizza FROM Pizza WHERE idProduit = :id_Prod";
+                $resultat = connexion::pdo()->prepare($requete);
+                $tags = array(':id_Prod' => $idProd);
+                try {
+
+                    // On récupère les identifiants des pizzas persos
+                    $resultat->execute($tags);
+                    $tab = $resultat->fetchColumn();
+
+                    // On supprime toutes les pizzas personnalisées
+                    foreach($tab as $unePizza) {
+                        
+                        // On supprime la pizza de la base 
+                        Base::delete($unePizza);
+                        PizzaPersonnalisee::SupprimerPizzaPersoParIdPizza($unePizza);
+
+                    }
+                    
+                    // On supprime le produit dans la table Pizza
+                    $requete = "DELETE FROM Pizza WHERE idProduit = :id_prod";
+                    $requetePreparee = connexion::pdo()->prepare($requete);
+                    $tag = array("id_prod" => $idProd);
+                    try {
+                        // on exécute la requête préparée
+                        $requetePreparee->execute($tag);
+                    } 
+                    catch (PDOException $e) {
+                        echo $e->getMessage();
+                    }
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                }
+            }
+            else {
+
+            }
+        }
+        */
 
     }
 ?>

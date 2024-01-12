@@ -54,6 +54,10 @@ class controllerPanier extends controllerDefaut{
     }
 
     public static function PagePaiement(){
+        $prixTT = $_GET["prixTotal"];
+        $idCommande = $_GET["idCommande"];
+
+        Commande::MAJPrix($idCommande, $prixTT);
         require_once('view/paiement/debpaiement.html');
         require_once('view/paiement/paiement.php');
     }
@@ -65,7 +69,7 @@ class controllerPanier extends controllerDefaut{
             $Date = $_POST['Date'];
             $Nom = $_POST['Nom'];
             $id = $_SESSION["idClient"];
-            
+
             $classe = static::$paiement;
             if($classe::payer($id, $NCard, $Crypto, $Date, $Nom)){
                 require_once('view/paiement/debpaiement.html');
@@ -75,7 +79,6 @@ class controllerPanier extends controllerDefaut{
                 require_once('view/paiement/debpaiement.html');
                 require_once('view/paiement/refuser.html');
             }
-            
         }
     }
 

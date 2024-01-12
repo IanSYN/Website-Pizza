@@ -11,11 +11,12 @@
         <div class="Prodinf">
             <?php
                 echo "<form action='index.php?objet=personnalisation&action=ajouterPP&idProduit=$idProd' method='POST'>";
+                echo "<p>Voici les ingrédients disponibles (0 pour ne pas ajouter):</p>";
                 $val = 0;
                 foreach ($tabIngre as $ingre) {
                     echo "<div class='ingre'>";
                     //echo "<img src='img/ingredient/".$ingre->get('coverIngredient')."' />";
-                    echo "<label for='ingre".$val."'>".$ingre->get('nomIngredient').": </label>
+                    echo "<label for='ingre".$val."'>".$ingre->get('nomIngredient')." <br>Prix unitaire : ".$ingre->get('prixIngredient')." € : </label>
                     <input type='number' id='ingre".$val."' name='ingre".$val."' value='0' required>";
                     $val++;
                     echo "</div>";

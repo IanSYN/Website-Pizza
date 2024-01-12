@@ -21,5 +21,7 @@ class Pizza extends objet
     {
         return "Pizza " . $this->idPizza . " (" . $this->idProduit . " " . $this->idTaille . ")";
     }
+
+    
 }
 ?>

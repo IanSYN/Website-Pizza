@@ -14,7 +14,7 @@ public class Pizzavers {
     // ***********************************
 
     // Connexion à la base de données
-    // public static Connection co = OutilsJDBC.openConnection();
+    public static Connection co = OutilsJDBC.openConnection();
 
     public static ArrayList<Commande> listeCommandes = new ArrayList<Commande>();
     public static ArrayList<Produit> listeProduits = new ArrayList<Produit>();
@@ -27,7 +27,7 @@ public class Pizzavers {
     // ***********************************
 
     /* A DECOMMENTER POUR LA BD */
-    /*
+    
     public static void remplirListeProduits() throws SQLException {
 
         String query = "SELECT idProduit, nomProduit FROM Produit";
@@ -105,7 +105,7 @@ public class Pizzavers {
         }
         listeCommandes.get(0).afficherPanier();
     }
-    */
+
 
     // Création du launcher de l'application
     public void lancerApplication(ArrayList<Commande> listeCommande){
@@ -121,7 +121,6 @@ public class Pizzavers {
     }
 
     /* A DECOMMENTER POUR LA BD */
-    /*
     public ArrayList<Commande> reload(){
         clearAll();
         try {
@@ -134,7 +133,6 @@ public class Pizzavers {
         }
         return listeCommandes;
     }
-    */
 
     public void clearAll(){
         listeCommandes.clear();
@@ -149,73 +147,72 @@ public class Pizzavers {
     /* Partie des Main */
 
     // Partie avec exemples générés à la main
-    public static void main(String[] args) {
-        Produit produit1 = new Produit(1,"Pizza 4 fromages");
-        Produit produit2 = new Produit(2,"Pizza de la hess");
-        Produit produit3 = new Produit(3,"Coca");
-        Produit produit4 = new Produit(4,"Pistache");
-        Produit produit5 = new Produit(5,"Pizza du crous");
-        Produit produit6 = new Produit(6,"Pizza de la mort");
-        Produit produit7 = new Produit(7,"Pizza de la vie");
-        Produit produit8 = new Produit(8,"Pizza de la fin");
-        Produit produit9 = new Produit(9,"Pizza de la faim");
-        listeProduits.add(produit1);
-        listeProduits.add(produit2);
-        listeProduits.add(produit3);
-        listeProduits.add(produit4);
-        listeProduits.add(produit5);
-        listeProduits.add(produit6);
-        listeProduits.add(produit7);
-        listeProduits.add(produit8);
-        listeProduits.add(produit9);
+    // public static void main(String[] args) {
+    //     Produit produit1 = new Produit(1,"Pizza 4 fromages");
+    //     Produit produit2 = new Produit(2,"Pizza de la hess");
+    //     Produit produit3 = new Produit(3,"Coca");
+    //     Produit produit4 = new Produit(4,"Pistache");
+    //     Produit produit5 = new Produit(5,"Pizza du crous");
+    //     Produit produit6 = new Produit(6,"Pizza de la mort");
+    //     Produit produit7 = new Produit(7,"Pizza de la vie");
+    //     Produit produit8 = new Produit(8,"Pizza de la fin");
+    //     Produit produit9 = new Produit(9,"Pizza de la faim");
+    //     listeProduits.add(produit1);
+    //     listeProduits.add(produit2);
+    //     listeProduits.add(produit3);
+    //     listeProduits.add(produit4);
+    //     listeProduits.add(produit5);
+    //     listeProduits.add(produit6);
+    //     listeProduits.add(produit7);
+    //     listeProduits.add(produit8);
+    //     listeProduits.add(produit9);
 
-        Commande commande1 = new Commande(1, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.0, listeProduits);
-        Commande commande2 = new Commande(2, new Adresse("25 Rue de la Paix Evry",48.629080, 2.441800), 6.00 ,listeProduits);
-        Commande commande3 = new Commande(3, new Adresse("8 Rue du Commerce Massy",48.714170,2.245200), -5.0, listeProduits);
-        Commande commande4 = new Commande(4, new Adresse("Avenue de la République",8.696670,2.308330), 12.0, listeProduits);
-        Commande commande5 = new Commande(5, new Adresse("8 Rue du Commerce Massy",48.676670,2.350000), 22.0, listeProduits);
-        Commande commande6 = new Commande(6, new Adresse("4 avenue des Pere pleins",48.672220,2.383330), -15.00, listeProduits);
-        Commande commande7 = new Commande(7, new Adresse("92 boulevard du ménage",48.612500,2.315830), -7.0, listeProduits);
-        Commande commande8 = new Commande(8, new Adresse("6 rue du sapristi",48.707780,2.386110), 2.0, listeProduits);
-        Commande commande9 = new Commande(9, new Adresse("96 Avenue de Komaeda",48.637500,2.327780), 35, listeProduits);
-        Commande commande10 = new Commande(10, new Adresse("444 rue de la mort",48.726620, 2.274420), 13.0, listeProduits);
-        
-        listeCommandes.add(commande1);
-        listeCommandes.add(commande2);
-        listeCommandes.add(commande3);
-        listeCommandes.add(commande4);
-        listeCommandes.add(commande5);
-        listeCommandes.add(commande6);
-        listeCommandes.add(commande7);
-        listeCommandes.add(commande8);
-        listeCommandes.add(commande9);
-        listeCommandes.add(commande10);
+    //     Commande commande1 = new Commande(1, new Adresse("13 Avenue des sciences Gif sur yvette",48.711734, 2.1705202),15.0, listeProduits);
+    //     Commande commande2 = new Commande(2, new Adresse("25 Rue de la Paix Evry",48.629080, 2.441800), 6.00 ,listeProduits);
+    //     Commande commande3 = new Commande(3, new Adresse("8 Rue du Commerce Massy",48.714170,2.245200), -5.0, listeProduits);
+    //     Commande commande4 = new Commande(4, new Adresse("Avenue de la République",8.696670,2.308330), 12.0, listeProduits);
+    //     Commande commande5 = new Commande(5, new Adresse("8 Rue du Commerce Massy",48.676670,2.350000), 22.0, listeProduits);
+    //     Commande commande6 = new Commande(6, new Adresse("4 avenue des Pere pleins",48.672220,2.383330), -15.00, listeProduits);
+    //     Commande commande7 = new Commande(7, new Adresse("92 boulevard du ménage",48.612500,2.315830), -7.0, listeProduits);
+    //     Commande commande8 = new Commande(8, new Adresse("6 rue du sapristi",48.707780,2.386110), 2.0, listeProduits);
+    //     Commande commande9 = new Commande(9, new Adresse("96 Avenue de Komaeda",48.637500,2.327780), 35, listeProduits);
+    //     Commande commande10 = new Commande(10, new Adresse("444 rue de la mort",48.726620, 2.274420), 13.0, listeProduits);
 
-        try {
-                System.out.println();
+    //     listeCommandes.add(commande1);
+    //     listeCommandes.add(commande2);
+    //     // listeCommandes.add(commande3);
+    //     // listeCommandes.add(commande4);
+    //     // listeCommandes.add(commande5);
+    //     // listeCommandes.add(commande6);
+    //     // listeCommandes.add(commande7);
+    //     // listeCommandes.add(commande8);
+    //     // listeCommandes.add(commande9);
+    //     // listeCommandes.add(commande10);
 
-                Pizzavers application = new Pizzavers();
-                application.lancerApplication(listeCommandes);
+    //     try {
+    //             System.out.println();
 
-        } catch (Exception e)   {
-                System.out.println(e);
-        }
-	}
+    //             Pizzavers application = new Pizzavers();
+    //             application.lancerApplication(listeCommandes);
+
+    //     } catch (Exception e)   {
+    //             System.out.println(e);
+    //     }
+	//}
 
 
     // Partie avec la connexion à la base de données
-    /*
+
     public static void main(String[] args) {
         try {
                 remplirListeProduits(); // Remplissage de listeCommandes
-                System.out.println();
 
                 Pizzavers application = new Pizzavers();
                 application.lancerApplication(listeCommandes);
-
+ 
             } catch (Exception e)   {
                 System.out.println(e);
             }
 	}
-    */
+
 }

@@ -45,5 +45,30 @@ class objet {
             echo $e->getMessage();
         }
     }
+
+    // Permet de supprimer une ligne de la base de données à partir de l'identifiant
+    public static function delete($id) {
+        // récupération du nom de la classe
+        $classeRecuperee = static::$classe;
+
+        // Récupération du nom de l'identifiant
+        $identifiantRecupere = static::$identifiant;
+
+        // écriture de la requête préparée
+        $requete = "DELETE FROM $classeRecuperee WHERE $identifiantRecupere = :id_tag";
+
+        // on prépare la requête
+        $requetePreparee = connexion::pdo()->prepare($requete);
+        
+        // on crée le tableau contenant la valeur pour le tag
+        $tag = array("id_tag" => $id);
+        try {
+            // on exécute la requête préparée
+            $requetePreparee->execute($tag);
+        } 
+        catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
 }
 ?>

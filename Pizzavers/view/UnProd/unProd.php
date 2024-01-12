@@ -22,6 +22,8 @@
                     echo "
                     <div>
                     <a href='index.php?objet=personnalisation&action=ajoutePersonnalisation&$identifiant=$id'>
+                    </br>
+                    </br>
                         <li><button class='personaPizza' type='button'> Personnaliser sa Pizza ! </button></li>
                     </a>
                     </div>";
@@ -30,6 +32,8 @@
                     echo "
                     <div class='seConnecter'>
                     <a href='index.php?objet=connexion&action=afficherConnexion'>
+                    </br>
+                    </br>
                         <li><button class='personaPizza' type='button'> Personnaliser sa Pizza ! </button></li>
                     </a>
                     </div>";
@@ -57,7 +61,9 @@
                     echo "
                     <div>
                     <a href='index.php?objet=panier&action=ajoutePanier&$identifiant=$id'>
-                        <button type='submit'>Ajouter au panier</button>
+                        <button class='personaPizza' type='submit'>Ajouter au panier</button>
+                        </br>
+                        </br>
                     </a>
                     </div>";
                 }
@@ -66,7 +72,9 @@
                     <div class='seConnecter'>
                     <!-- <img src='img/icons8-personne-homme-64.png' /> -->
                     <a href='index.php?objet=connexion&action=afficherConnexion'>
-                        <button type='submit'>Ajouter au panier</button>
+                        <button class='personaPizza' type='submit'>Ajouter au panier</button>
+                        </br>
+                        </br>
                     </a>
                     </div>";
                 }

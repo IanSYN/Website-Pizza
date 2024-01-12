@@ -125,7 +125,7 @@ class VIngrPersonnalisee extends objet
         $resultat2->execute($tags2);
         $idPP = $class2::getid($idCom, $idPizza);
 
-        //on verifie si supplément est peuplé avec l'idPP qu'on recupere     
+        //on verifie si supplément est peuplé avec l'idPP qu'on recupere
         for($i = 1; $i <= 12; $i++){
             $requeteCheck = "SELECT * FROM $class WHERE idIngredient = :idIngredient AND idPizzaPersonnalisee = :idPizzaPersonnalisee;";
             $resultat = connexion::pdo()->prepare($requeteCheck);
@@ -134,7 +134,7 @@ class VIngrPersonnalisee extends objet
                 $resultat->execute($tags) ;
                 $element = $resultat->fetch();
                 if (empty($element)) {
-                    if (!empty($quantite[$i]) && $quantite[$i] != 1) {
+                    if (!empty($quantite[$i])) {
                         $requeteInsertion = "INSERT INTO Supplement(idIngredient, idPizzaPersonnalisee, quantiteSupplement) VALUES (:idIngredient, :idPizzaPersonnalisee, :quantiteSupplement);";
                         $resultat3 = connexion::pdo()->prepare($requeteInsertion);
                         $tags3 = array(':idIngredient' => $i, ':idPizzaPersonnalisee' => $idPP, ':quantiteSupplement' => $quantite[$i]);
@@ -147,7 +147,6 @@ class VIngrPersonnalisee extends objet
             }
         }
     }
-         
 }
 
 ?>

@@ -16,6 +16,7 @@
 
         <label for="tel">Téléphone :</label>
         <input type="tel" id="tel" name="tel" required><br><br>
+
         <br>
         <input type="submit" name="boutonSinscrire" value="S'inscrire" style="cursor: pointer;" /> 
     </form>

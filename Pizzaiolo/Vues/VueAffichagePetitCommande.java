@@ -47,8 +47,8 @@ public class VueAffichagePetitCommande extends JPanel{
         this.add(tempsRestant);
         this.add(prixTotal);
         this.add(nbProduit);
+        
         startTimer();
-
         new ControlleurAffichageCommande(application, Modele, this, fenetreUtilisateur);
     }
 
@@ -66,7 +66,7 @@ public class VueAffichagePetitCommande extends JPanel{
                 Modele.MoinsTempsRestant();
                 tempsRestant.setText("Temps restant (min): " + Modele.getTempsRestant());
             }
-        }, 0, 10000); // Change the delay to 1000 milliseconds (1 second) and set the initial delay to 0
+        }, 0, 1000); // Change the delay to 1000 milliseconds (1 second) and set the initial delay to 0
     }
 }
 

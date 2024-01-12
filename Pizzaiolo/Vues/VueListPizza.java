@@ -49,7 +49,7 @@ public class VueListPizza extends JFrame {
 
         this.setVisible(true);
 
-        //startTimer();
+        startTimer();
         reload();
         //System.out.println("fin");
     }
@@ -127,14 +127,13 @@ public class VueListPizza extends JFrame {
         if (droite != null) {
             panelMilieu.add(droite);
         }
-
         pack();
 		repaint();
 		revalidate();
     }
 
     public void reloadCommande() {
-        //listeCommande = Application.reload();
+        listeCommande = Application.reload();
         // for (Commande commande : newlisteCommande) {
         //     if (!listeCommande.contains(commande)) {
         //         listeCommande.add(commande);

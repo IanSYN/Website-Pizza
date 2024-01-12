@@ -18,7 +18,8 @@
         "nosPizzas",
         "nosProduit",
         "parametresAlerte",
-        "pizzaAlAffiche"
+        "pizzaAlAffiche",
+        "supprimerProduit"
     ];
     
     if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){

@@ -45,11 +45,11 @@ class PizzaPersonnalisee extends objet
         $tags = array(':idCmd' => $idPP);
         try{
             $resultat->execute($tags);
-            $requete = "DELETE FROM $classRecuperee WHERE idPizzaPersonnalisee = :idCmd;";
-            $resultat = connexion::pdo()->prepare($requete);
+            $requete2 = "DELETE FROM $classRecuperee WHERE idPizzaPersonnalisee = :idCmd;";
+            $resultat2 = connexion::pdo()->prepare($requete2);
             $tags = array(':idCmd' => $idPP);
             try{
-                $resultat->execute($tags);
+                $resultat2->execute($tags);
                 return true;
             }
             catch(PDOException $e){
@@ -61,6 +61,31 @@ class PizzaPersonnalisee extends objet
             echo $e->getMessage();
             return false;
         }
+    }
+
+    // Permet de supprimer toutes les pizzas personnalisées et leurs suppléments 
+    // ayant pour identifiant de pizza celui passé en paramètres
+    public static function SupprimerPizzaPersoParIdPizza($idPizza){
+
+        // Requête récupérant les identifiants de pizza personnalisée concernant une pizza
+        $requete = "SELECT idPizzaPersonalisee FROM PizzaPersonnalisee WHERE idPizza = :id_Pizza";
+        $resultat = connexion::pdo()->prepare($requete);
+        $tags = array(':id_Pizza' => $idPizza);
+        try {
+
+            // On récupère les identifiants des pizzas persos
+            $resultat->execute($tags);
+            $tab = $resultat->fetchColumn();
+
+            // On supprime toutes les pizzas personnalisées
+            foreach($tab as $unePizzaPerso) {
+                self::supprimerPizzaPerso($unePizzaPerso);
+            }
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
+
     }
 }
 ?>

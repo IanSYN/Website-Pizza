@@ -5,6 +5,7 @@ require_once('model/Categorie.php');
 require_once('model/VPanier.php');
 require_once('model/VProduit.php');
 require_once('model/Produit.php');
+require_once('model/Commande.php');
 
 require_once('model/VIngrBase.php');
 require_once('model/VAllergenePizza.php');
@@ -60,6 +61,14 @@ class controllerAccueil extends controllerDefaut{
         $listProd = $classProd::getAll();
         $AlAffiche = Produit::getAffiche();
         require_once('view/Accueil/Accueil.php');
+        require_once('view/fin.html');
+    }
+    public static function SuivreCommande() {
+        $idClient = $_SESSION["idClient"];
+        $commandes = Commande::getCommandeClient($idClient);
+        require_once('view/Accueil/debSuivie.html');
+        require_once('view/menu.php');
+        require_once('view/Accueil/suivreCommande.php');
         require_once('view/fin.html');
     }
 }

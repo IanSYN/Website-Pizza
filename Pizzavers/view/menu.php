@@ -36,7 +36,6 @@
                     </div>";
                 }
             ?>
-                
             </div>
             <?php
                 require_once("model/session.php");
@@ -47,6 +46,9 @@
                     echo "<div class='dropdown'>
                                 <p> Bonjour $prenom $nom ! </p>
                                 <div class='dropdown-content'>
+                                    <a href='index.php?objet=accueil&action=suivreCommande'>
+                                        <button type='submit'>Suivre Commande</button>
+                                    </a>
                                     <a href='index.php?objet=connexion&action=disconnect'>
                                         <button type='submit'>Se déconnecter</button>
                                     </a>

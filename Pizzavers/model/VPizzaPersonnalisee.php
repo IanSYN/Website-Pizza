@@ -8,18 +8,22 @@ class VPizzaPersonnalisee extends objet
     protected $idCommande;
     protected $idPizza;
     protected $nomIngredient;
+    protected $prixIngredient;
     protected $quantitePizza;
     protected $quantiteSupplement;
-    
+    protected $coverProduit;
+
     //constructeur
-    public function __construct($idPizzaPersonnalisee = null, $idCommande = null, $idPizza = null, $nomIngredient = null, $quantitePizza = null, $quantiteSupplement = null) {
+    public function __construct($idPizzaPersonnalisee = null, $idCommande = null, $idPizza = null, $nomIngredient = null, $prixIngredient = null, $quantitePizza = null, $quantiteSupplement = null, $coverProduit = null) {
         if(!is_null($idPizzaPersonnalisee)){
             $this->idPizzaPersonnalisee = $idPizzaPersonnalisee;
             $this->idCommande = $idCommande;
             $this->idPizza = $idPizza;
             $this->nomIngredient = $nomIngredient;
+            $this->prixIngredient = $prixIngredient;
             $this->quantitePizza = $quantitePizza;
             $this->quantiteSupplement = $quantiteSupplement;
+            $this->coverProduit = $coverProduit;
         }
     }
 
