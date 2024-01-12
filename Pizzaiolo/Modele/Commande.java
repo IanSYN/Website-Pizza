@@ -39,12 +39,12 @@ public class Commande {
         this.ratio = calcRatio(tempsRestant, adresseArrivee);
     }
 
-    /*public Commande(int numCommande) {
+    public Commande(int numCommande) {
         this.numCommande = numCommande;
         this.adresseArrivee = null;
         this.laCommande = null;
         this.dateCommande = LocalDateTime.now();
-    }*/
+    }
 
     //merci de me laisser mon constructeur de test :
     public Commande(int numCommande, Adresse adresseArrivee, float prixCommande) {
