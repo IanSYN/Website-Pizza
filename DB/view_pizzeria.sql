@@ -161,3 +161,10 @@ AS
 	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, nomIngredient, quantitePizza, quantiteSupplement from PizzaPersonnalisee pp
 	inner join Supplement s on s.idPizzaPersonnalisee = pp.idPizzaPersonnalisee
     	inner join Ingredient I on I.idIngredient = s.idIngredient);
+
+--trigger before insert commande
+BEGIN
+    IF (NEW.prixTotalCommande = 0) THEN
+        SET NEW.prixTotalCommande = (SELECT calculPrixTotal(NEW.idCommande));
+    END IF;
+END //
