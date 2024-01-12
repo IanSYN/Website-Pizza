@@ -18,20 +18,24 @@ AS
 
 CREATE OR REPLACE VIEW VStatJournee 
 AS 
-	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
-	where dateCommande = SYSDATE());
+	(SELECT COUNT(*) as nbrCommande, SUM(prixTotalCommande) as CATotal 
+    	FROM `Commande`
+    	WHERE DATE(dateCommande) = DATE(SYSDATE()););
 
 
-CREATE OR REPLACE VIEW VStatSemaine
+CREATE OR REPLACE VIEW VStatSemaine 
 AS 
-	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
-	where dateCommande = WEEK(SYSDATE()));
+    (SELECT COUNT(*) as nbrCommande, SUM(prixTotalCommande) as CATotal 
+    FROM `Commande`
+    WHERE YEARWEEK(dateCommande) = YEARWEEK(SYSDATE()));
 
 
-CREATE OR REPLACE VIEW VStatMois
+CREATE OR REPLACE VIEW VStatMois 
 AS 
-	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
-	where dateCommande = MONTH(SYSDATE()));
+    (SELECT COUNT(*) as nbrCommande, SUM(prixTotalCommande) as CATotal 
+    FROM `Commande`
+    WHERE MONTH(dateCommande) = MONTH(SYSDATE()));
+
 
 
 
