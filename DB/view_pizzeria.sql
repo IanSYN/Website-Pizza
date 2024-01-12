@@ -158,12 +158,14 @@ AS
 
 CREATE OR REPLACE VIEW VPizzaPersonnalisee
 AS 
-	(SELECT pp.idPizzaPersonnalisee, pp.idPizza, idCommande, nomIngredient, quantitePizza, quantiteSupplement, coverProduit from PizzaPersonnalisee pp
+	(SELECT pp.idPizzaPersonnalisee, pp.idPizza, idCommande, nomIngredient, prixIngredient, quantitePizza, quantiteSupplement, coverProduit from PizzaPersonnalisee pp
 	inner join Supplement s on s.idPizzaPersonnalisee = pp.idPizzaPersonnalisee
     inner join Ingredient I on I.idIngredient = s.idIngredient
     
     INNER JOIN Pizza P on P.idPizza = pp.idPizza
     inner join Produit Pr on Pr.idProduit = P.idProduit);
+
+
 --trigger before insert commande
 BEGIN
     IF (NEW.prixTotalCommande = 0) THEN
