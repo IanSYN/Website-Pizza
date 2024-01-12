@@ -18,20 +18,24 @@ AS
 
 CREATE OR REPLACE VIEW VStatJournee 
 AS 
-	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
-	where dateCommande = SYSDATE());
+	(SELECT COUNT(*) as nbrCommande, SUM(prixTotalCommande) as CATotal 
+    	FROM `Commande`
+    	WHERE DATE(dateCommande) = DATE(SYSDATE()););
 
 
-CREATE OR REPLACE VIEW VStatSemaine
+CREATE OR REPLACE VIEW VStatSemaine 
 AS 
-	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
-	where dateCommande = WEEK(SYSDATE()));
+    (SELECT COUNT(*) as nbrCommande, SUM(prixTotalCommande) as CATotal 
+    FROM `Commande`
+    WHERE YEARWEEK(dateCommande) = YEARWEEK(SYSDATE()));
 
 
-CREATE OR REPLACE VIEW VStatMois
+CREATE OR REPLACE VIEW VStatMois 
 AS 
-	(SELECT count(*) as nbrCommande, SUM(prixTotalCommande) as CATotal from `Commande`
-	where dateCommande = MONTH(SYSDATE()));
+    (SELECT COUNT(*) as nbrCommande, SUM(prixTotalCommande) as CATotal 
+    FROM `Commande`
+    WHERE MONTH(dateCommande) = MONTH(SYSDATE()));
+
 
 
 
@@ -158,6 +162,17 @@ AS
 
 CREATE OR REPLACE VIEW VPizzaPersonnalisee
 AS 
-	(SELECT pp.idPizzaPersonnalisee, idPizza, idCommande, nomIngredient, quantitePizza, quantiteSupplement from PizzaPersonnalisee pp
+	(SELECT pp.idPizzaPersonnalisee, pp.idPizza, idCommande, nomIngredient, prixIngredient, quantitePizza, quantiteSupplement, coverProduit from PizzaPersonnalisee pp
 	inner join Supplement s on s.idPizzaPersonnalisee = pp.idPizzaPersonnalisee
-    	inner join Ingredient I on I.idIngredient = s.idIngredient);
+    inner join Ingredient I on I.idIngredient = s.idIngredient
+    
+    INNER JOIN Pizza P on P.idPizza = pp.idPizza
+    inner join Produit Pr on Pr.idProduit = P.idProduit);
+
+
+--trigger before insert commande
+BEGIN
+    IF (NEW.prixTotalCommande = 0) THEN
+        SET NEW.prixTotalCommande = (SELECT calculPrixTotal(NEW.idCommande));
+    END IF;
+END //
