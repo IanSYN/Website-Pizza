@@ -28,14 +28,14 @@ h2{
 }
 
 .Prodimg img{
-    width: 18%;
+    width: 55%;
     border: thick double green;
     border-radius: 10px;
     text-align: center;
 }
 
 .Prodinf img{
-    height: 25%;
+    width: 17%;
     object-position: center bottom;
     text-align: center;
     border: 2px black;
@@ -53,7 +53,18 @@ li{
 
 .Prodinf li.qtn{
     border: 2px solid grey;
-    width: fit-content;
     padding: 5px;
     text-align: center;
 }
+
+label {
+    display: inline-block;
+    width: 280px;
+    text-align: right;
+}
+
+.ingre {
+    text-align: left;
+    margin : 10px;
+}
+ 

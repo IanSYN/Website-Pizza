@@ -5,6 +5,8 @@ require_once('model/VPanier.php');
 require_once('model/session.php');
 require_once('model/PaiementCB.php');
 require_once('model/Commande.php');
+require_once('model/VPizzaPersonnalisee.php');
+require_once('model/PizzaPersonnalisee.php');
 
 class controllerPanier extends controllerDefaut{
 
@@ -27,6 +29,7 @@ class controllerPanier extends controllerDefaut{
 
         // Cas où aucun client n'est connecté
         // on le renvoie vers la page de connexion
+        $prod = Produit::getAll();
         if (!(session::clientConnected())){
             controllerConnexion::AfficherConnexion();
         }
@@ -34,13 +37,18 @@ class controllerPanier extends controllerDefaut{
             $identifiant = static::$identifiant;
             $classe = static::$classe;
             $id = $_SESSION["idClient"];
-
+            $idPan = Commande::idPanier($id);
             require_once('view/Panier/debPanier.html');
             require_once('view/menu.php');
-            //$PizValue = $classe::getPanierPizza($id);
-            $value = $classe::getPanierProduit($id);
+            $PizValue = VPizzaPersonnalisee::getPizzaPerso($idPan);
+            if (!empty($PizValue)) {
+                $pizzfin = new VPizzaPersonnalisee();
+                $PizValue[] = $pizzfin;
+            }
+            $value = $classe::getPanierProduit($idPan);
             require_once('view/Panier/Panier.php');
             require_once('view/fin.html');
+            //require_once('view/test.php');
         }
 
     }
@@ -74,9 +82,21 @@ class controllerPanier extends controllerDefaut{
     public static function SupprimerPanier(){
         $identifiant = static::$identifiant;
         $classe = static::$classe;
-        $idcmd = $_GET["idCommande"];
-        $idProd = $_GET["idProduit"];;
+        $idcmd = null;
+        $idProd = null;
+        if (isset($_GET["idCommande"]) && isset($_GET["idProduit"])) {
+            $idcmd = $_GET["idCommande"];
+            $idProd = $_GET["idProduit"];
+        }
         $classe::SupprimerPanierProduit($idcmd, $idProd);
+        self::AfficherPanier();
+    }
+
+    public static function SupprimerPP(){
+        $identifiant = static::$identifiant;
+        $classe = static::$classe;
+        $idPP = $_GET["idPP"];
+        PizzaPersonnalisee::SupprimerPizzaPerso($idPP);
         self::AfficherPanier();
     }
 

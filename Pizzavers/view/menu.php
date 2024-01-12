@@ -44,13 +44,15 @@
                 if (session::clientConnected()) {
                     $prenom = $_SESSION["prenom"];
                     $nom = $_SESSION["nom"];
+                    echo "<div class='dropdown'>
+                                <p> Bonjour $prenom $nom ! </p>
+                                <div class='dropdown-content'>
+                                    <a href='index.php?objet=connexion&action=disconnect'>
+                                        <button type='submit'>Se déconnecter</button>
+                                    </a>
+                                </div>
+                            </div>";
                     echo "<div class='compte'>";
-                    echo "<p> Bonjour $prenom $nom ! </p>";
-                    echo "
-                    <a href='index.php?objet=connexion&action=disconnect'>
-                        <button type='submit'>Se déconnecter</button>
-                    </a>
-                    </div>";
                 }
                 else {
                     echo "

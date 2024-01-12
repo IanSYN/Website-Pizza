@@ -7,9 +7,9 @@
     </head>
     <body>
         <?php
-        echo "<p>$id</p>";
-        echo "<p>$id1</p>";
-        echo "<p>$lstIngr</p>";
+            foreach ($PizValue as $val2) {
+                echo $val2->get('idPizzaPersonnalisee') . "<br>";
+            }
         ?>
     </body>
 </html>

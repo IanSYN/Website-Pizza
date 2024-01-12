@@ -43,7 +43,7 @@ class VPanier extends objet
         $classRecuperee = static::$classe;
         $identifiant = static::$identifiant;
         //requete
-        $requetePreparee = "SELECT * FROM $classRecuperee WHERE $identifiant = :id_tag;";
+        $requetePreparee = "SELECT * FROM $classRecuperee WHERE idCommande = :id_tag; AND idEtatCommande = 1";
         //execution
         $resultat = connexion::pdo()->prepare($requetePreparee);
         $tags = array(':id_tag' => $id);
@@ -54,7 +54,12 @@ class VPanier extends objet
             //renvoi du tableau
             $element = $resultat->fetchAll();
             //retourne le tableau
-            return $element;
+            if(empty($element)){
+                return null;
+            }
+            else{
+                return $element;
+            }
         }
         catch(PDOException $e){
             echo $e->getMessage();

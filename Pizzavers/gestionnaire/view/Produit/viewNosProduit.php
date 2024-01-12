@@ -17,5 +17,8 @@
         }
     }
     ?>
+    <div class="buttonDiv">
+        <a href='index.php?objet=produit&action=ajouterPizza'> <button type='button'> Ajouter </button></a>
+    </div>
 </main>
 </body>

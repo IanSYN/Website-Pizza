@@ -31,27 +31,58 @@
 
     public static function payer($id, $NCard, $Crypto, $Date, $Nom){
         $classe = static::$classe;
-        $query = "INSERT INTO $classe (codeCB, nomCB, dateExpiration, cryptoCB, datePaiement, etatPaiement) VALUES ('$NCard', '$Nom', '$Date', '$Crypto', now(), 'Paiement validé');";
-        $resultat = connexion::pdo()->prepare($query);
+        self::validCommande($id);
+        $querytest = "SELECT * FROM $classe WHERE codeCB = :NCard_tag;";
+        $resultat = connexion::pdo()->prepare($querytest);
+        $tags = array(':NCard_tag' => $NCard);
         try{
-            $resultat->execute();
-            $idCB = connexion::pdo()->lastInsertId();
-            $query = "UPDATE Commande SET idCB = '$idCB' WHERE idCommande = '$id'";
-            $resultat = connexion::pdo()->prepare($query);
-            try{
-                $resultat->execute();
-                return true;
+            $resultat->execute($tags);
+            $resultat->setFetchMode(PDO::FETCH_CLASS, $classe);
+            $element = $resultat->fetch();
+            if(empty($element)){
+                $query = "INSERT INTO $classe (codeCB, nomCB, dateExpiration, cryptoCB, datePaiement, etatPaiement) VALUES ('$NCard', '$Nom', '$Date', '$Crypto', now(), 'Paiement validé');";
+                $resultat = connexion::pdo()->prepare($query);
+                try{
+                    $resultat->execute();
+                    $idCB = connexion::pdo()->lastInsertId();
+                    $query = "UPDATE Commande SET idCB = '$idCB' WHERE idCommande = '$id'";
+                    $resultat = connexion::pdo()->prepare($query);
+                    try{
+                        $resultat->execute();
+                        return true;
+                    }
+                    catch(PDOException $e){
+                        echo $e->getMessage();
+                        return false;
+                    }
+                }
+                catch(PDOException $e){
+                    echo $e->getMessage();
+                    return false;
+                }
             }
-            catch(PDOException $e){
-                echo $e->getMessage();
-                return false;
+            else{
+                return true;
             }
         }
         catch(PDOException $e){
             echo $e->getMessage();
             return false;
         }
+    }   
 
+
+    public static function validCommande($id){
+        $query = "UPDATE Commande SET idEtatCommande = 2 WHERE idClient = $id AND idEtatCommande = 1;";
+        $resultat = connexion::pdo()->prepare($query);
+        try{
+            $resultat->execute();
+            return true;
+        }
+        catch(PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
     }
 }
 ?>

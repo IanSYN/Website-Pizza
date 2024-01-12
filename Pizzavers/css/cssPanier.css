@@ -41,6 +41,7 @@ h1 {
 }
 
 .row {
+    width: auto;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -56,6 +57,26 @@ h1 {
     margin: 20px;
 }
 
+.row img {
+    border: unset;
+    border-radius: 15px;
+    width: 150px;
+    height: 150px;
+}
+
+.rowPP{
+    width: auto;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 10px;
+    border: unset;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    padding: 10px;
+}
+
 .bouton {
     text-align: left;
     display: grid;
@@ -63,7 +84,7 @@ h1 {
 }
 
 .bouton button {
-    size: cover;
+    width: 40%;
 }
 
 label {
@@ -108,14 +129,14 @@ label {
     margin: 20px;
     outline: none;
     color: #DAA06D;
-    padding: 1em;
-    padding-left: 3em;
-    padding-right: 3em;
+    padding: 10px 15px;
+    cursor: pointer;
     border: 2px dashed #DAA06D;
     border-radius: 15px;
     background-color: #EADDCA;
     box-shadow: 0 0 0 4px #EADDCA, 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
     transition: .1s ease-in-out, .4s color;
+    width: 80%;
 }
   
 .Supp:active {

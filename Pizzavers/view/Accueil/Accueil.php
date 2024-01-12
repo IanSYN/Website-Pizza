@@ -1,12 +1,14 @@
-<div class="Accueil">
+<div class="Accueil fadeIn">
     <div>
-        <h1 style="text-align: center;">Accueil</h1>
+        <br>
+        <h1 style="text-align: center;">Bienvenue dans votre PizzaVers</h1>
+        <h1 style="text-align: center;">Bien plus qu'une pizza, une explosion de saveurs à chaque bouchée !</h1>
     </div>
     <div class="contener">
-        <div class="ContenerEnAvant"> <!-- à mettre : un code php affichant la pizza à l'affiche -->
+        <div class="ContenerEnAvant entrer"> <!-- à mettre : un code php affichant la pizza à l'affiche -->
             <?php
                 $id = $AlAffiche->get($identifiant);
-                echo "<div class='EnAvant' style='background-image: url(img/".$AlAffiche->get('coverProduit').");'></div>";
+                echo "<a href='index.php?objet=Accueil&action=afficherOne&$identifiant=$id'><div class='EnAvant' style='background-image: url(img/".$AlAffiche->get('coverProduit').");'></div></a>";
                 echo "<div class='infoEnAvant'>
                 <p>La pizza du moment</p>
                 <h1>".$AlAffiche->get('nomProduit')."</h1>
@@ -14,7 +16,7 @@
                 <br>
                 <br>
                 <a href='index.php?objet=Accueil&action=afficherOne&$identifiant=$id'>
-                    <button type='submit'>Voir plus</button>
+                    <button class='VoirP' type='submit'>Voir plus</button>
                 </a>
                 </div>";
             ?>
@@ -39,11 +41,11 @@
                             echo "<div class=containerObjet>";
                             foreach($listProd as $val2){
                                 if($val->get('nomCategorie') == $val2->get('nomCategorie')){
-                                    echo "<div class='$val2'>";
+                                    echo "<div class='Produit entrer'>";
                                     $id = $val2->get($identifiant);
-                                    echo "<img src='img/".$val2->get('coverProduit')."'><br>";
-                                    echo "<a href='index.php?objet=Accueil&action=afficherOne&$identifiant=$id'>".$val2->get('nomProduit')."</a><br>";
-                                    echo "</div>";
+                                    echo "<a href='index.php?objet=Accueil&action=afficherOne&$identifiant=$id'><img src='img/".$val2->get('coverProduit')."'><br>";
+                                    echo "<h1>".$val2->get('nomProduit')."</h1><br>";
+                                    echo "</div></a>";
                                 }
                             }
                             echo "</div>";

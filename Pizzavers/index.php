@@ -4,8 +4,8 @@ session_start(); // On permet l'écriture dans $_SESSION
 
 $objet = "accueil";
 $action = "AfficherAccueil";
-$objets = ["accueil","connexion","produit","panier", "gestionnaire", "info"];
-$actions = ["connect", "afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherPage", "afficherOne", "disconnect", "ajoutePanier", "afficherPanier", "afficherAjoute", "afficherInscription", "inscription" , "afficherInfo", "pagePaiement", "payer", "supprimerPanier", "up", "down"];
+$objets = ["accueil","connexion","produit","panier", "gestionnaire", "info", "personnalisation"];
+$actions = ["connect", "afficherProduit","afficher","afficherAccueil", "afficherConnexion", "afficherPage", "afficherOne", "disconnect", "ajoutePanier", "afficherPanier", "afficherAjoute", "afficherInscription", "inscription" , "afficherInfo", "pagePaiement", "payer", "supprimerPanier", "up", "down", "ajoutePersonnalisation", "ajouterPP", "supprimerPP", "afficherPersonnalisation"];
 
 if(isset($_GET['objet']) && in_array($_GET['objet'],$objets)){
     $objet = $_GET['objet'];

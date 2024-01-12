@@ -152,14 +152,63 @@
             include('gestionnaire/view/Produit/formulaireProduit.html');
         }
 
-        public static function CreerPizza(){
-            if (isset($_POST['nomProduit']) && isset($_POST['prixProduit']) && isset($_POST['coverProduit'])) {
+        public static function CreerProduit(){
+            $nomProduit = $_POST['nomProduit'];
+            $prixProduit = $_POST['prixProduit'];
+            
+
+            /* Partie d'importation et de sauvegarde de l'image */
+
+            // On vérifie que le fichier de cover a été ajouté
+            if (isset($_FILES['coverProduit'])) {
+
+                // On récupère les informations utiles du fichier
+                $nomFichier = $_FILES['coverProduit']['name'];
+                $tmpNameFichier = $_FILES['coverProduit']['tmp_name']; // On récupère le chemin temporaire du fichier importé
+                $erreurs = $_FILES['coverProduit']['error']; // On récupère 
+
+                // On vérifie qu'il n'y a pas eu d'erreur
+                if ($erreurs == 0) {
+
+                    // On vérifie si le fichier importé est une image
+                    $isImage = getimagesize($tmpNameFichier);
+
+                    if ($isImage != false) {
+
+                        // On définit la destination du fichier dans le serveur
+                        $destination = "img/" . $nomFichier;
+
+                        // On déplace le fichier au bon endroit
+                        if (!(move_uploaded_file($tmpNameFichier, $destination))) {
+                            // En cas d'erreur d'import
+                            echo "Erreur d'import !";
+                        }
+                    } 
+                    // Cas où le fichier n'est pas une image
+                    else {
+                        echo "Invalid image file!";
+                    }
+                } 
+                // Cas où il y a eu des erreurs d'importation
+                else {
+                    echo "Error uploading the file!";
+                }
+            } 
+            // Cas où aucun fichier n'a été importé
+            else {
+                echo "Aucun fichier importé";
+            }
+
+            if (isset($_POST['nomProduit']) && isset($_POST['prixProduit']) && isset($_POST['idCategorie'])) {
                 $nomProduit = $_POST['nomProduit'];
                 $prixProduit = $_POST['prixProduit'];
-                $coverProduit = $_POST['coverProduit'];
-                $idCategorie = 3;
+                $coverProduit = $_FILES['coverProduit']['name']; // Correspond au nom du fichier importé
+                $idCategorie = $_POST['idCategorie'];
                 $alAffiche = 0;
                 Produit::creerProduit($nomProduit, $prixProduit, $coverProduit, $idCategorie, $alAffiche);
+
+                // A faire eventuellement :
+                // Quand le produit est une pizza, mener vers la configuration des ingrédients
                 self::NosPizzas();
             }
             else {

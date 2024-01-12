@@ -11,7 +11,7 @@
         "afficherMesAlertes",
         "afficherMonCompte",
         "ajouterPizza",
-        "creerPizza",
+        "creerProduit",
         "disconnect",
         "enregistrerSeuils",
         "mettreAlAffiche",
